@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets';
+
+import Layout from '@/layouts/Layout.astro';
+import InstagramIcon from '@/components/Icons/Instagram.astro';
+import TwitchIcon from '@/components/Icons/Twitch.astro';
+import GithubIcon from '@/components/Icons/Github.astro';
+import TwitterIcon from '@/components/Icons/Twitter.astro';
+import LinkedInIcon from '@/components/Icons/LinkedIn.astro';
+import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
+---
+
+<Layout id='header' class='md:px-[16px] group'>
+  <nav class='group-[.open]:fixed group-[.open]:inset-0 group-[.open]:h-screen group-[.open]:bg-purple flex flex-col md:flex-row md:justify-between md:items-center px-[16px] md:px-[24px] py-[20px] md:py-[16px] gap-[30px] md:gap-[16px] backdrop-blur md:bg-white md:bg-opacity-10 md:rounded-3xl'>
+    <div class='flex justify-between items-center gap-3'>
+      <a href='/' class='flex justify-between items-center gap-3'>
+        <Image class='max-w-[65px] md:max-w-[50px]' src={CaribeDevPng} alt='Caribe dev logo' />
+      </a>
+      <button
+        id='menu-btn'
+        aria-expanded='false'
+        aria-controls='menu-content'
+        class='flex md:hidden h-[20px] flex-col items-center justify-between lg:hidden w-6'
+        aria-label='Abrir menú de navegación'
+      >
+        <span class='bg-white group-[.open]:translate-y-2 group-[.open]:rotate-45 h-[2px] w-6 bg-gray-300 transition ease transform duration-300'></span>
+        <span class='bg-white group-[.open]:opacity-0 h-[2px] w-6 bg-gray-300 transition ease transform duration-300'></span>
+        <span class='bg-white group-[.open]:-translate-y-[0.6rem] group-[.open]:-rotate-45 h-[2px] w-6 bg-gray-300 transition ease transform duration-300'></span>
+      </button>
+    </div>
+    <ul id='menu-content' class='hidden group-[.open]:flex md:flex flex-col md:flex-row justify-between items-center gap-[24px]'>
+      <li><a href='/about' class='font-semibold'>Quienes somos</a></li>
+      <li><a href='/about' class='font-semibold'>Speakers</a></li>
+      <li><a href='/about' class='font-semibold'>Sponsors</a></li>
+    </ul>
+    <div class='hidden group-[.open]:flex md:flex justify-center items-center'>
+      <a href='/about' class='btn btn--primary max-w-[200px] md:max-w-[180px]'>Inscríbete</a>
+    </div>
+    <div class='hidden group-[.open]:flex flex-1 justify-end gap-[16px] flex-col md:hidden'>
+      <div class='flex gap-[16px] justify-center items-end'>
+        <a href="https://www.instagram.com/caribedev/" target="_blank" rel="noopener">
+          <span class="sr-only">Instagram</span>
+          <InstagramIcon width={25} height={26} />
+        </a>
+        <a href="https://www.twitch.tv/caribedev" target="_blank" rel="noopener">
+          <span class="sr-only">Twitch</span>
+          <TwitchIcon width={25} height={26} />
+        </a>
+        <a href="https://www.linkedin.com/company/caribe-dev/" target="_blank" rel="noopener">
+          <span class="sr-only">LinkedIn</span>
+          <TwitterIcon width={25} height={26} />
+        </a>
+        <a href="https://github.com/caribe-dev" target="_blank" rel="noopener">
+          <span class="sr-only">LinkedIn</span>
+          <LinkedInIcon width={25} height={26} />
+        </a>
+        <a href="https://x.com/caribedev" target="_blank" rel="noopener">
+          <span class="sr-only">Twitch</span>
+          <GithubIcon width={25} height={26} />
+        </a>
+      </div>
+      <div class="text-center">
+        <a
+          class="text-white font-semibold underline"
+          href="https://github.com/Caribe-Dev/caribe-page/blob/main/CODE_OF_CONDUCT.md"
+          target="_blank"
+          rel="noopener"
+        >
+        Code of Conduct
+        </a>
+      </div>
+    </div>
+  </nav>
+</Layout>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const $header = document.getElementById('header')
+    const $menuBtn = document.getElementById('menu-btn')
+    const menuButtonAriaLabel = {
+      open: 'Cerrar menú de navegación',
+      close: 'Abrir menú de navegación'
+    }
+
+    $menuBtn?.addEventListener('click', function () {
+      const expanded = this.getAttribute('aria-expanded') === 'true'
+      const arialLabel = !expanded ? menuButtonAriaLabel.close: menuButtonAriaLabel.open
+
+      this.setAttribute('aria-expanded', `${!expanded}`)
+      this.setAttribute('aria-label', arialLabel)
+      $header?.classList.toggle('open')
+      })
+	})
+</script>

@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --raleway-font: 'Raleway';
+  --c-pink: #BE357F;
+  --c-white: #FFFFFF;
+  --c-aqua: #41DEF4;
+  --c-purple: #120B2F;
+  --c-cian: #1EB8F9;
+  color-scheme: light dark;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: var(--raleway-font), -apple-system, Helvetica Neue, sans-serif;
+}
+
+html, body {
+  color: var(--c-white);
+  background-color: var(--c-purple);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--c-white);
+  }
+}
+
+
+@media (prefers-reduced-motion) {
+  html,
+  body {
+    scroll-behavior: auto;
+  }
+}

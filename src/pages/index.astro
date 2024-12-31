@@ -1,11 +1,27 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from '@/layouts/Layout.astro';
+import Main from '@/layouts/Main.astro';
+import HomeHero from '@/sections/HomeHero.astro';
+import Speakers from '@/sections/Speakers.astro';
+import Sponsors from '@/sections/Sponsors.astro';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<Main>
+  <HomeHero />
+  <section class="mx-auto">
+    <Layout>
+      <div class="flex flex-col items-center gap-3 md:gap-6 max-w-[682px] w-full mx-auto pt-[60px] pb-[80px] md:pt-[80px] md:pb-[100px] xl:pb-[140px]">
+        <h2 class="h6">
+          <span class="text-aqua h6">CaribeConf</span> es más que una conferencia: es el punto de encuentro para aprender,
+          inspirarte y ser parte de <span class="text-aqua h6">comunidades tecnológicas</span> vibrantes y humanas en Colombia.
+        </h2>
+        <span class="font-[500]">
+          Descubre las últimas tendencias en desarrollo y lleva tus habilidades al siguiente
+          nivel mientras conectas con personas que comparten tu pasión.
+        </span>
+      </div>
+    </Layout>
+  </section>
+  <Speakers />
+  <Sponsors />
+</Main>

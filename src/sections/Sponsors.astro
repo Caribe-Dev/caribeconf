@@ -1,0 +1,25 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import StarIcon from '@/components/Icons/Star.astro';
+---
+
+<section class="mx-auto">
+  <Layout class="relative py-[115px]">
+    <div class="max-w-[600px] flex flex-col gap-[32px]">
+      <h2 class="text-cian">¡Conviértete en sponsor!</h2>
+      <div class="flex flex-col gap-[30px]">
+        <p class="font-medium text-small">
+          Potencia tu marca ante la comunidad tecnológica más vibrante de Colombia.
+        </p>
+        <p class="font-medium">
+          Únete a nosotros para conectar con desarrolladores, líderes de la industria y futuros talentos.
+          Tu apoyo será clave para impulsar la innovación, el talento y la diversidad en el Caribe.
+        </p>
+      </div>
+      <a target="_blank" class="btn btn--pink text-black z-10 max-w-[390px]">
+        Quiero ser Sponsor
+        <StarIcon width={20} height={20} />
+      </a>
+    </div>
+  </Layout>
+</section>

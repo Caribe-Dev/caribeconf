@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+
+import Layout from '@/layouts/Layout.astro';
+import InstagramIcon from '@/components/Icons/Instagram.astro';
+import TwitchIcon from '@/components/Icons/Twitch.astro';
+import GithubIcon from '@/components/Icons/Github.astro';
+import TwitterIcon from '@/components/Icons/Twitter.astro';
+import LinkedInIcon from '@/components/Icons/LinkedIn.astro';
+
+import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-pink rounded-t-3xl">
+  <Layout class='flex flex-col py-[20px] gap-[16px]'>
+    <div class="flex flex-1 justify-between items-center flex-col lg:flex-row gap-[16px]">
+      <div class="flex items-center flex-col lg:flex-row gap-[16px]">
+        <Image class='max-w-[65px]' src={CaribeDevPng} alt='Caribe dev logo' />
+        <span class="font-semibold">© Copyright Fundación CaribeDev {currentYear}</span>
+      </div>
+      <div class="flex gap-[16px]">
+        <a href="https://www.instagram.com/caribedev/" target="_blank" rel="noopener">
+          <span class="sr-only">Instagram</span>
+          <InstagramIcon width={25} height={26} />
+        </a>
+        <a href="https://www.twitch.tv/caribedev" target="_blank" rel="noopener">
+          <span class="sr-only">Twitch</span>
+          <TwitchIcon width={25} height={26} />
+        </a>
+        <a href="https://www.linkedin.com/company/caribe-dev/" target="_blank" rel="noopener">
+          <span class="sr-only">LinkedIn</span>
+          <TwitterIcon width={25} height={26} />
+        </a>
+        <a href="https://github.com/caribe-dev" target="_blank" rel="noopener">
+          <span class="sr-only">LinkedIn</span>
+          <LinkedInIcon width={25} height={26} />
+        </a>
+        <a href="https://x.com/caribedev" target="_blank" rel="noopener">
+          <span class="sr-only">Twitch</span>
+          <GithubIcon width={25} height={26} />
+        </a>
+      </div>
+    </div>
+    <div class="text-center">
+      <a
+        class="text-white font-semibold underline"
+        href="https://github.com/Caribe-Dev/caribe-page/blob/main/CODE_OF_CONDUCT.md"
+        target="_blank"
+        rel="noopener"
+      >
+      Code of Conduct
+      </a>
+    </div>
+  </Layout>
+</footer>

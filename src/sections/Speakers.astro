@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets';
+
+import Layout from '@/layouts/Layout.astro';
+import TopFrame from '@/public/images/top-frame.svg';
+import BottomFrame from '@/public/images/bottom-frame.svg';
+import CloudsSvg from '@/public/images/clouds.svg';
+import BirdsSvg from '@/public/images/birds.svg';
+import SpeakerPng from '@/public/images/speaker.png';
+
+import StarIcon from '@/components/Icons/Star.astro';
+---
+
+<section class='mx-auto relative bg-[#747099]'>
+  <div class='absolute top-0 left-0 right-0 bottom-0'>
+    <Image class='w-full h-full object-cover' src={CloudsSvg} alt='Clouds image' />
+  </div>
+  <Layout class='relative py-[100px] md:py-[200px]'>
+    <Image class='w-full absolute top-[-1px] right-0 left-0' src={TopFrame} alt='Top frame image' />
+    <div class='absolute right-0 top-[40px] md:top-[100px]'>
+      <Image src={BirdsSvg} alt='descriptive text' />
+    </div>
+    <div class='flex flex-col justify-between items-center w-full gap-[30px] md:flex-row'>
+      <div class='max-w-[600px] mx-auto flex flex-col gap-[30px] md:gap-[70px]'>
+        <h2>Speakers</h2>
+        <div class='flex flex-col gap-[20px] md:gap-[30px]'>
+          <p class='font-medium'>
+            Potencia tu marca ante la comunidad tecnológica más vibrante de Colombia.
+          </p>
+          <p class='font-medium'>
+            Únete a nosotros para conectar con desarrolladores, líderes de la industria y futuros talentos.
+            Tu apoyo será clave para impulsar la innovación, el talento y la diversidad en el Caribe.
+          </p>
+        </div>
+        <div class='max-w-[390px] hidden md:block'>
+          <a
+            class='btn btn--cian text-black z-10'
+            href='https://papers.caribeconf.com/15abed65b8ef800faf17cc54cbbb1e9f'
+            target='_blank'
+          >
+            Quiero a los speakers
+            <StarIcon width={20} height={20} />
+          </a>
+        </div>
+      </div>
+      <div class='flex flex-col gap-[30px]'>
+        <Image class='h-[400px] md:h-[600px] object-contain' src={SpeakerPng} alt='Speaker image' />
+        <div class="md:max-w-[390px] md:hidden">
+          <a
+            class='btn btn--cian text-black z-10'
+            href='https://papers.caribeconf.com/15abed65b8ef800faf17cc54cbbb1e9f'
+            target='_blank'
+          >
+            Quiero a los speakers
+            <StarIcon width={20} height={20} />
+          </a>
+        </div>
+      </div>
+    </div>
+    <Image class='w-full absolute bottom-[-1px] right-0 left-0' src={BottomFrame} alt='Bottom frame image' />
+  </Layout>
+</section>

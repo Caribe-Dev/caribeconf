@@ -1,0 +1,28 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 60px;
+  border-radius: 40px;
+  font-weight: 600;
+  width: 100%;
+}
+
+
+.btn.btn--primary {
+  background-color: var(--c-pink);
+  color: var(--c-white);
+}
+
+.btn.btn--primary:hover {
+  opacity: 0.8;
+}
+
+.btn.btn--pink {
+  @apply bg-pink;
+}
+
+.btn.btn--cian {
+  @apply bg-cian;
+}
