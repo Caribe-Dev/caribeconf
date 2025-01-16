@@ -1,14 +1,12 @@
 ---
-interface Props {
-  fill?: string;
-  width?: number;
-  height?: number;
-}
+import type {  HTMLAttributes } from 'astro/types';
 
-const { fill = '#FFFFFF', width = 31, height = 32 } = Astro.props
+type Props = HTMLAttributes<'svg'>
+
+const { fill = '#FFFFFF', width = 31, height = 32, ...props } = Astro.props
 ---
 
-<svg fill="none"  viewBox="0 0 31 32" fill={fill} height={height} width={width}>
+<svg fill="none" viewBox="0 0 31 32" fill={fill} height={height} width={width} {...props} >
   <clipPath id="a">
     <path d="m.235352.941406h30.1176v30.1176h-30.1176z"/>
   </clipPath>

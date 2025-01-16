@@ -1,12 +1,13 @@
 ---
 import { Image } from 'astro:assets';
+import { BUY_TICKET_URL } from "astro:env/client"
 
 import Layout from '@/layouts/Layout.astro';
-import InstagramIcon from '@/components/Icons/Instagram.astro';
-import TwitchIcon from '@/components/Icons/Twitch.astro';
-import GithubIcon from '@/components/Icons/Github.astro';
-import TwitterIcon from '@/components/Icons/Twitter.astro';
-import LinkedInIcon from '@/components/Icons/LinkedIn.astro';
+import InstagramSvg from '@/components/Svgs/Instagram.astro';
+import TwitchSvg from '@/components/Svgs/Twitch.astro';
+import GithubSvg from '@/components/Svgs/Github.astro';
+import TwitterSvg from '@/components/Svgs/Twitter.astro';
+import LinkedInSvg from '@/components/Svgs/LinkedIn.astro';
 import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
 ---
 
@@ -15,6 +16,7 @@ import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
     <div class='flex justify-between items-center gap-3'>
       <a href='/' class='flex justify-between items-center gap-3'>
         <Image class='max-w-[65px] md:max-w-[50px]' src={CaribeDevPng} alt='Caribe dev logo' />
+        <span class='font-semibold'>CaribeConf - 26 de Abril 2025</span>
       </a>
       <button
         id='menu-btn'
@@ -29,34 +31,33 @@ import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
       </button>
     </div>
     <ul id='menu-content' class='hidden group-[.open]:flex md:flex flex-col md:flex-row justify-between items-center gap-[24px]'>
-      <li><a href='/about' class='font-semibold'>Quienes somos</a></li>
-      <li><a href='/about' class='font-semibold'>Speakers</a></li>
-      <li><a href='/about' class='font-semibold'>Sponsors</a></li>
+      <li><a href='#speakers' class='font-semibold'>Speakers</a></li>
+      <li><a href='#sponsors' class='font-semibold'>Sponsors</a></li>
     </ul>
     <div class='hidden group-[.open]:flex md:flex justify-center items-center'>
-      <a href='/about' class='btn btn--primary max-w-[200px] md:max-w-[180px]'>Inscríbete</a>
+      <a href={BUY_TICKET_URL} class='btn btn--primary max-w-fit'>Compra tu ticket</a>
     </div>
     <div class='hidden group-[.open]:flex flex-1 justify-end gap-[16px] flex-col md:hidden'>
       <div class='flex gap-[16px] justify-center items-end'>
         <a href="https://www.instagram.com/caribedev/" target="_blank" rel="noopener">
           <span class="sr-only">Instagram</span>
-          <InstagramIcon width={25} height={26} />
+          <InstagramSvg width={25} height={26} />
         </a>
         <a href="https://www.twitch.tv/caribedev" target="_blank" rel="noopener">
           <span class="sr-only">Twitch</span>
-          <TwitchIcon width={25} height={26} />
+          <TwitchSvg width={25} height={26} />
         </a>
         <a href="https://www.linkedin.com/company/caribe-dev/" target="_blank" rel="noopener">
           <span class="sr-only">LinkedIn</span>
-          <TwitterIcon width={25} height={26} />
+          <TwitterSvg width={25} height={26} />
         </a>
         <a href="https://github.com/caribe-dev" target="_blank" rel="noopener">
           <span class="sr-only">LinkedIn</span>
-          <LinkedInIcon width={25} height={26} />
+          <LinkedInSvg width={25} height={26} />
         </a>
         <a href="https://x.com/caribedev" target="_blank" rel="noopener">
           <span class="sr-only">Twitch</span>
-          <GithubIcon width={25} height={26} />
+          <GithubSvg width={25} height={26} />
         </a>
       </div>
       <div class="text-center">

@@ -16,13 +16,21 @@
 }
 
 .btn.btn--primary:hover {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .btn.btn--pink {
   @apply bg-pink;
 }
 
+.btn.btn--pink:hover {
+  opacity: 0.9;
+}
+
 .btn.btn--cian {
   @apply bg-cian;
+}
+
+.btn.btn--cian:hover {
+  opacity: 0.9;
 }

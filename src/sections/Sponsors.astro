@@ -1,25 +1,82 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import StarIcon from '@/components/Icons/Star.astro';
----
+import StarSvg from '@/components/Svgs/Star.astro';
+import EmeraldSvg from '@/components/Svgs/Emerald.astro';
+import PearlSvg from '@/components/Svgs/Pearl.astro';
+import QuartzSvg from '@/components/Svgs/Quartz.astro';
+import LeftPalmSvg from '@/components/Svgs/LeftPalm.astro';
+import RightPalmSvg from '@/components/Svgs/RightPalm.astro';
+import GroundSvg from '@/components/Svgs/Ground.astro';
 
-<section class="mx-auto">
-  <Layout class="relative py-[115px]">
-    <div class="max-w-[600px] flex flex-col gap-[32px]">
-      <h2 class="text-cian">¡Conviértete en sponsor!</h2>
-      <div class="flex flex-col gap-[30px]">
-        <p class="font-medium text-small">
-          Potencia tu marca ante la comunidad tecnológica más vibrante de Colombia.
-        </p>
-        <p class="font-medium">
-          Únete a nosotros para conectar con desarrolladores, líderes de la industria y futuros talentos.
+---
+<section id='sponsors' class='overflow-hidden'>
+  <Layout class='flex flex-col gap-8 items-center py-[140px] md:flex-row'>
+    <div class='max-w-[600px] flex flex-col gap-[32px] z-10'>
+      <h2 class='text-cian'>¡Conviértete en sponsor!</h2>
+      <div class='flex flex-col gap-[20px]'>
+        <p class='font-bold'>¿Por qué patrocinarnos?</p>
+        <ul class='list-disc pl-[30px] flex flex-col gap-[10px]'>
+          <li>
+            <span>
+              <span class='font-semibold'>Acceso al talento:</span>
+              CaribeConf reúne a los mejores devs o
+              desarrolladores y líderes de comunidad de la región.
+            </span>
+          </li>
+          <li>
+            <span>
+              <span class='font-semibold'>Visibilidad de marca:</span>
+              asegúrate de ser reconocido como aliado
+              en la industria tecnológica.
+            </span>
+          </li>
+          <li>
+            <span>
+              <span class='font-semibold'>Impacto regional:</span>
+              Somos un ecosistema tecnológico
+              emergente con alto potencial.
+            </span>
+          </li>
+        </ul>
+        <p class='small-text'>
           Tu apoyo será clave para impulsar la innovación, el talento y la diversidad en el Caribe.
         </p>
       </div>
-      <a target="_blank" class="btn btn--pink text-black z-10 max-w-[390px]">
+      <a
+        class='btn btn--pink text-black z-10 md:max-w-[390px]'
+        href='mailto:hello@caribedev.org'
+        target='_blank'
+      >
         Quiero ser Sponsor
-        <StarIcon width={20} height={20} />
+        <StarSvg width={20} height={20} />
       </a>
     </div>
+    <div class='flex flex-1 items-center justify-center z-10'>
+      <div class='flex flex-col gap-[40px]'>
+        <div class='flex gap-8 items-center'>
+          <EmeraldSvg />
+          <span class='font-bold p uppercase'>Esmeralda</span>
+        </div>
+        <div class='flex gap-8 items-center'>
+          <PearlSvg />
+          <span class='font-bold uppercase'>Perla</span>
+        </div>
+        <div class='flex gap-8 items-center'>
+          <QuartzSvg />
+          <span class='font-bold uppercase'>Cuarzo</span>
+        </div>
+      </div>
+    </div>
   </Layout>
+  <div class='relative max-w-[1920px] z-0 mx-auto'>
+    <div class='absolute bottom-0 left-0 h-[300px] md:h-[500px] translate-x-[-40px] md:translate-x-[-49px] md:translate-y-[30px]'>
+      <LeftPalmSvg fill='#1F183C' class='h-full' width={null} height={null} />
+    </div>
+    <div class='absolute bottom-0 right-0 h-[350px] md:h-[550px] translate-x-[40px] md:translate-x-[50px] md:translate-y-[30px] '>
+      <RightPalmSvg fill='#1F183C' class='h-full' width={null} height={null} />
+    </div>
+    <div class='left-0 right-0 w-full z-[4] mx-auto '>
+      <GroundSvg fill='#1F183C' class='h-full' width={null} height={null} />
+    </div>
+  </div>
 </section>

@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { SPEAKER_FORM_URL } from 'astro:env/client'
 
 import Layout from '@/layouts/Layout.astro';
 import TopFrame from '@/public/images/top-frame.svg';
@@ -8,10 +9,10 @@ import CloudsSvg from '@/public/images/clouds.svg';
 import BirdsSvg from '@/public/images/birds.svg';
 import SpeakerPng from '@/public/images/speaker.png';
 
-import StarIcon from '@/components/Icons/Star.astro';
+import StarSvg from '@/components/Svgs/Star.astro';
 ---
 
-<section class='mx-auto relative bg-[#747099]'>
+<section id='speakers' class='mx-auto relative bg-[#747099]'>
   <div class='absolute top-0 left-0 right-0 bottom-0'>
     <Image class='w-full h-full object-cover' src={CloudsSvg} alt='Clouds image' />
   </div>
@@ -21,38 +22,52 @@ import StarIcon from '@/components/Icons/Star.astro';
       <Image src={BirdsSvg} alt='descriptive text' />
     </div>
     <div class='flex flex-col justify-between items-center w-full gap-[30px] md:flex-row'>
-      <div class='max-w-[600px] mx-auto flex flex-col gap-[30px] md:gap-[70px]'>
+      <div class='max-w-[600px] mx-auto flex flex-col gap-[30px] md:gap-[50px]'>
         <h2>Speakers</h2>
-        <div class='flex flex-col gap-[20px] md:gap-[30px]'>
-          <p class='font-medium'>
-            Potencia tu marca ante la comunidad tecnológica más vibrante de Colombia.
+        <div class='flex flex-col gap-[20px]'>
+          <p class='font-bold'>
+            Con la presencia de expertos como:
           </p>
-          <p class='font-medium'>
-            Únete a nosotros para conectar con desarrolladores, líderes de la industria y futuros talentos.
-            Tu apoyo será clave para impulsar la innovación, el talento y la diversidad en el Caribe.
-          </p>
+          <ul class='list-disc pl-[30px] flex flex-col gap-[10px]'>
+            <li>
+              <span class='font-semibold'>Daniel Minor</span>
+              <span>de Mozilla.</span>
+            </li>
+            <li>
+              <span class='font-semibold'>Francisca</span>
+              <span>de Latam Airlines.</span>
+            </li>
+            <li>
+              <span class='font-semibold'>Ana Rangel,</span>
+              <span>la mente detrás del diseño de JSConf Chile.</span>
+            </li>
+          </ul>
+          <span class='font-semibold'>
+            CaribeConf te abrirá puertas con charlas que pueden cambiar tu carrera, y
+            la conección a una comunidad que se une para redefinir la tecnología en el Caribe.
+          </span>
         </div>
         <div class='max-w-[390px] hidden md:block'>
           <a
             class='btn btn--cian text-black z-10'
-            href='https://papers.caribeconf.com/15abed65b8ef800faf17cc54cbbb1e9f'
+            href={SPEAKER_FORM_URL}
             target='_blank'
           >
             Quiero a los speakers
-            <StarIcon width={20} height={20} />
+            <StarSvg width={20} height={20} />
           </a>
         </div>
       </div>
       <div class='flex flex-col gap-[30px]'>
         <Image class='h-[400px] md:h-[600px] object-contain' src={SpeakerPng} alt='Speaker image' />
-        <div class="md:max-w-[390px] md:hidden">
+        <div class='md:max-w-[390px] md:hidden'>
           <a
             class='btn btn--cian text-black z-10'
-            href='https://papers.caribeconf.com/15abed65b8ef800faf17cc54cbbb1e9f'
+            href={SPEAKER_FORM_URL}
             target='_blank'
           >
             Quiero a los speakers
-            <StarIcon width={20} height={20} />
+            <StarSvg width={20} height={20} />
           </a>
         </div>
       </div>
