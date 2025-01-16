@@ -38,10 +38,14 @@ import GroundSvg from '@/components/Svgs/Ground.astro';
       <div class='absolute max-w-[180px] xs:max-w-[200px] md:max-w-[220px] xl:max-w-[250px] top-[80px] md:top-[125px] lg:top-[120px] left-0 translate-x-[-50%]'>
         <Image src={SunSvg} alt='Sun image' />
       </div>
-      <div class='flex justify-center flex-col gap-[16px] max-w-[805px] relative top-[120px] xs:top-[160px] md:top-[220px] z-[20]'>
+      <div class='flex justify-center flex-col gap-[16px] max-w-[805px] relative top-[120px] sm:top-[160px] md:top-[220px] z-[20]'>
         <div>
           <span class='uppercase text-purple font-bold tracking-[2px] text-sm'>conferencia de comunidades tech</span>
-          <h1>CaribeConf 2025 Barranquilla</h1>
+          <h1>
+            CaribeConf
+            <span class="h1 hidden xs:inline">2025</span>
+            Barranquilla 🇨🇴
+          </h1>
         </div>
         <p class='small-text font-medium'>
           300+ personas de 16 comunidades tecnológicas donde aprenderás

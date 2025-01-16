@@ -11,18 +11,18 @@ import LinkedInSvg from '@/components/Svgs/LinkedIn.astro';
 import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
 ---
 
-<Layout id='header' class='!px-[0px] md:!px-[16px] group'>
-  <nav class='group-[.open]:fixed group-[.open]:inset-0 group-[.open]:h-dvh  group-[.open]:bg-purple flex flex-col md:flex-row md:justify-between md:items-center px-[16px] md:px-[24px] py-[20px] md:py-[16px] gap-[30px] md:gap-[16px] backdrop-blur md:bg-white md:bg-opacity-10 md:rounded-3xl'>
+<Layout id='header' class='!px-[0px] lg:!px-[16px] group'>
+  <nav class='group-[.open]:fixed group-[.open]:inset-0 group-[.open]:h-dvh  group-[.open]:bg-purple flex flex-col lg:flex-row lg:justify-between lg:items-center px-[16px] lg:px-[24px] py-[20px] lg:py-[16px] gap-[30px] lg:gap-[16px] backdrop-blur lg:bg-white lg:bg-opacity-10 lg:rounded-3xl'>
     <div class='flex justify-between items-center gap-3'>
       <a href='/' class='flex justify-between items-center gap-3'>
-        <Image class='max-w-[65px] md:max-w-[50px]' src={CaribeDevPng} alt='Caribe dev logo' />
+        <Image class='max-w-[65px] lg:max-w-[50px]' src={CaribeDevPng} alt='Caribe dev logo' />
         <span class='font-semibold'>CaribeConf - 26 de Abril 2025</span>
       </a>
       <button
         id='menu-btn'
         aria-expanded='false'
         aria-controls='menu-content'
-        class='flex md:hidden h-[20px] flex-col items-center justify-between lg:hidden w-6'
+        class='flex h-[20px] flex-col items-center justify-between lg:hidden w-6'
         aria-label='Abrir menú de navegación'
       >
         <span class='bg-white group-[.open]:translate-y-2 group-[.open]:rotate-45 h-[2px] w-6 bg-gray-300 transition ease transform duration-300'></span>
@@ -30,11 +30,11 @@ import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
         <span class='bg-white group-[.open]:-translate-y-[0.6rem] group-[.open]:-rotate-45 h-[2px] w-6 bg-gray-300 transition ease transform duration-300'></span>
       </button>
     </div>
-    <ul id='menu-content' class='hidden group-[.open]:flex md:flex flex-col md:flex-row justify-between items-center gap-[24px]'>
+    <ul id='menu-content' class='hidden group-[.open]:flex lg:flex flex-col lg:flex-row justify-between items-center gap-[24px]'>
       <li><a href='#speakers' class='font-semibold'>Speakers</a></li>
       <li><a href='#sponsors' class='font-semibold'>Sponsors</a></li>
     </ul>
-    <div class='hidden group-[.open]:flex md:flex justify-center items-center'>
+    <div class='hidden group-[.open]:flex lg:flex justify-center items-center'>
       <a href={BUY_TICKET_URL} class='btn btn--primary max-w-fit'>Compra tu ticket</a>
     </div>
     <div class='hidden group-[.open]:flex flex-1 justify-end gap-[16px] flex-col md:hidden'>
