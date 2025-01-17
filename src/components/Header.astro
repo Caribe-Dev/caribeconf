@@ -78,9 +78,20 @@ import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
   document.addEventListener('astro:page-load', () => {
     const $header = document.getElementById('header')
     const $menuBtn = document.getElementById('menu-btn')
+    const $menuContent = document.getElementById('menu-content')
     const menuButtonAriaLabel = {
       open: 'Cerrar menú de navegación',
       close: 'Abrir menú de navegación'
+    }
+
+    const handleSmoothScroll = (selector: string) => {
+        const element = document.querySelector(selector)
+
+        if (!element) return
+
+        element.scrollIntoView({
+          behavior: 'smooth',
+        })
     }
 
     $menuBtn?.addEventListener('click', function () {
@@ -91,5 +102,16 @@ import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
       this.setAttribute('aria-label', arialLabel)
       $header?.classList.toggle('open')
       })
+
+    $menuContent?.addEventListener('click', function (e) {
+      const $anchor = (e.target as Element).closest('a')
+      if ($anchor) {
+        e.preventDefault()
+        const id = $anchor.getAttribute('href') || ''
+
+        $header?.classList.remove('open')
+        handleSmoothScroll(id)
+      }
+    })
 	})
 </script>
