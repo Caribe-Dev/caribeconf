@@ -8,7 +8,8 @@ export default defineConfig({
   env: {
     schema: {
       SPEAKER_FORM_URL: envField.string({ context: "client", access: "public", optional: true }),
-      BUY_TICKET_URL: envField.string({ context: "client", access: "public", optional: true })
+      BUY_TICKET_URL: envField.string({ context: "client", access: "public", optional: true }),
+      DOMAIN: envField.string({ context: "client", access: "public", optional: true })
     }
   }
 });
