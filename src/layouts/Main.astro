@@ -1,6 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
-import { DOMAIN } from "astro:env/client"
+import { DOMAIN, ENV } from "astro:env/client"
 
 import Header from '@/sections/Header.astro'
 import Footer from '@/sections/Footer.astro'
@@ -52,7 +52,11 @@ const jsonLd = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="NOINDEX, NOFOLLOW">
+    <meta name="description" content="CaribeConf Barranquilla, Colombia 2025" />
+    {
+      ENV !== 'production' &&
+        <meta name="robots" content="NOINDEX, NOFOLLOW">
+    }
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>
       {
