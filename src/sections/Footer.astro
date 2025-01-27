@@ -1,45 +1,61 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
-import Layout from '@/layouts/Layout.astro';
-import InstagramSvg from '@/components/Svgs/Instagram.astro';
-import TwitchSvg from '@/components/Svgs/Twitch.astro';
-import GithubSvg from '@/components/Svgs/Github.astro';
-import TwitterSvg from '@/components/Svgs/Twitter.astro';
-import LinkedInSvg from '@/components/Svgs/LinkedIn.astro';
+import Layout from "@/layouts/Layout.astro";
+import InstagramSvg from "@/components/Svgs/Instagram.astro";
+import TwitchSvg from "@/components/Svgs/Twitch.astro";
+import GithubSvg from "@/components/Svgs/Github.astro";
+import TwitterSvg from "@/components/Svgs/Twitter.astro";
+import LinkedInSvg from "@/components/Svgs/LinkedIn.astro";
 
-import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
+import CaribeDevPng from "@/public/caribe-dev-white-logo.png";
 
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="bg-pink rounded-t-3xl">
-  <Layout class='flex flex-col py-[20px] gap-[16px]'>
-    <div class="flex flex-1 justify-between items-center flex-col lg:flex-row gap-[16px]">
+  <Layout class="flex flex-col py-[20px] gap-[16px]">
+    <div
+      class="flex flex-1 justify-between items-center flex-col lg:flex-row gap-[16px]"
+    >
       <div class="flex items-center flex-col lg:flex-row gap-[16px]">
-        <Image class='max-w-[65px]' src={CaribeDevPng} alt='Caribe dev logo' />
-        <span class="font-semibold">© Copyright Fundación CaribeDev {currentYear}</span>
+        <Image class="max-w-[65px]" src={CaribeDevPng} alt="Caribe dev logo" />
+        <span class="font-semibold"
+          >© Copyright Fundación CaribeDev {currentYear}</span
+        >
       </div>
       <div class="flex gap-[16px]">
-        <a href="https://www.instagram.com/caribedev/" target="_blank" rel="noopener">
+        <a
+          href="https://www.instagram.com/caribedev/"
+          target="_blank"
+          rel="noopener"
+        >
           <span class="sr-only">Instagram</span>
           <InstagramSvg width={25} height={26} />
         </a>
-        <a href="https://www.twitch.tv/caribedev" target="_blank" rel="noopener">
+        <a
+          href="https://www.twitch.tv/caribedev"
+          target="_blank"
+          rel="noopener"
+        >
           <span class="sr-only">Twitch</span>
           <TwitchSvg width={25} height={26} />
         </a>
-        <a href="https://www.linkedin.com/company/caribe-dev/" target="_blank" rel="noopener">
-          <span class="sr-only">LinkedIn</span>
-          <TwitterSvg width={25} height={26} />
-        </a>
-        <a href="https://github.com/caribe-dev" target="_blank" rel="noopener">
+        <a
+          href="https://www.linkedin.com/company/caribe-dev/"
+          target="_blank"
+          rel="noopener"
+        >
           <span class="sr-only">LinkedIn</span>
           <LinkedInSvg width={25} height={26} />
         </a>
-        <a href="https://x.com/caribedev" target="_blank" rel="noopener">
-          <span class="sr-only">Twitch</span>
+        <a href="https://github.com/caribe-dev" target="_blank" rel="noopener">
+          <span class="sr-only">Github</span>
           <GithubSvg width={25} height={26} />
+        </a>
+        <a href="https://x.com/caribedev" target="_blank" rel="noopener">
+          <span class="sr-only">Twitter</span>
+          <TwitterSvg width={25} height={26} />
         </a>
       </div>
     </div>
@@ -50,7 +66,7 @@ const currentYear = new Date().getFullYear();
         target="_blank"
         rel="noopener"
       >
-      Code of Conduct
+        Code of Conduct
       </a>
     </div>
   </Layout>
