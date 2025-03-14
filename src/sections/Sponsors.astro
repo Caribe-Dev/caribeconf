@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 import Layout from '@/layouts/Layout.astro';
 import EmeraldSvg from '@/components/Svgs/Emerald.astro';
 import PearlSvg from '@/components/Svgs/Pearl.astro';
@@ -7,66 +9,114 @@ import LeftPalmSvg from '@/components/Svgs/LeftPalm.astro';
 import RightPalmSvg from '@/components/Svgs/RightPalm.astro';
 import GroundSvg from '@/components/Svgs/Ground.astro';
 
+import { emeraldSponsors, pearlSponsors, quartzSponsors, allySponsors } from '@/utils/constants';
+
+// const hasEmeraldSponsors = Boolean(emeraldSponsors.length)
+const hasEmeraldSponsors = false
+const hasPearlSponsors = Boolean(pearlSponsors.length)
+const hasQuartzSponsors = Boolean(quartzSponsors.length)
+const hasAllySponsors = Boolean(allySponsors.length)
 ---
-<section id='sponsors' class='overflow-hidden'>
-  <Layout class='flex flex-col gap-8 items-center py-[140px] md:flex-row'>
-    <div class='max-w-[600px] flex flex-col gap-[32px] z-10'>
-      <h2 class='text-cian'>¡Conviértete en Sponsor!</h2>
-      <div class='flex flex-col gap-[20px]'>
-        <p class='font-bold'>¿Por qué patrocinarnos?</p>
-        <ul class='list-disc pl-[30px] flex flex-col gap-[10px]'>
-          <li>
-            <span>
-              <span class='font-semibold'>Acceso al talento:</span>
-              CaribeConf reúne a los mejores devs o
-              desarrolladores y líderes de comunidad de la región.
-            </span>
-          </li>
-          <li>
-            <span>
-              <span class='font-semibold'>Visibilidad de marca:</span>
-              asegúrate de ser reconocido como aliado
-              en la industria tecnológica.
-            </span>
-          </li>
-          <li>
-            <span>
-              <span class='font-semibold'>Impacto regional:</span>
-              Somos un ecosistema tecnológico
-              emergente con alto potencial.
-            </span>
-          </li>
-        </ul>
-        <p class='small-text'>
-          Tu apoyo será clave para impulsar la innovación, el talento y la diversidad en el Caribe.
-        </p>
-      </div>
-      <a
-        class='btn btn--pink text-black z-10 md:max-w-[390px]'
-        href='mailto:hello@caribedev.org'
-        target='_blank'
-      >
-        Quiero ser Sponsor 🌟
-      </a>
+<section class='overflow-hidden'>
+  <Layout class='flex flex-col gap-52 items-center py-[140px] relative z-[9]'>
+    <div class='flex flex-col gap-32 w-full'>
+      <h2>Sponsors</h2>
+      {
+        hasEmeraldSponsors && (
+        <div class='flex flex-col gap-20 w-full'>
+          <h3 class='h5 heading heading--emerald uppercase'>
+            <div class="flex flex-col justify-center items-center gap-2">
+              <EmeraldSvg width={45} height={45} />
+              Esmeralda
+            </div>
+          </h3>
+          <div class='flex justify-center items-center gap-20'>
+            {
+              emeraldSponsors.map((sponsor) => (
+                <a class="sponsor-scale" href={sponsor.url} target='_blank'>
+                  <Image
+                    src={sponsor.image}
+                    alt={sponsor.alt}
+                    width={350}
+                    height={350}
+                  />
+                </a>
+              ))
+            }
+          </div>
+        </div>
+        )
+      }
+      {
+        hasPearlSponsors && (
+          <div class='flex flex-col gap-20 w-full'>
+            <h3 class='h5 heading heading--pearl uppercase'>
+              <div class="flex flex-col justify-center items-center gap-2">
+                <PearlSvg width={45} height={45} />
+                Perla
+              </div>
+            </h3>
+            <div class='flex justify-center items-center gap-20'>
+              <a class="sponsor-scale " href='https://www.epam.com/' target='_blank'>
+                <Image
+                  src='/images/epam.webp'
+                  alt='Esmeralda'
+                  width={280}
+                  height={280}
+                />
+              </a>
+            </div>
+          </div>
+        )
+      }
+      {
+        hasQuartzSponsors && (
+        <div class='flex flex-col gap-20 w-full'>
+          <h3 class='h5 heading heading--quartz uppercase'>
+            <div class="flex flex-col justify-center items-center gap-2">
+              <QuartzSvg width={45} height={45} />
+              Cuarzo
+            </div>
+          </h3>
+          <div class='flex justify-center items-center gap-20'>
+            <a class="sponsor-scale " href='https://www.epam.com/' target='_blank'>
+              <Image
+                src='/images/epam.webp'
+                alt='Esmeralda'
+                width={240}
+                height={240}
+              />
+            </a>
+          </div>
+        </div>
+        )
+      }
     </div>
-    <div class='flex flex-1 items-center justify-center z-10'>
-      <div class='flex flex-col gap-[40px]'>
-        <div class='flex gap-8 items-center'>
-          <EmeraldSvg />
-          <span class='font-bold p uppercase'>Esmeralda</span>
+    {
+      hasAllySponsors && (
+      <div class='w-full aliados'>
+        <div class="w-full max-w-[30%]">
+          <h3 class='h3 text-center'>Aliados</h3>
         </div>
-        <div class='flex gap-8 items-center'>
-          <PearlSvg />
-          <span class='font-bold uppercase'>Perla</span>
-        </div>
-        <div class='flex gap-8 items-center'>
-          <QuartzSvg />
-          <span class='font-bold uppercase'>Cuarzo</span>
+        <div class="flex flex-1 flex-wrap gap-16 justify-center items-center">
+          {
+            allySponsors.map((sponsor) => (
+              <a class="sponsor-scale" href={sponsor.url} target='_blank'>
+                <Image
+                  src={sponsor.image}
+                  alt={sponsor.alt}
+                  width={sponsor.width}
+                  height={sponsor.height}
+                />
+              </a>
+            ))
+          }
         </div>
       </div>
-    </div>
+      )
+    }
   </Layout>
-  <div class='relative max-w-[1920px] z-0 mx-auto'>
+  <div class='relative max-w-[1920px] z-1 mx-auto'>
     <div class='absolute bottom-0 left-0 h-[300px] md:h-[500px] translate-x-[-40px] md:translate-x-[-49px] md:translate-y-[30px]'>
       <LeftPalmSvg fill='#1F183C' class='h-full' width={null} height={null} />
     </div>
@@ -78,3 +128,39 @@ import GroundSvg from '@/components/Svgs/Ground.astro';
     </div>
   </div>
 </section>
+
+<style>
+  .heading {
+    @apply flex items-center justify-center gap-10 w-full after:block after:content-[""] after:h-[1px] after:flex-1 before:block before:content-[""] before:h-[1px] before:flex-1;
+  }
+
+  .heading.heading--emerald {
+    @apply after:bg-[#03ac6b] before:bg-[#03ac6b] text-[#03ac6b];
+  }
+
+  .heading.heading--pearl {
+    @apply after:bg-[#f4fdf6] before:bg-[#f4fdf6] text-[#f4fdf6];
+  }
+
+  .heading.heading--quartz {
+    @apply after:bg-[#936403] before:bg-[#936403] text-[#936403];
+  }
+
+  .sponsor-scale {
+    @apply transition-[transform] hover:scale-[1.05];
+  }
+
+  .aliados {
+    @apply flex flex-col items-center gap-20 w-full bg-[#1F183C] rounded-[20px] relative p-[80px] lg:p-[111px] lg:flex-row;
+    box-shadow: 0px 0px 20px 0px rgba(226,73,231,1);
+  }
+
+  .aliados::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(180deg, #BE357F 40%, #41DEF4 100%);
+    border-radius: inherit;
+    z-index: -1;
+  }
+</style>

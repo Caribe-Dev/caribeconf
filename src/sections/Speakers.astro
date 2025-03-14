@@ -1,13 +1,37 @@
 ---
 import { Image } from 'astro:assets';
-import { SPEAKER_FORM_URL } from 'astro:env/client'
 
 import Layout from '@/layouts/Layout.astro';
 import TopFrame from '@/public/images/top-frame.svg';
 import BottomFrame from '@/public/images/bottom-frame.svg';
 import CloudsSvg from '@/public/images/clouds.svg';
 import BirdsSvg from '@/public/images/birds.svg';
-import SpeakerPng from '@/public/images/speaker.png';
+
+import SpeakerCard from '@/components/SpeakerCard.astro';
+
+import { speakers } from '@/utils/constants';
+
+const speakerToBeConfirmed = {
+  name: 'Por Confirmar',
+  role: ' ',
+  country: '',
+  thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
+  image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
+  alt: 'Imagen de conferencista por confirmar'
+}
+
+const remainingSpeakers = 12 - speakers.length
+
+const allSpeakers = [
+  ...Array.from({ length: remainingSpeakers }).map(() => speakerToBeConfirmed),
+  ...speakers
+]
+
+const firstColumn = allSpeakers.slice(0, 5)
+const secondColumn = allSpeakers.slice(5, 9)
+const thirdColumn = allSpeakers.slice(9, 13)
+
+const reverseSpeakers = [...allSpeakers].reverse()
 
 ---
 
@@ -15,60 +39,230 @@ import SpeakerPng from '@/public/images/speaker.png';
   <div class='absolute top-0 left-0 right-0 bottom-0'>
     <Image class='w-full h-full object-cover' src={CloudsSvg} alt='Clouds image' />
   </div>
-  <Layout class='relative py-[100px] md:py-[200px]'>
+  <Layout class='relative py-[100px] md:py-[100px]'>
     <Image class='w-full absolute top-[-1px] right-0 left-0' src={TopFrame} alt='Top frame image' />
     <div class='absolute right-0 top-[40px] md:top-[100px]'>
       <Image src={BirdsSvg} alt='descriptive text' />
     </div>
-    <div class='flex flex-col justify-between items-center w-full gap-[30px] md:flex-row'>
-      <div class='max-w-[600px] mx-auto flex flex-col gap-[30px] md:gap-[50px]'>
+    <div class='flex justify-between items-center w-full gap-[30px] flex-wrap'>
+      <div class='w-full'>
         <h2>Speakers</h2>
-        <div class='flex flex-col gap-[20px]'>
-          <p class='font-bold'>
-            Con la presencia de expertos como:
-          </p>
-          <ul class='list-disc pl-[30px] flex flex-col gap-[10px]'>
-            <li>
-              <span class='font-semibold'>Daniel Minor</span>
-              <span>de Mozilla.</span>
-            </li>
-            <li>
-              <span class='font-semibold'>Francisca</span>
-              <span>de Latam Airlines.</span>
-            </li>
-            <li>
-              <span class='font-semibold'>Ana Rangel,</span>
-              <span>la mente detrás del diseño de JSConf Chile.</span>
-            </li>
-          </ul>
-          <span class='font-semibold'>
-            CaribeConf te abrirá puertas con charlas que pueden cambiar tu carrera, y
-            la conexión a una comunidad que se une para redefinir la tecnología en el Caribe.
-          </span>
-        </div>
-        <div class='max-w-[390px] hidden md:block'>
-          <a
-            class='btn btn--cian text-black z-10'
-            href={SPEAKER_FORM_URL}
-            target='_blank'
-          >
-            Quiero ser Speaker 🌟
-          </a>
-        </div>
       </div>
-      <div class='flex flex-col gap-[30px]'>
-        <Image class='h-[400px] md:h-[600px] object-contain' src={SpeakerPng} alt='Speaker image' />
-        <div class='md:max-w-[390px] md:hidden'>
-          <a
-            class='btn btn--cian text-black z-10'
-            href={SPEAKER_FORM_URL}
-            target='_blank'
-          >
-            Quiero ser Speaker 🌟
-          </a>
+      <div class='flex gap-[30px] md:gap-[50px] justify-between w-full flex-col items-center lg:flex-row lg:items-start'>
+        <div class='max-w-[600px] flex-col gap-[30px] md:gap-[50px] hidden lg:flex'>
+          <div class='flex gap-[30px] lg:items-center'>
+            <div class='flex flex-col gap-[20px]'>
+              {
+                firstColumn.map(() => (
+                  <SpeakerCard
+                    class='speaker-card-js'
+                    tumbnail={speakerToBeConfirmed.image}
+                    name={speakerToBeConfirmed.name}
+                    role={speakerToBeConfirmed.role}
+                    image={speakerToBeConfirmed.image}
+                    alt={speakerToBeConfirmed.alt}
+                  />
+                ))
+              }
+            </div>
+            <div class='flex flex-col gap-[20px]'>
+              {
+                secondColumn.map(() => (
+                  <SpeakerCard
+                    class='speaker-card-js'
+                    tumbnail={speakerToBeConfirmed.image}
+                    name={speakerToBeConfirmed.name}
+                    role={speakerToBeConfirmed.role}
+                    image={speakerToBeConfirmed.image}
+                    alt={speakerToBeConfirmed.alt}
+                  />
+                ))
+              }
+            </div>
+            <div class='flex flex-col gap-[20px]'>
+              {
+                thirdColumn.map((speaker, i) => {
+                  return (
+                    <SpeakerCard
+                      class:list={['speaker-card-js', { 'active': i === 0 }]}
+                      tumbnail={speaker.thumbnail}
+                      name={speaker.name}
+                      country={speaker.country}
+                      role={speaker.role}
+                      image={speaker.image}
+                      alt={`Foto del speaker ${speaker.name}`}
+                    />
+                  )
+                })
+              }
+            </div>
+          </div>
+        </div>
+        <div class='flex justify-center w-full max-w-[450px] relative'>
+          <img
+            class='w-full h-[650px] object-contain mask-speaker speaker-image-js'
+            src='https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp'
+            alt='Imagen de conferencista'
+          />
+          <div class='flex flex-col items-center gap-[5px] absolute bottom-0'>
+            <img
+              class='w-full max-w-[150px] country-flag-js'
+              src='https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/colombia-flag_o0xnlj.webp'
+              alt='Bandera de Colombia'
+            />
+            <p class='h5 speaker-name-js'></p>
+            <span class='speaker-role-js'></span>
+          </div>
+        </div>
+        <div class='relative flex gap-[30px] snap-x snap-mandatory overflow-x-scroll w-full pr-[40%] lg:hidden carrousel carrousel-js'>
+          {
+            reverseSpeakers.map((speaker, i) => {
+              const isFirst = i === 0
+              return (
+                <div class:list={['aspect-[1] flex-shrink-0 snap-center overflow-hidden', { 'ml-[40%]': isFirst }]}>
+                  <SpeakerCard
+                    class:list={['speaker-card-js', { 'active': isFirst }]}
+                    tumbnail={speaker.thumbnail}
+                    name={speaker.name}
+                    country={speaker.country}
+                    role={speaker.role}
+                    image={speaker.image}
+                    alt={`Foto del speaker ${speaker.name}`}
+                  />
+                </div>
+              )
+            })
+          }
         </div>
       </div>
     </div>
     <Image class='w-full absolute bottom-[-1px] right-0 left-0' src={BottomFrame} alt='Bottom frame image' />
   </Layout>
 </section>
+
+<style>
+  .mask-speaker {
+    mask-image: linear-gradient(#000 60%, #0000 100%);
+  }
+
+  .carrousel {
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  const flags: Record<string, string> = {
+    colombia: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/colombia-flag_o0xnlj.webp',
+    venezuela: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741826111/venezuela-flag_lq9whn.webp',
+    chile: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/chile-flag_t6zi7b.webp',
+    canada: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/canada-flag_buhs2m.webp',
+    mexico: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/mexico-flag_exjqqm.webp',
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    const $speakerSection = document.getElementById('speakers')
+    const $speakerImage: HTMLImageElement | null = document.querySelector('.speaker-image-js')
+    const $speakerName: HTMLImageElement | null = document.querySelector('.speaker-name-js')
+    const $speakerRole: HTMLImageElement | null = document.querySelector('.speaker-role-js')
+    const $countryImage: HTMLImageElement | null = document.querySelector('.country-flag-js')
+    const $speakers: NodeListOf<HTMLDivElement> = document.querySelectorAll('.speaker-card-js')
+    const $carrousel = document.querySelector('.carrousel-js')
+    const mobileMediaQuery = window.matchMedia('(max-width: 1024px)')
+
+    if ($speakerSection) {
+      const boxerNavObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              boxerNavObserver.disconnect()
+              $speakers.forEach(($speaker) => {
+                const { speakerImage = '' } = $speaker.dataset
+                const preloadLink = document.createElement('link')
+                preloadLink.rel = 'preload'
+                preloadLink.as = 'image'
+                preloadLink.href = speakerImage
+                preloadLink.type = 'image/webp'
+                document.head.appendChild(preloadLink)
+              })
+            }
+          })
+        },
+        { root: null, threshold: 0.1}
+      )
+      boxerNavObserver.observe($speakerSection)
+    }
+
+    const setActiveSpeaker = ($speakerElem: HTMLDivElement) => {
+      const {
+        speakerImage = '',
+        speakerName,
+        speakerRole,
+        speakerCountry
+      } = $speakerElem.dataset
+
+      if ($speakerImage && speakerImage) {
+        $speakerImage.src = speakerImage
+        $speakerImage.alt = `${speakerName} image`
+      }
+
+      if ($speakerName && speakerName) {
+        $speakerName.textContent = speakerName
+      }
+
+      if ($speakerRole && speakerRole) {
+        $speakerRole.textContent = speakerRole
+      }
+
+      if ($countryImage && speakerCountry && flags[speakerCountry]) {
+        $countryImage.src = flags[speakerCountry]
+        $countryImage.alt = 'Bandera de ' + speakerCountry
+      }
+    }
+
+    $speakers.forEach(($speaker) => {
+      $speaker.addEventListener('mouseenter', () => {
+        if (mobileMediaQuery.matches) return
+        const $activeSpeaker: HTMLDivElement | null  = document.querySelector('.speaker-card-js.active')
+        $activeSpeaker?.classList.remove('active')
+        $speaker.classList.add('active')
+        setActiveSpeaker($speaker)
+      })
+    })
+
+    if (mobileMediaQuery.matches && $carrousel) {
+      const $activeSpeaker: HTMLDivElement | null = $carrousel.querySelector('.speaker-card-js.active')
+      const $allSpeakerCard = $carrousel.querySelectorAll('.speaker-card-js')
+
+      if ($activeSpeaker) {
+        setActiveSpeaker($activeSpeaker)
+      }
+
+			$carrousel.addEventListener('scroll', () => {
+        $allSpeakerCard.forEach(($elm) => {
+          const rect = $elm.getBoundingClientRect()
+          const { width } = $carrousel.getBoundingClientRect()
+
+          if (
+            rect.left > width / 2 - rect.width * 0.75 &&
+            rect.left < width / 2 + rect.width * 0.25
+          ) {
+            const $activeSpeaker: HTMLDivElement | null = $carrousel.querySelector('.speaker-card-js.active')
+            $activeSpeaker?.classList.remove('active')
+            $elm.classList.add('active')
+            setActiveSpeaker($elm as HTMLDivElement)
+
+          }
+        })
+			})
+
+      return
+		}
+
+    const $activeSpeaker: HTMLDivElement | null = document.querySelector('.speaker-card-js.active')
+
+    if ($activeSpeaker){
+      setActiveSpeaker($activeSpeaker)
+    }
+  })
+
+</script>
