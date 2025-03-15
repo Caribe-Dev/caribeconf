@@ -44,6 +44,13 @@ export const allySponsors = [
     height: 70
   },
   {
+    image: '/images/baqjs-logo.webp',
+    url: 'https://barranquillajs.org/',
+    alt: 'Logo de BarranquillaJS',
+    width: 75,
+    height: 75
+  },
+  {
     image: '/images/blazing-logo.webp',
     url: 'https://blazingsoft.co/',
     alt: 'Logo de Blazing',
@@ -51,9 +58,23 @@ export const allySponsors = [
     height: 150
   },
   {
+    image: '/images/frecuencia-gamer-logo.webp',
+    url: 'https://frecuenciagamer.com/',
+    alt: 'Logo de Frecuencia Gamer',
+    width: 150,
+    height: 150
+  },
+  {
     image: '/images/notion-logo.webp',
     url: 'https://www.notion.com/',
     alt: 'Logo de Notion',
+    width: 70,
+    height: 70
+  },
+  {
+    image: '/images/jschile-logo.webp',
+    url: 'https://jschile.org/',
+    alt: 'Logo de JS Chile',
     width: 70,
     height: 70
   },
