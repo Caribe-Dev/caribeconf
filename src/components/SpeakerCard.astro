@@ -22,7 +22,7 @@ const { class: className, name, role, country, tumbnail, image, alt  } = Astro.p
   data-speaker-image={image}
 >
   <Image
-    class='w-full'
+    class='w-full object-contain'
     src={tumbnail}
     alt={alt}
     inferSize={true}

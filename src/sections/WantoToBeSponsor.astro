@@ -1,12 +1,7 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import EmeraldSvg from '@/components/Svgs/Emerald.astro';
-import PearlSvg from '@/components/Svgs/Pearl.astro';
-import QuartzSvg from '@/components/Svgs/Quartz.astro';
-import LeftPalmSvg from '@/components/Svgs/LeftPalm.astro';
-import RightPalmSvg from '@/components/Svgs/RightPalm.astro';
-import GroundSvg from '@/components/Svgs/Ground.astro';
+import { Image } from 'astro:assets';
 
+import Layout from '@/layouts/Layout.astro';
 ---
 <section id='sponsors' class='overflow-hidden'>
   <Layout class='flex flex-col gap-8 items-center py-[140px] md:flex-row'>
@@ -52,15 +47,15 @@ import GroundSvg from '@/components/Svgs/Ground.astro';
     <div class='flex flex-1 items-center justify-center z-10'>
       <div class='flex flex-col gap-[40px]'>
         <div class='flex gap-8 items-center'>
-          <EmeraldSvg />
+          <Image src='/images/emerald.webp' width={65} height={65} alt='Imagen de una Esmeralda' />
           <span class='font-bold p uppercase'>Esmeralda</span>
         </div>
         <div class='flex gap-8 items-center'>
-          <PearlSvg />
+          <Image src='/images/pearl.webp' width={65} height={65} alt='Imagen de una Perla' />
           <span class='font-bold uppercase'>Perla</span>
         </div>
         <div class='flex gap-8 items-center'>
-          <QuartzSvg />
+          <Image src='/images/quartz.webp' width={65} height={65} alt='Imagen de un Cuarzo' />
           <span class='font-bold uppercase'>Cuarzo</span>
         </div>
       </div>

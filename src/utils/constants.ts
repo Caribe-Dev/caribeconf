@@ -19,6 +19,13 @@ export const speakers = [
     country: 'chile',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741738174/francisca-medina_e1qh7e.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741738045/mini-francisca-medina_qnfzxt.webp'
+  },
+  {
+    name: 'Erasmo Hernandez',
+    role: 'Frontend Developer',
+    country: 'venezuela',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1742144209/mini-erasmo-hernandez_t1frpz.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1742144201/erasmo-hernandez_fduyau.webp'
   }
 ]
 
@@ -27,13 +34,21 @@ export const emeraldSponsors = [
   {
     image: '/images/epam-logo.webp',
     url: 'https://www.epam.com/',
-    alt: 'Logo de EPAM'
+    alt: 'Logo de EPAM',
   }
 ]
 
 export const pearlSponsors = []
 
-export const quartzSponsors = []
+export const quartzSponsors = [
+  {
+    image: '/images/avvy-logo.webp',
+    url: 'https://www.avvy.co/',
+    alt: 'Logo de Avvy',
+    width: 240,
+    height: 240
+  }
+]
 
 export const allySponsors = [
   {

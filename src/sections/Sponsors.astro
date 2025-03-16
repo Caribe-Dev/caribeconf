@@ -1,13 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 
-
 import DefumedBanner from '@/components/DefumedBanner.astro';
 
 import Layout from '@/layouts/Layout.astro';
-import EmeraldSvg from '@/components/Svgs/Emerald.astro';
-import PearlSvg from '@/components/Svgs/Pearl.astro';
-import QuartzSvg from '@/components/Svgs/Quartz.astro';
 import LeftPalmSvg from '@/components/Svgs/LeftPalm.astro';
 import RightPalmSvg from '@/components/Svgs/RightPalm.astro';
 import GroundSvg from '@/components/Svgs/Ground.astro';
@@ -28,14 +24,14 @@ const hasAllySponsors = Boolean(allySponsors.length)
         <div class='flex flex-col gap-20 w-full'>
           <h3 class='h5 heading heading--emerald uppercase'>
             <div class="flex flex-col justify-center items-center gap-2">
-              <EmeraldSvg width={45} height={45} />
+              <Image src='/images/emerald.webp' width={80} height={80} alt='Imagen de una Esmeralda' />
               Esmeralda
             </div>
           </h3>
           <div class='flex justify-center items-center gap-20'>
             {
               emeraldSponsors.map((sponsor) => (
-                <a class="sponsor-scale" href={sponsor.url} target='_blank'>
+                <a class="sponsor-scale object-contain" href={sponsor.url} target='_blank'>
                   <Image
                     src={sponsor.image}
                     alt={sponsor.alt}
@@ -54,19 +50,23 @@ const hasAllySponsors = Boolean(allySponsors.length)
           <div class='flex flex-col gap-20 w-full'>
             <h3 class='h5 heading heading--pearl uppercase'>
               <div class="flex flex-col justify-center items-center gap-2">
-                <PearlSvg width={45} height={45} />
+                <Image src='/images/pearl.webp' width={80} height={80} alt='Imagen de una Perla' />
                 Perla
               </div>
             </h3>
             <div class='flex justify-center items-center gap-20'>
-              <a class="sponsor-scale " href='https://www.epam.com/' target='_blank'>
-                <Image
-                  src='/images/epam.webp'
-                  alt='Esmeralda'
-                  width={280}
-                  height={280}
-                />
-              </a>
+              {/* {
+                pearlSponsors.map((sponsor) => (
+                  <a class="sponsor-scale object-contain" href={sponsor.url} target='_blank'>
+                    <Image
+                      src={sponsor.image}
+                      alt={sponsor.alt}
+                      width={280}
+                      height={280}
+                    />
+                  </a>
+                ))
+              } */}
             </div>
           </div>
         )
@@ -76,20 +76,24 @@ const hasAllySponsors = Boolean(allySponsors.length)
         <div class='flex flex-col gap-20 w-full'>
           <h3 class='h5 heading heading--quartz uppercase'>
             <div class="flex flex-col justify-center items-center gap-2">
-              <QuartzSvg width={45} height={45} />
+              <Image src='/images/quartz.webp' width={80} height={80} alt='Imagen de un Cuarzo' />
               Cuarzo
             </div>
           </h3>
           <div class='flex justify-center items-center gap-20'>
-            <a class="sponsor-scale " href='https://www.epam.com/' target='_blank'>
-              <Image
-                src='/images/epam.webp'
-                alt='Esmeralda'
-                width={240}
-                height={240}
-              />
-            </a>
-          </div>
+              {
+                quartzSponsors.map((sponsor) => (
+                  <a class="sponsor-scale object-contain" href={sponsor.url} target='_blank'>
+                    <Image
+                      src={sponsor.image}
+                      alt={sponsor.alt}
+                      width={sponsor.width}
+                      height={sponsor.height}
+                    />
+                  </a>
+                ))
+              }
+            </div>
         </div>
         )
       }

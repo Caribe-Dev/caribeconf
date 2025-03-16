@@ -23,16 +23,13 @@ const speakerToBeConfirmed = {
 const remainingSpeakers = 12 - speakers.length
 
 const allSpeakers = [
+  ...speakers,
   ...Array.from({ length: remainingSpeakers }).map(() => speakerToBeConfirmed),
-  ...speakers
 ]
 
 const firstColumn = allSpeakers.slice(0, 5)
 const secondColumn = allSpeakers.slice(5, 9)
-const thirdColumn = allSpeakers.slice(9, 13)
-
-const reverseSpeakers = [...allSpeakers].reverse()
-
+const thirdColumn = allSpeakers.slice(9, 12)
 ---
 
 <section id='speakers' class='mx-auto relative bg-[#747099]'>
@@ -53,14 +50,14 @@ const reverseSpeakers = [...allSpeakers].reverse()
           <div class='flex gap-[30px] lg:items-center'>
             <div class='flex flex-col gap-[20px]'>
               {
-                firstColumn.map(() => (
+                firstColumn.map((speaker, i) => (
                   <SpeakerCard
-                    class='speaker-card-js'
-                    tumbnail={speakerToBeConfirmed.image}
-                    name={speakerToBeConfirmed.name}
-                    role={speakerToBeConfirmed.role}
-                    image={speakerToBeConfirmed.image}
-                    alt={speakerToBeConfirmed.alt}
+                    class:list={['speaker-card-js', { 'active': i === 0 }]}
+                    tumbnail={speaker.image}
+                    name={speaker.name}
+                    role={speaker.role}
+                    image={speaker.image}
+                    alt={`Foto del speaker ${speaker.name}`}
                   />
                 ))
               }
@@ -84,13 +81,12 @@ const reverseSpeakers = [...allSpeakers].reverse()
                 thirdColumn.map((speaker, i) => {
                   return (
                     <SpeakerCard
-                      class:list={['speaker-card-js', { 'active': i === 0 }]}
-                      tumbnail={speaker.thumbnail}
-                      name={speaker.name}
-                      country={speaker.country}
-                      role={speaker.role}
-                      image={speaker.image}
-                      alt={`Foto del speaker ${speaker.name}`}
+                      class='speaker-card-js'
+                      tumbnail={speakerToBeConfirmed.image}
+                      name={speakerToBeConfirmed.name}
+                      role={speakerToBeConfirmed.role}
+                      image={speakerToBeConfirmed.image}
+                      alt={speakerToBeConfirmed.alt}
                     />
                   )
                 })
@@ -100,7 +96,7 @@ const reverseSpeakers = [...allSpeakers].reverse()
         </div>
         <div class='flex justify-center w-full max-w-[450px] relative'>
           <img
-            class='w-full h-[650px] object-contain mask-speaker speaker-image-js'
+            class='w-full h-[450px] lg:h-[650px] object-contain mask-speaker speaker-image-js'
             src='https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp'
             alt='Imagen de conferencista'
           />
@@ -116,12 +112,12 @@ const reverseSpeakers = [...allSpeakers].reverse()
         </div>
         <div class='relative flex gap-[30px] snap-x snap-mandatory overflow-x-scroll w-full pr-[40%] lg:hidden carrousel carrousel-js'>
           {
-            reverseSpeakers.map((speaker, i) => {
+            allSpeakers.map((speaker, i) => {
               const isFirst = i === 0
               return (
                 <div class:list={['aspect-[1] flex-shrink-0 snap-center overflow-hidden', { 'ml-[40%]': isFirst }]}>
                   <SpeakerCard
-                    class:list={['speaker-card-js', { 'active': isFirst }]}
+                    class:list={['speaker-card-js flex object-contain', { 'active': isFirst }]}
                     tumbnail={speaker.thumbnail}
                     name={speaker.name}
                     country={speaker.country}
