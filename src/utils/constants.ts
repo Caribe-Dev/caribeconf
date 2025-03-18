@@ -25,7 +25,14 @@ export const speakers = [
     role: 'Frontend Developer',
     country: 'venezuela',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1742144209/mini-erasmo-hernandez_t1frpz.webp',
-    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1742144201/erasmo-hernandez_fduyau.webp'
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1742333169/mini-erasmo-hernandez_bzwhko.webp'
+  },
+  {
+    name: 'Ana Barragan',
+    role: 'Solutions Architect',
+    country: 'colombia',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1742332963/ana-barragan_xatoej.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1742332963/mini-ana-barragan_yvd8pb.webp'
   }
 ]
 
@@ -35,18 +42,28 @@ export const emeraldSponsors = [
     image: '/images/epam-logo.webp',
     url: 'https://www.epam.com/',
     alt: 'Logo de EPAM',
+    width: 350,
+    height: 350
   }
 ]
 
-export const pearlSponsors = []
+export const pearlSponsors = [
+  {
+    image: '/images/uniautonoma-logo.webp',
+    url: 'https://www.uac.edu.co/',
+    alt: 'Logo de Universidad Autonoma del Caribe',
+    width: 300,
+    height: 300
+  }
+]
 
 export const quartzSponsors = [
   {
     image: '/images/avvy-logo.webp',
     url: 'https://www.avvy.co/',
     alt: 'Logo de Avvy',
-    width: 240,
-    height: 240
+    width: 200,
+    height: 200
   }
 ]
 

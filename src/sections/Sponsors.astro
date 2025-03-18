@@ -4,9 +4,6 @@ import { Image } from 'astro:assets';
 import DefumedBanner from '@/components/DefumedBanner.astro';
 
 import Layout from '@/layouts/Layout.astro';
-import LeftPalmSvg from '@/components/Svgs/LeftPalm.astro';
-import RightPalmSvg from '@/components/Svgs/RightPalm.astro';
-import GroundSvg from '@/components/Svgs/Ground.astro';
 
 import { emeraldSponsors, pearlSponsors, quartzSponsors, allySponsors } from '@/utils/constants';
 
@@ -16,7 +13,7 @@ const hasQuartzSponsors = Boolean(quartzSponsors.length)
 const hasAllySponsors = Boolean(allySponsors.length)
 ---
 <section class='overflow-hidden'>
-  <Layout class='flex flex-col gap-52 items-center py-[140px] relative z-[9]'>
+  <Layout class='flex flex-col gap-52 items-center py-[60px] lg:py-[120px] relative z-[9]'>
     <div class='flex flex-col gap-32 w-full'>
       <h2>Sponsors</h2>
       {
@@ -31,12 +28,11 @@ const hasAllySponsors = Boolean(allySponsors.length)
           <div class='flex justify-center items-center gap-20'>
             {
               emeraldSponsors.map((sponsor) => (
-                <a class="sponsor-scale object-contain" href={sponsor.url} target='_blank'>
-                  <Image
+                <a class="sponsor-scale max-w-[280px] lg:max-w-[350px]" href={sponsor.url} target='_blank'>
+                  <img
+                    class="w-full"
                     src={sponsor.image}
                     alt={sponsor.alt}
-                    width={350}
-                    height={350}
                   />
                 </a>
               ))
@@ -55,18 +51,17 @@ const hasAllySponsors = Boolean(allySponsors.length)
               </div>
             </h3>
             <div class='flex justify-center items-center gap-20'>
-              {/* {
+              {
                 pearlSponsors.map((sponsor) => (
-                  <a class="sponsor-scale object-contain" href={sponsor.url} target='_blank'>
-                    <Image
+                  <a class="sponsor-scale max-w-[220px] lg:max-w-[300px]" href={sponsor.url} target='_blank'>
+                    <img
+                      class="w-full"
                       src={sponsor.image}
                       alt={sponsor.alt}
-                      width={280}
-                      height={280}
                     />
                   </a>
                 ))
-              } */}
+              }
             </div>
           </div>
         )
@@ -83,12 +78,11 @@ const hasAllySponsors = Boolean(allySponsors.length)
           <div class='flex justify-center items-center gap-20'>
               {
                 quartzSponsors.map((sponsor) => (
-                  <a class="sponsor-scale object-contain" href={sponsor.url} target='_blank'>
-                    <Image
+                  <a class="sponsor-scale max-w-[180px] lg:max-w-[200px]" href={sponsor.url} target='_blank'>
+                    <img
+                      class="w-full"
                       src={sponsor.image}
                       alt={sponsor.alt}
-                      width={sponsor.width}
-                      height={sponsor.height}
                     />
                   </a>
                 ))
@@ -122,17 +116,6 @@ const hasAllySponsors = Boolean(allySponsors.length)
       )
     }
   </Layout>
-  <div class='relative max-w-[1920px] z-1 mx-auto'>
-    <div class='absolute bottom-0 left-0 h-[300px] md:h-[500px] translate-x-[-40px] md:translate-x-[-49px] md:translate-y-[30px]'>
-      <LeftPalmSvg fill='#1F183C' class='h-full' width={null} height={null} />
-    </div>
-    <div class='absolute bottom-0 right-0 h-[350px] md:h-[550px] translate-x-[40px] md:translate-x-[50px] md:translate-y-[30px] '>
-      <RightPalmSvg fill='#1F183C' class='h-full' width={null} height={null} />
-    </div>
-    <div class='left-0 right-0 w-full z-[4] mx-auto '>
-      <GroundSvg fill='#1F183C' class='h-full' width={null} height={null} />
-    </div>
-  </div>
 </section>
 
 <style>
