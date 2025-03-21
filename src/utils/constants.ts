@@ -21,7 +21,7 @@ export const speakers = [
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741738045/mini-francisca-medina_qnfzxt.webp'
   },
   {
-    name: 'Erasmo Hernandez',
+    name: 'Erasmo Hernández',
     role: 'Frontend Developer',
     country: 'venezuela',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1742144209/mini-erasmo-hernandez_t1frpz.webp',
