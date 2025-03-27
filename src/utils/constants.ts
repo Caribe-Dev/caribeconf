@@ -21,7 +21,7 @@ export const speakers = [
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741738045/mini-francisca-medina_qnfzxt.webp'
   },
   {
-    name: 'Erasmo Hernandez',
+    name: 'Erasmo Hernández',
     role: 'Frontend Developer',
     country: 'venezuela',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1742144209/mini-erasmo-hernandez_t1frpz.webp',
@@ -61,6 +61,13 @@ export const quartzSponsors = [
   {
     image: '/images/avvy-logo.webp',
     url: 'https://www.avvy.co/',
+    alt: 'Logo de Avvy',
+    width: 200,
+    height: 200
+  },
+  {
+    image: '/images/miguel-reheran.webp',
+    url: 'https://mteheran.dev',
     alt: 'Logo de Avvy',
     width: 200,
     height: 200
