@@ -65,14 +65,15 @@ const thirdColumn = allSpeakers.slice(9, 12)
             </div>
             <div class='flex flex-col gap-[20px]'>
               {
-                secondColumn.map(() => (
+                secondColumn.map((speaker) => (
                   <SpeakerCard
                     class='speaker-card-js'
-                    tumbnail={speakerToBeConfirmed.image}
-                    name={speakerToBeConfirmed.name}
-                    role={speakerToBeConfirmed.role}
-                    image={speakerToBeConfirmed.image}
-                    alt={speakerToBeConfirmed.alt}
+                    tumbnail={speaker?.image || speakerToBeConfirmed.image}
+                    name={speaker?.name || speakerToBeConfirmed.name}
+                    role={speaker?.role || speakerToBeConfirmed.role}
+                    country={speaker?.country}
+                    image={speaker?.image || speakerToBeConfirmed.image}
+                    alt={`Foto del speaker ${speaker?.name || 'por confirmar'}`}
                   />
                 ))
               }

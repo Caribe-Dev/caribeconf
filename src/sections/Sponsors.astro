@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 
-import DefumedBanner from '@/components/DefumedBanner.astro';
+import DefumedCard from '@/components/DefumedCard.astro';
 
 import Layout from '@/layouts/Layout.astro';
 
@@ -94,7 +94,7 @@ const hasAllySponsors = Boolean(allySponsors.length)
     </div>
     {
       hasAllySponsors && (
-        <DefumedBanner id='aliados' class='w-full flex flex-col items-center gap-20 p-[80px] lg:p-[111px] lg:flex-row'>
+        <DefumedCard id='aliados' class='w-full flex flex-col items-center gap-20 p-[80px] lg:p-[111px] lg:flex-row'>
           <div class="w-full max-w-[30%]">
             <h3 class='h3 text-center'>Aliados</h3>
           </div>
@@ -112,7 +112,7 @@ const hasAllySponsors = Boolean(allySponsors.length)
               ))
             }
           </div>
-        </DefumedBanner>
+        </DefumedCard>
       )
     }
   </Layout>

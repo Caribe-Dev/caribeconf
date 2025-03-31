@@ -6,8 +6,9 @@ import HomeHero from '@/sections/HomeHero.astro';
 import Speakers from '@/sections/Speakers.astro';
 import WantoToBeSponsor from '@/sections/WantoToBeSponsor.astro';
 import Sponsors from '@/sections/Sponsors.astro';
+// import Agenda from '@/sections/Agenda.astro';
 
-import DefumedBanner from '@/components/DefumedBanner.astro';
+import DefumedCard from '@/components/DefumedCard.astro';
 import RightPalmSvg from '@/components/Svgs/RightPalm.astro';
 import MapPointerIcon from '@/components/Svgs/MapPointerIcon.astro';
 import CalendarIcon from '@/components/Svgs/CalendarIcon.astro';
@@ -19,22 +20,22 @@ import CalendarIcon from '@/components/Svgs/CalendarIcon.astro';
   <section class="relative max-w-[1920px] z-1 mx-auto overflow-hidden">
     <Layout class="py-20">
       <div class='flex flex-col items-center justify-between gap-12 relative z-[9] md:flex-row md:items-stretch md:gap-24'>
-        <DefumedBanner class='flex flex-col justify-center p-7 gap-2 w-full max-w-[600px]'>
+        <DefumedCard class='flex flex-col justify-center p-7 gap-2 w-full max-w-[600px]'>
           <p class='flex items-center gap-1'>
             <CalendarIcon fill='#ffffff' />
             ¿Cuando?
           </p>
           <h3 class="h5">26 de Abril 2025</h3>
           <p>Sabado</p>
-        </DefumedBanner>
-        <DefumedBanner class='flex flex-col justify-center p-7 gap-2 w-full max-w-[600px]'>
+        </DefumedCard>
+        <DefumedCard class='flex flex-col justify-center p-7 gap-2 w-full max-w-[600px]'>
           <p class='flex items-center gap-1'>
             <MapPointerIcon fill='#ffffff' />
             Lugar
           </p>
           <h3 class="h5">Universidad Autonoma del Caribe</h3>
           <p>Auditorio J y K, Posgrados</p>
-        </DefumedBanner>
+        </DefumedCard>
       </div>
       <div class="relative flex flex-col gap-3 md:gap-6 max-w-[860px] w-full mx-auto pt-[60px] pb-[80px] md:pt-[80px] md:pb-[100px] xl:pb-[140px] z-10">
         <h2 class="h6">
@@ -54,4 +55,5 @@ import CalendarIcon from '@/components/Svgs/CalendarIcon.astro';
   <Speakers />
   <Sponsors />
   <WantoToBeSponsor />
+  <!-- <Agenda /> -->
 </Main>

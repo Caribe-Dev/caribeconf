@@ -1,0 +1,23 @@
+---
+import { cnx } from '@/utils/csx';
+
+interface Props {
+  id?: string
+	class?: string
+}
+
+const { id, class: className = ''  } = Astro.props
+---
+<div id={id} class:list={["defumed-banner", cnx('relative bg-[#1F183C] rounded-[20px] after:content-[""] after:absolute after:inset-[-1px] after:rounded-[20px] after:z-[-1] ', className)]}>
+  <slot />
+</div>
+
+<style>
+  .defumed-banner {
+    box-shadow: 0px 0px 20px 0px rgba(226,73,231,1);
+  }
+
+  .defumed-banner::after {
+    background: linear-gradient(180deg, #BE357F 40%, #41DEF4 100%);
+  }
+</style>

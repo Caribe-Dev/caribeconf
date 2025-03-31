@@ -1,0 +1,119 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '@/layouts/Layout.astro';
+import { speakers } from '@/utils/constants';
+
+const morningSpeakers = [
+  ...speakers.slice(0, 1),
+  {
+    talk: "Break, Networking y Café",
+    schedule: "09:40AM - 10:00AM",
+    name: "",
+    thumbnail: "",
+  },
+  ...speakers.slice(1, 4),
+];
+---
+<section class='mx-auto relative bg-[#747099]'>
+  <Layout class='flex flex-col gap-8 items-center py-[60px] lg:py-[120px] md:flex-row'>
+    <div class='flex flex-col gap-24 w-full'>
+      <h2>Agenda</h2>
+      <div class="relative flex flex-col gap-32 py-32 before:content-[''] before:inset-0 before:absolute before:bg-white before before:h-full before:w-[1px] before:left-1/2 before:-translate-x-1/2">
+        <div class="flex flex-col gap-2 bg-[#747099] py-10 text-center z-10">
+          <p class="h5 dashes-line">Registro y Bienvenida</p>
+          <span>08:00AM - 09:00AM</span>
+        </div>
+        <div class="flex flex-col gap-8 z-10">
+          {
+            morningSpeakers.map((speaker) => (
+              <div class="flex gap-10 max-w-[50%] odd:self-start even:self-end px-8">
+                <div class="flex flex-col gap-2">
+                  <span class="font-bold">{speaker.talk}</span>
+                  <span>{speaker.schedule}</span>
+                </div>
+                {
+                  speaker.thumbnail && speaker.name && (
+                    <div class="flex flex-col items-center gap-2 flex-shrink-0">
+                      <Image src={speaker.thumbnail} alt={speaker.name} class="rounded-[50%] bg-white" width={50} height={50} />
+                      <span>{speaker.name}</span>
+                    </div>
+                  )
+                }
+              </div>
+            ))
+          }
+        </div>
+        <div class="flex flex-col gap-2 bg-[#747099] py-10 text-center z-10">
+          <p class="h5 dashes-line">Almuerzo</p>
+          <span>12:00PM - 01:30PM</span>
+        </div>
+        <div class="flex flex-wrap gap-[36px]">
+          <div class="flex flex-col gap-10 flex-1">
+            <p class="h5 text-center">Track 1</p>
+            <div class="flex flex-col gap-8">
+              <div class="flex flex-col gap-2">
+                <p class="font-bold">Keynote: El Futuro de la Tecnología</p>
+                <span>01:30PM - 02:20PM</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-8">
+              <div class="flex flex-col gap-2">
+                <p class="font-bold">Keynote: El Futuro de la Tecnología</p>
+                <span>02:30PM - 03:20PM</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-8">
+              <div class="flex flex-col gap-2">
+                <p class="font-bold">Keynote: El Futuro de la Tecnología</p>
+                <span>03:30PM - 04:20PM</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-8">
+              <div class="flex flex-col gap-2">
+                <p class="font-bold">Keynote: El Futuro de la Tecnología</p>
+                <span>04:30PM - 05:20PM</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-10 flex-1">
+            <p class="h5 text-center">Track 2</p>
+            <div class="flex flex-col gap-8">
+              <div class="flex flex-col gap-2">
+                <p class="font-bold">Keynote: El Futuro de la Tecnología</p>
+                <span>01:30PM - 02:20PM</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-8">
+              <div class="flex flex-col gap-2">
+                <p class="font-bold">Keynote: El Futuro de la Tecnología</p>
+                <span>02:30PM - 03:20PM</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-8">
+              <div class="flex flex-col gap-2">
+                <p class="font-bold">Keynote: El Futuro de la Tecnología</p>
+                <span>03:30PM - 04:20PM</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-8">
+              <div class="flex flex-col gap-2">
+                <p class="font-bold">Keynote: El Futuro de la Tecnología</p>
+                <span>04:30PM - 05:20PM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2 bg-[#747099] py-10 text-center z-10">
+          <p class="h5 dashes-line">Cierre del evento</p>
+          <span>05:40PM - 06:00PM</span>
+        </div>
+      </div>
+    </div>
+  </Layout>
+</section>
+
+<style>
+  .dashes-line {
+    @apply flex items-center justify-center gap-10 w-full after:block after:content-[""] after:h-[1px] after:flex-1 before:block before:content-[""] before:h-[1px] before:flex-1 after:bg-white before:bg-white;
+  }
+</style>
