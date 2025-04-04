@@ -20,9 +20,9 @@ const trackTwoSpeakers = [[...speakers.slice(10, 12)], [...speakers.slice(12, 15
 ---
 <section class='mx-auto relative bg-[#747099]'>
   <Layout class='flex flex-col gap-8 items-center py-[60px] lg:py-[120px] md:flex-row'>
-    <div class='flex flex-col gap-12 lg:gap-24 w-full'>
+    <div class='flex flex-col gap-8 lg:gap-24 w-full'>
       <h2>Agenda</h2>
-      <div class="relative flex flex-col gap-12 lg:py-32 lg:before:content-[''] lg:before:inset-0 lg:before:absolute lg:before:bg-white lg:before:h-full lg:before:w-[1px] lg:before:left-1/2 lg:before:-translate-x-1/2">
+      <div class="relative flex flex-col lg:gap-12 lg:py-32 lg:before:content-[''] lg:before:inset-0 lg:before:absolute lg:before:bg-white lg:before:h-full lg:before:w-[1px] lg:before:left-1/2 lg:before:-translate-x-1/2">
         <div class="flex flex-col gap-2 bg-[#747099] py-10 text-center z-10">
           <p class="h5 dashes-line">Registro y Bienvenida</p>
           <span>08:00AM - 09:00AM</span>
@@ -30,7 +30,7 @@ const trackTwoSpeakers = [[...speakers.slice(10, 12)], [...speakers.slice(12, 15
         <div class="flex flex-wrap gap-8 z-10 lg:flex-col">
           {
             morningSpeakers.map((speaker) => (
-              <div class="flex items-center justify-between gap-10 w-full lg:max-w-[50%] lg:odd:self-start lg:even:self-end lg:even:flex-row-reverse lg:even:text-right px-8">
+              <div class="flex items-center flex-col-reverse gap-2 text-center justify-between lg:flex-row lg:text-left lg:gap-10 w-full lg:max-w-[50%] lg:odd:self-start lg:even:self-end lg:even:flex-row-reverse lg:even:text-right lg:px-8">
                 <div class="flex flex-col gap-2">
                   <span class="font-bold">{speaker.talk}</span>
                   <span>{speaker.schedule}</span>
@@ -57,12 +57,12 @@ const trackTwoSpeakers = [[...speakers.slice(10, 12)], [...speakers.slice(12, 15
           <p class="h5 dashes-line">Almuerzo</p>
           <span>12:00PM - 01:00PM</span>
         </div>
-        <div class="flex flex-col lg:flex-row lg:flex-wrap gap-[36px] blur-md">
-          <div class="flex flex-col gap-10 flex-1 pb-16">
+        <div class="flex flex-col lg:flex-row lg:flex-wrap gap-[36px]">
+          <div class="flex flex-col gap-8 flex-1 lg:pb-16 lg:gap-10 blur-md">
             <p class="h5 text-center pb-4">Track 1</p>
             {
               trackOneSpeakers[0].map((speaker) => (
-                <div class="flex gap-10 items-center justify-between">
+                <div class="flex items-center flex-col-reverse gap-2 text-center justify-between lg:flex-row lg:text-left lg:gap-10">
                   <div class="flex flex-col gap-3">
                     <span class="font-bold">{speaker.talk}</span>
                     <span>{speaker.schedule}</span>
@@ -85,11 +85,11 @@ const trackTwoSpeakers = [[...speakers.slice(10, 12)], [...speakers.slice(12, 15
               ))
             }
           </div>
-          <div class="flex flex-col gap-10 flex-1 pb-16">
+          <div class="flex flex-col gap-8 flex-1 lg:pb-16 lg:gap-10 blur-md">
             <p class="h5 text-center pb-4">Track 2</p>
             {
               trackTwoSpeakers[0].map((speaker) => (
-                <div class="flex gap-10 items-center justify-between">
+              <div class="flex items-center flex-col-reverse gap-2 text-center justify-between lg:flex-row-reverse lg:text-right lg:gap-10">
                   <div class="flex flex-col gap-3">
                     <span class="font-bold">{speaker.talk}</span>
                     <span>{speaker.schedule}</span>
@@ -117,12 +117,12 @@ const trackTwoSpeakers = [[...speakers.slice(10, 12)], [...speakers.slice(12, 15
           <p class="h5 dashes-line">Break, Networking y Café</p>
           <span>02:10PM - 02:30PM</span>
         </div>
-        <div class="flex flex-col lg:flex-row lg:flex-wrap gap-[36px] blur-md">
-          <div class="flex flex-col gap-10 flex-1 pb-16">
+        <div class="flex flex-col lg:flex-row lg:flex-wrap gap-[36px]">
+          <div class="flex flex-col gap-8 flex-1 lg:pb-16 lg:gap-10 blur-md">
             <p class="h5 text-center pb-4">Track 1</p>
             {
               trackOneSpeakers[1].map((speaker) => (
-                <div class="flex gap-10 items-center justify-between">
+              <div class="flex items-center flex-col-reverse gap-2 text-center justify-between lg:flex-row lg:text-left lg:gap-10">
                   <div class="flex flex-col gap-3">
                     <span class="font-bold">{speaker.talk}</span>
                     <span>{speaker.schedule}</span>
@@ -145,11 +145,11 @@ const trackTwoSpeakers = [[...speakers.slice(10, 12)], [...speakers.slice(12, 15
               ))
             }
           </div>
-          <div class="flex flex-col gap-10 flex-1 pb-16">
+          <div class="flex flex-col gap-8 flex-1 lg:pb-16 lg:gap-10 blur-md">
             <p class="h5 text-center pb-4">Track 2</p>
             {
               trackTwoSpeakers[1].map((speaker) => (
-                <div class="flex gap-10 items-center justify-between">
+              <div class="flex items-center flex-col-reverse gap-2 text-center justify-between lg:flex-row-reverse lg:text-right lg:gap-10">
                   <div class="flex flex-col gap-3">
                     <span class="font-bold">{speaker.talk}</span>
                     <span>{speaker.schedule}</span>
