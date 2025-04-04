@@ -27,9 +27,10 @@ const allSpeakers = [
   ...Array.from({ length: remainingSpeakers }).map(() => speakerToBeConfirmed),
 ]
 
-const firstColumn = allSpeakers.slice(0, 5)
-const secondColumn = allSpeakers.slice(5, 9)
-const thirdColumn = allSpeakers.slice(9, 12)
+const firstColumn = allSpeakers.slice(0, 6)
+const secondColumn = allSpeakers.slice(6, 11)
+const thirdColumn = allSpeakers.slice(11, 14)
+const fourthColumn = allSpeakers.slice(12, 15)
 ---
 
 <section id='speakers' class='mx-auto relative bg-[#747099]'>
@@ -41,34 +42,19 @@ const thirdColumn = allSpeakers.slice(9, 12)
     <div class='absolute right-0 top-[40px] md:top-[100px]'>
       <Image src={BirdsSvg} alt='descriptive text' />
     </div>
-    <div class='flex justify-between items-center w-full gap-[30px] flex-wrap'>
+    <div class='flex justify-between items-center w-full gap-[50px] flex-wrap'>
       <div class='w-full'>
         <h2>Speakers</h2>
       </div>
       <div class='flex gap-[30px] md:gap-[50px] justify-between w-full flex-col items-center lg:flex-row lg:items-start'>
         <div class='max-w-[600px] flex-col gap-[30px] md:gap-[50px] hidden lg:flex'>
-          <div class='flex gap-[30px] lg:items-center'>
+          <div class='flex gap-[40px] lg:items-center'>
             <div class='flex flex-col gap-[20px]'>
               {
                 firstColumn.map((speaker, i) => (
                   <SpeakerCard
                     class:list={['speaker-card-js', { 'active': i === 0 }]}
-                    tumbnail={speaker.image}
-                    name={speaker.name}
-                    role={speaker.role}
-                    country={speaker.country}
-                    image={speaker.image}
-                    alt={`Foto del speaker ${speaker.name}`}
-                  />
-                ))
-              }
-            </div>
-            <div class='flex flex-col gap-[20px]'>
-              {
-                secondColumn.map((speaker) => (
-                  <SpeakerCard
-                    class='speaker-card-js'
-                    tumbnail={speaker?.image || speakerToBeConfirmed.image}
+                    tumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
                     name={speaker?.name || speakerToBeConfirmed.name}
                     role={speaker?.role || speakerToBeConfirmed.role}
                     country={speaker?.country}
@@ -80,15 +66,31 @@ const thirdColumn = allSpeakers.slice(9, 12)
             </div>
             <div class='flex flex-col gap-[20px]'>
               {
-                thirdColumn.map((_, i) => {
+                secondColumn.map((speaker) => (
+                  <SpeakerCard
+                    class='speaker-card-js'
+                    tumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
+                    name={speaker?.name || speakerToBeConfirmed.name}
+                    role={speaker?.role || speakerToBeConfirmed.role}
+                    country={speaker?.country}
+                    image={speaker?.image || speakerToBeConfirmed.image}
+                    alt={`Foto del speaker ${speaker?.name || 'por confirmar'}`}
+                  />
+                ))
+              }
+            </div>
+            <div class='flex flex-col gap-[20px]'>
+              {
+                thirdColumn.map((speaker, i) => {
                   return (
                     <SpeakerCard
                       class='speaker-card-js'
-                      tumbnail={speakerToBeConfirmed.image}
-                      name={speakerToBeConfirmed.name}
-                      role={speakerToBeConfirmed.role}
-                      image={speakerToBeConfirmed.image}
-                      alt={speakerToBeConfirmed.alt}
+                      tumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
+                      name={speaker?.name || speakerToBeConfirmed.name}
+                      role={speaker?.role || speakerToBeConfirmed.role}
+                      country={speaker?.country}
+                      image={speaker?.image || speakerToBeConfirmed.image}
+                      alt={`Foto del speaker ${speaker?.name || 'por confirmar'}`}
                     />
                   )
                 })
@@ -96,7 +98,7 @@ const thirdColumn = allSpeakers.slice(9, 12)
             </div>
           </div>
         </div>
-        <div class='flex justify-center w-full max-w-[450px] relative'>
+        <div class='flex justify-center w-full max-w-[400px] lg:max-w-[450px] relative'>
           <img
             class='w-full h-[450px] lg:h-[650px] object-contain mask-speaker speaker-image-js'
             src='https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp'
@@ -120,12 +122,12 @@ const thirdColumn = allSpeakers.slice(9, 12)
                 <div class:list={['aspect-[1] flex-shrink-0 snap-center overflow-hidden', { 'ml-[40%]': isFirst }]}>
                   <SpeakerCard
                     class:list={['speaker-card-js flex object-contain', { 'active': isFirst }]}
-                    tumbnail={speaker.thumbnail}
-                    name={speaker.name}
-                    country={speaker.country}
-                    role={speaker.role}
-                    image={speaker.image}
                     alt={`Foto del speaker ${speaker.name}`}
+                    tumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
+                    name={speaker?.name || speakerToBeConfirmed.name}
+                    role={speaker?.role || speakerToBeConfirmed.role}
+                    country={speaker?.country}
+                    image={speaker?.image || speakerToBeConfirmed.image}
                   />
                 </div>
               )
@@ -217,14 +219,15 @@ const thirdColumn = allSpeakers.slice(9, 12)
       }
     }
 
+    const onSetActiveSpeaker = ($speakerElem: HTMLDivElement) => {
+      const $activeSpeaker: HTMLDivElement | null  = document.querySelector('.speaker-card-js.active')
+      $activeSpeaker?.classList.remove('active')
+      $speakerElem.classList.add('active')
+      setActiveSpeaker($speakerElem)
+    }
+
     $speakers.forEach(($speaker) => {
-      $speaker.addEventListener('mouseenter', () => {
-        if (mobileMediaQuery.matches) return
-        const $activeSpeaker: HTMLDivElement | null  = document.querySelector('.speaker-card-js.active')
-        $activeSpeaker?.classList.remove('active')
-        $speaker.classList.add('active')
-        setActiveSpeaker($speaker)
-      })
+      $speaker.addEventListener('click', () => onSetActiveSpeaker($speaker))
     })
 
     if (mobileMediaQuery.matches && $carrousel) {
