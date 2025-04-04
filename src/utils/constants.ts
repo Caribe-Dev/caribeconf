@@ -41,7 +41,7 @@ export const speakers = [
     country: 'colombia',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743728255/rina-plata_i7wtxy.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743728255/mini-rina-plata_tj9gaf.webp',
-    talk: 'Accesibilidad, inclusióndes de tu Código ',
+    talk: 'Accesibilidad, inclusión desde tu Código ',
     schedule: '11:40AM - 12:00PM',
   },
   {
