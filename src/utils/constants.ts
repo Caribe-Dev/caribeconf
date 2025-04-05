@@ -51,7 +51,7 @@ export const speakers = [
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743736175/angie-zun%CC%83iga_goz7mn.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743736175/mini-angie-zun%CC%83iga_s9x6oc.webp',
     talk: 'Generando data sintética: Usos y Retos',
-    schedule: '01:00PM - 01:40PM',
+    schedule: '01:30PM - 02:10PM',
   },
   {
     name: 'Erasmo Hernández',
@@ -60,7 +60,7 @@ export const speakers = [
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1742144209/mini-erasmo-hernandez_t1frpz.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1742333169/mini-erasmo-hernandez_bzwhko.webp',
     talk: 'De Text Editor a la IA: Evolución de los editores de código moderno',
-    schedule: '01:45PM - 02:05PM',
+    schedule: '02:15PM - 02:35PM',
   },
   {
     name: 'Miguel Teheran',
@@ -96,7 +96,7 @@ export const speakers = [
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743555956/sary-libreros_lbrgt7.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743555955/mini-sary-libreros_ngm8bv.webp',
     talk: 'Construye productos inteligentes con la fuerza de Amazon Bedrock',
-    schedule: '01:00PM - 01:40PM',
+    schedule: '01:30PM - 02:10PM',
   },
   {
     name: 'Ricardo Pertuz',
@@ -105,7 +105,7 @@ export const speakers = [
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743884843/ricardo-pertuz_lmoobs.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743884843/mini-ricardo-pertuz_grnawi.webp',
     talk: 'Integración de Inteligencia Artificial en la Nube',
-    schedule: '01:45PM - 02:05PM',
+    schedule: '02:15PM - 02:35PM',
   },
   {
     name: 'Juan Gómez',
