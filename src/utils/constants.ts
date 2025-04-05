@@ -99,12 +99,12 @@ export const speakers = [
     schedule: '01:00PM - 01:40PM',
   },
   {
-    name: 'Por Confirmar',
-    role: 'Por Confirmar',
-    country: 'Por Confirmar',
-    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
-    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
-    talk: 'Por Confirmar',
+    name: 'Ricardo Pertuz',
+    role: 'DevOps Engineer',
+    country: 'colombia',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743884843/ricardo-pertuz_lmoobs.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743884843/mini-ricardo-pertuz_grnawi.webp',
+    talk: 'Integración de Inteligencia Artificial en la Nube',
     schedule: '01:45PM - 02:05PM',
   },
   {
