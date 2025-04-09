@@ -1,0 +1,20 @@
+---
+import { cnx } from '@/utils/csx';
+
+interface Props {
+  id?: string
+	class?: string
+}
+
+const { id, class: className = ''  } = Astro.props
+---
+<!-- <div class={cnx('relative bg-[#1F183C] rounded-[20px] after:content-[""] after:absolute after:inset-[-1px] after:rounded-[20px] after:z-[-1] ', className)}> -->
+<div>
+  <slot class="bg-pink" />
+</div>
+
+<style>
+  .dashes-line {
+    @apply after:block after:content-[""] after:h-[1px] after:flex-1 before:block before:content-[""] before:h-[1px] before:flex-1
+  }
+</style>
