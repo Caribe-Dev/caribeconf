@@ -53,8 +53,6 @@ export const speakers = [
     talk: 'Generando data sintética: Usos y Retos',
     schedule: '01:30PM - 02:10PM',
   },
-
-  
   {
     name: 'Erasmo Hernández',
     role: 'Frontend Developer',
@@ -65,12 +63,12 @@ export const speakers = [
     schedule: '02:15PM - 02:35PM',
   },
   {
-    name: 'Juan Gómez',
-    role: 'Software Engineer',
+    name: 'Miguel Teheran',
+    role: 'Software Developer',
     country: 'colombia',
-    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743429804/juan-guillermo_iadmpo.webp',
-    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743429804/mini-juan-guillermo_ce8bj6.webp',
-    talk: 'Creating a RAG with Bigquery and Gemini and Python',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743430393/miguel-teheran_f9t0ug.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743430392/mini-miguel-teheran_hwcstc.webp',
+    talk: 'No es un bug, es un daño colateral: Programación, ética y responsabilidad social.',
     schedule: '02:55PM - 03:35PM',
   },
   {
@@ -83,12 +81,12 @@ export const speakers = [
     schedule: '03:40PM - 04:20PM',
   },
   {
-    name: 'Edgar Meneses',
-    role: 'Backend Developer',
+    name: 'Jonathan Nolasco',
+    role: 'Software Engineer',
     country: 'colombia',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
-    talk: 'Dominando Clean Architecture y la Arquitectura Hexagonal',
+    talk: 'Construyendo aplicaciones que impactarán la economía del futuro',
     schedule: '04:25PM - 04:45PM',
   },
   {
@@ -119,12 +117,12 @@ export const speakers = [
     schedule: '02:15PM - 02:35PM',
   },
   {
-    name: 'Miguel Teheran',
-    role: 'Software Developer',
+    name: 'Juan Gómez',
+    role: 'Software Engineer',
     country: 'colombia',
-    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743430393/miguel-teheran_f9t0ug.webp',
-    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743430392/mini-miguel-teheran_hwcstc.webp',
-    talk: 'No es un bug, es un daño colateral: Programación, ética y responsabilidad social.',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743429804/juan-guillermo_iadmpo.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1743429804/mini-juan-guillermo_ce8bj6.webp',
+    talk: 'Creating a RAG with Bigquery and Gemini and Python',
     schedule: '02:55PM - 03:35PM',
   },
   {
@@ -137,12 +135,12 @@ export const speakers = [
     schedule: '03:40PM - 04:20PM',
   },
   {
-    name: 'Jonathan Nolasco',
-    role: 'Software Engineer',
+    name: 'Edgar Meneses',
+    role: 'Backend Developer',
     country: 'colombia',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
-    talk: 'Construyendo aplicaciones que impactarán la economía del futuro',
+    talk: 'Dominando Clean Architecture y la Arquitectura Hexagonal',
     schedule: '04:25PM - 04:45PM',
   },
 ]
