@@ -84,18 +84,18 @@ export const speakers = [
     name: 'Jonathan Nolasco',
     role: 'Software Engineer',
     country: 'colombia',
-    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
-    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744312375/jonathan-nolasco_xs81gp.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744312375/mini-jonathan-nolasco_y1t4jp.webp',
     talk: 'Construyendo aplicaciones que impactarán la economía del futuro',
     schedule: '04:25PM - 04:45PM',
   },
   {
-    name: 'Por confirmar',
+    name: 'Jorge Martinez',
     role: 'Por confirmar',
-    country: 'Por confirmar',
+    country: 'colombia',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
-    talk: 'Por confirmar',
+    talk: 'Dentro de lo desconocido: El desarrollo del videojuego Alumbra',
     schedule: '04:50PM - 05:10PM',
   },
   {
@@ -143,6 +143,15 @@ export const speakers = [
     talk: 'Dominando Clean Architecture y la Arquitectura Hexagonal',
     schedule: '04:25PM - 04:45PM',
   },
+  // {
+  //   name: 'Cristian Cuadrado',
+  //   role: 'Por confirmar',
+  //   country: 'colombia',
+  //   image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
+  //   thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
+  //   talk: 'La Escena de los Videojuegos en el Caribe',
+  //   schedule: '04:50PM - 05:10PM',
+  // },
 ]
 
 
