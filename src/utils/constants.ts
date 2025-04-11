@@ -82,8 +82,8 @@ export const speakers = [
   },
   {
     name: 'Jonathan Nolasco',
-    role: 'Software Engineer',
-    country: 'colombia',
+    role: 'Developer Advocate en StacksLatam',
+    country: 'peru',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744312375/jonathan-nolasco_xs81gp.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744312375/mini-jonathan-nolasco_y1t4jp.webp',
     talk: 'Construyendo aplicaciones que impactarán la economía del futuro',
@@ -93,8 +93,8 @@ export const speakers = [
     name: 'Jorge Martinez',
     role: 'Por confirmar',
     country: 'colombia',
-    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
-    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744337936/jorge-martinez_xqfni6.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744337936/mini-jorge-martinez_dfvasl.webp',
     talk: 'Dentro de lo desconocido: El desarrollo del videojuego Alumbra',
     schedule: '04:50PM - 05:10PM',
   },
@@ -138,8 +138,8 @@ export const speakers = [
     name: 'Edgar Meneses',
     role: 'Backend Developer',
     country: 'colombia',
-    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
-    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744337227/edgar-meneses_hkdkvy.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744337227/mini-edgar-meneses_u6pwcs.webp',
     talk: 'Dominando Clean Architecture y la Arquitectura Hexagonal',
     schedule: '04:25PM - 04:45PM',
   },
@@ -183,13 +183,6 @@ export const quartzSponsors = [
     width: 180,
     height: 180
   },
-  {
-    image: '/images/miguel-reheran.webp',
-    url: 'https://mteheran.dev',
-    alt: 'Logo de Avvy',
-    width: 180,
-    height: 180
-  }
 ]
 
 export const allySponsors = [
@@ -199,13 +192,6 @@ export const allySponsors = [
     alt: 'Logo de Fomo',
     width: 70,
     height: 70
-  },
-  {
-    image: '/images/baqjs-logo.webp',
-    url: 'https://barranquillajs.org/',
-    alt: 'Logo de BarranquillaJS',
-    width: 75,
-    height: 75
   },
   {
     image: '/images/blazing-logo.webp',
@@ -222,20 +208,6 @@ export const allySponsors = [
     height: 150
   },
   {
-    image: '/images/notion-logo.webp',
-    url: 'https://www.notion.com/',
-    alt: 'Logo de Notion',
-    width: 70,
-    height: 70
-  },
-  {
-    image: '/images/jschile-logo.webp',
-    url: 'https://jschile.org/',
-    alt: 'Logo de JS Chile',
-    width: 70,
-    height: 70
-  },
-  {
     image: '/images/jetbrains-logo.webp',
     url: 'https://www.jetbrains.com/',
     alt: 'Logo de JetBrains',
@@ -248,5 +220,19 @@ export const allySponsors = [
     alt: 'Logo de BDG Institute',
     width: 120,
     height: 120
+  },
+  {
+    image: '/images/miguel-teheran.svg',
+    url: 'https://mteheran.dev/',
+    alt: 'Logo de Miguel Teheran',
+    width: 160,
+    height: 160
+  },
+  {
+    image: '/images/stack-logo.PNG',
+    url: 'https://www.stacks.co/',
+    alt: 'Logo de StacksLabs',
+    width: 160,
+    height: 160
   }
 ]

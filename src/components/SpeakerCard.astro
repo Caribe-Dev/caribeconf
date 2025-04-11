@@ -22,7 +22,7 @@ const { class: className, name, role, country, tumbnail, image, alt  } = Astro.p
   data-speaker-image={image}
 >
   <Image
-    class='w-full object-contain'
+    class='speaker-card__img'
     src={tumbnail}
     alt={alt}
     inferSize={true}
@@ -33,6 +33,10 @@ const { class: className, name, role, country, tumbnail, image, alt  } = Astro.p
 <style>
   .speaker-card {
     @apply max-w-[120px] cursor-pointer w-full grayscale aspect-[1] object-cover opacity-80 transition-[transform,opacity];
+  }
+
+  .speaker-card__img {
+    @apply w-full object-contain h-full;
     mask-image: linear-gradient(#000 85%, #0000 100%);
   }
 
