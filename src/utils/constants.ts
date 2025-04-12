@@ -86,12 +86,12 @@ export const speakers = [
     country: 'peru',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744312375/jonathan-nolasco_xs81gp.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744312375/mini-jonathan-nolasco_y1t4jp.webp',
-    talk: 'Construyendo aplicaciones que impactarán la economía del futuro',
+    talk: 'Blockchain: Creando el Futuro de la Economía con Aplicaciones Descentralizadas',
     schedule: '04:25PM - 04:45PM',
   },
   {
     name: 'Jorge Martinez',
-    role: 'Por confirmar',
+    role: 'CEO & Game Designer',
     country: 'colombia',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744337936/jorge-martinez_xqfni6.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744337936/mini-jorge-martinez_dfvasl.webp',
@@ -192,13 +192,6 @@ export const allySponsors = [
     alt: 'Logo de Fomo',
     width: 70,
     height: 70
-  },
-  {
-    image: '/images/blazing-logo.webp',
-    url: 'https://blazingsoft.co/',
-    alt: 'Logo de Blazing',
-    width: 150,
-    height: 150
   },
   {
     image: '/images/frecuencia-gamer-logo.webp',
