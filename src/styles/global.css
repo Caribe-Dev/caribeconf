@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@plugin "@tailwindcss/typography";
+
 :root {
   --raleway-font: 'Raleway';
   --c-pink: #BE357F;

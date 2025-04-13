@@ -143,45 +143,51 @@ export const speakers = [
     talk: 'Dominando Clean Architecture y la Arquitectura Hexagonal',
     schedule: '04:25PM - 04:45PM',
   },
-  // {
-  //   name: 'Cristian Cuadrado',
-  //   role: 'Por confirmar',
-  //   country: 'colombia',
-  //   image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
-  //   thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
-  //   talk: 'La Escena de los Videojuegos en el Caribe',
-  //   schedule: '04:50PM - 05:10PM',
-  // },
+  {
+    name: 'Cristian Cuadrado',
+    role: 'Software Engineer',
+    country: 'colombia',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744582543/cristian-cuadrado_wyghky.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744337966/mini-cristian-cuadrado_ttorjb.webp',
+    talk: 'Cómo los eSports están impulsando la industria de los videojuegos en el Caribe colombiano 🎮',
+    schedule: '04:50PM - 05:10PM',
+  },
 ]
 
 
 export const emeraldSponsors = [
   {
+    name: 'epam',
     image: '/images/epam-logo.webp',
     url: 'https://www.epam.com/',
     alt: 'Logo de EPAM',
     width: 350,
-    height: 350
+    height: 350,
+    page: true
   }
 ]
 
 export const pearlSponsors = [
   {
+    name: 'uniautonoma',
     image: '/images/uniautonoma-logo.webp',
     url: 'https://www.uac.edu.co/',
     alt: 'Logo de Universidad Autonoma del Caribe',
     width: 300,
-    height: 300
+    height: 300,
+    page: false
   }
 ]
 
 export const quartzSponsors = [
   {
+    name: 'avvy',
     image: '/images/avvy-logo.webp',
     url: 'https://www.avvy.co/',
     alt: 'Logo de Avvy',
     width: 180,
-    height: 180
+    height: 180,
+    page: 300,
   },
 ]
 

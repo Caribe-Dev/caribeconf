@@ -27,15 +27,25 @@ const hasAllySponsors = Boolean(allySponsors.length)
           </h3>
           <div class='flex justify-center items-center gap-20'>
             {
-              emeraldSponsors.map((sponsor) => (
-                <a class="sponsor-scale max-w-[280px] lg:max-w-[350px]" href={sponsor.url} target='_blank'>
+              emeraldSponsors.map((sponsor) => {
+                const props = sponsor.page ? {
+                  href: `/sponsors/${sponsor.name}`,
+                } : {
+                  href: sponsor.url,
+                  target: '_blank',
+                }
+
+                return (
+                <a class="sponsor-scale max-w-[280px] lg:max-w-[350px]" {...props}>
                   <img
+                    transition:name={`sponsor-img-${sponsor.name}`}
                     class="w-full"
                     src={sponsor.image}
                     alt={sponsor.alt}
                   />
                 </a>
-              ))
+              )
+              })
             }
           </div>
         </div>

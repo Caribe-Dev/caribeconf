@@ -1,0 +1,37 @@
+---
+import { getCollection, render } from "astro:content";
+
+import Layout from '@/layouts/Layout.astro';
+import Main from '@/layouts/Main.astro';
+
+export async function getStaticPaths() {
+  const sponsors = await getCollection('sponsors')
+
+  return sponsors.map((sponsor) => {
+    return {
+      params: { sponsor: sponsor.slug },
+      props: { sponsor },
+    };
+  });
+}
+
+
+const { sponsor } = Astro.props;
+
+const { slug, title, img, url } = sponsor.data
+
+
+const { Content } = await render(sponsor)
+
+---
+
+<Main title={title}>
+  <Layout class="flex flex-col items-center gap-10 py-[160px] h-min-screen">
+    <a href={url} target="_blank">
+      <img transition:name={`sponsor-img-${slug}`} class="max-w-[320px] md:max-w-[450px]" src={img} alt={title} />
+    </a>
+    <div class="prose max-w-[700px] prose-p:text-base prose-p:xs:text-lg prose-p:md:text-xl prose-a:text-white text-white font-[500]">
+      <Content />
+    </div>
+  </Layout>
+</Main>
