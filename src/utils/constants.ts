@@ -145,7 +145,7 @@ export const speakers = [
   },
   {
     name: 'Cristian Cuadrado',
-    role: 'Software Engineer',
+    role: 'CEO & FullStack Dev',
     country: 'colombia',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744582543/cristian-cuadrado_wyghky.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744337966/mini-cristian-cuadrado_ttorjb.webp',
