@@ -193,6 +193,13 @@ export const quartzSponsors = [
 
 export const allySponsors = [
   {
+    image: '/caribe-dev-white-logo.png',
+    url: 'https://www.caribedev.org/',
+    alt: 'Logo de Caribe Dev',
+    width: 100,
+    height: 70
+  },
+  {
     image: '/images/fomo-logo.webp',
     url: 'https://joinfomo.co/',
     alt: 'Logo de Fomo',
@@ -200,17 +207,24 @@ export const allySponsors = [
     height: 70
   },
   {
+    image: '/images/logo-fca.webp',
+    url: 'https://www.codigoabierto.tech/',
+    alt: 'Logo de Fundacion Codigo Abierto',
+    width: 110,
+    height: 70
+  },
+  {
     image: '/images/frecuencia-gamer-logo.webp',
     url: 'https://frecuenciagamer.com/',
     alt: 'Logo de Frecuencia Gamer',
-    width: 150,
+    width: 160,
     height: 150
   },
   {
     image: '/images/jetbrains-logo.webp',
     url: 'https://www.jetbrains.com/',
     alt: 'Logo de JetBrains',
-    width: 150,
+    width: 160,
     height: 150
   },
   {

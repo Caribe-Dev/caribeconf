@@ -9,7 +9,7 @@ import BirdsSvg from '@/public/images/birds.svg';
 const morningSpeakers = [
   ...speakers.slice(0, 2),
   {
-    talk: "Break, Networking y Café",
+    talk: "Networking",
     schedule: "10:10AM - 10:30AM",
     name: "",
     thumbnail: "",
@@ -68,8 +68,11 @@ const trackTwoSpeakers = [[...speakers.slice(11, 13)], [...speakers.slice(13, 17
           }
         </div>
         <div class="flex flex-col gap-2 bg-[#747099] py-10 text-center z-10">
-          <p class="h5 dashes-line">Almuerzo</p>
-          <span>12:00PM - 01:30PM</span>
+          <div class="flex flex-col">
+            <p class="h5 dashes-line">Hora de Almuerzo</p>
+            <span>(No incluido)</span>
+            <span>12:00PM - 01:30PM</span>
+          </div>
         </div>
         <div class="flex flex-col lg:flex-row lg:flex-wrap gap-[36px]">
           <div class="flex flex-col gap-8 flex-1 lg:pb-16 lg:gap-10">
