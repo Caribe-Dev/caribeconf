@@ -249,3 +249,54 @@ export const allySponsors = [
     height: 160
   }
 ]
+
+export const volunteers = [
+  {
+    name: 'Sofia Olaya',
+    photo: '/images/volunteer/sofia-olaya.jpg',
+  },
+  {
+    name: 'Alan Anaya',
+    photo: '/images/volunteer/alan-anaya.jpg',
+  },
+  {
+    name: 'Valerie Ferrer',
+    photo: '/images/volunteer/valerie-ferrer.jpg',
+  },
+  {
+    name: 'Giselle Ulloa',
+    photo: '/images/volunteer/giselle-ulloa.jpeg',
+  },
+  {
+    name: 'Diego Cañon',
+    photo: '/images/volunteer/diego-canon.jpg',
+  },
+  {
+    name: 'Francesca Martínez',
+    photo: '/images/volunteer/francesca-martinez.jpg',
+  },
+  {
+    name: 'Helen Lopéz',
+    photo: '/images/volunteer/helen-lopez.jpeg',
+  },
+  {
+    name: 'Esteban Vega',
+    photo: '/images/volunteer/esteban-vega.jpg',
+  },
+  {
+    name: 'Paola Lozano',
+    photo: '/images/volunteer/paola-lozano.png',
+  },
+  {
+    name: 'Luis Herrera',
+    photo: '/images/volunteer/luis-herrera.jpg',
+  },
+  {
+    name: 'Daniel Salas',
+    photo: '/images/volunteer/daniel-salas.jpg',
+  },
+  {
+    name: 'Joel Rodriguez',
+    photo: '/images/volunteer/joel-rodriguez.jpg',
+  },
+];
