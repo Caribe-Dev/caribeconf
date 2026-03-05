@@ -10,7 +10,12 @@ import LinkedInSvg from '@/components/Svgs/LinkedIn.astro';
 
 import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
 
-const currentYear = new Date().getFullYear();
+interface Props {
+  year?: number
+}
+
+const { year } = Astro.props;
+const currentYear = year || new Date().getFullYear();
 ---
 
 <footer class="bg-pink rounded-t-3xl relative z-10">

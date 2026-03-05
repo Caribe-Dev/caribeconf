@@ -17,6 +17,7 @@ interface Props {
 }
 
 const { title, minimal = false } = Astro.props
+const footerYear = Astro.url.pathname.startsWith('/2025') ? 2025 : 2026
 const image = DOMAIN + '/images/og.png'
 
 const jsonLd = {
@@ -105,6 +106,6 @@ const jsonLd = {
   <body>
     <Header minimal={minimal} />
     <slot />
-    <Footer />
+    <Footer year={footerYear} />
   </body>
 </html>
