@@ -31,6 +31,7 @@ import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
       </button>
     </div>
     <ul id='menu-content' class='hidden group-[.open]:flex lg:flex flex-col lg:flex-row justify-between items-center gap-[24px]'>
+      <li><a href='/2025' class='font-semibold whitespace-nowrap'>CaribeConf 2025</a></li>
       <li><a href='#speakers' class='font-semibold'>Speakers</a></li>
       <li><a href='#sponsors' class='font-semibold'>Sponsors</a></li>
       <li><a href='#aliados' class='font-semibold'>Aliados</a></li>
@@ -109,11 +110,15 @@ import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
     $menuContent?.addEventListener('click', function (e) {
       const $anchor = (e.target as Element).closest('a')
       if ($anchor) {
-        e.preventDefault()
         const id = $anchor.getAttribute('href') || ''
 
-        $header?.classList.remove('open')
-        handleSmoothScroll(id)
+        if (id.startsWith('#')) {
+          e.preventDefault()
+          $header?.classList.remove('open')
+          handleSmoothScroll(id)
+        } else {
+          $header?.classList.remove('open')
+        }
       }
     })
 	})
