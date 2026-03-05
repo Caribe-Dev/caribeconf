@@ -1,6 +1,12 @@
 ---
 import HeaderComponent from '@/components/Header.astro';
+
+interface Props {
+  minimal?: boolean
+}
+
+const { minimal = false } = Astro.props;
 ---
 <header class="fixed w-full lg:mt-7 z-[99]">
-  <HeaderComponent />
+  <HeaderComponent minimal={minimal} />
 </header>

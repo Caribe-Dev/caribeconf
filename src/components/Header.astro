@@ -9,6 +9,13 @@ import GithubSvg from '@/components/Svgs/Github.astro';
 import TwitterSvg from '@/components/Svgs/Twitter.astro';
 import LinkedInSvg from '@/components/Svgs/LinkedIn.astro';
 import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
+
+interface Props {
+  minimal?: boolean
+}
+
+const { minimal = false } = Astro.props;
+const isOn2025 = Astro.url.pathname.startsWith('/2025');
 ---
 
 <Layout id='header' class='!px-[0px] lg:!px-[16px] group'>
@@ -16,8 +23,9 @@ import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
     <div class='flex justify-between items-center gap-3'>
       <a href='/' class='flex justify-between items-center gap-3'>
         <Image class='max-w-[65px] lg:max-w-[50px]' src={CaribeDevPng} alt='Caribe dev logo' />
-        <span class='font-semibold'>CaribeConf - 26 de Abril 2025</span>
+        <span class='font-semibold'>{minimal ? 'CaribeConf' : 'CaribeConf - 26 de Abril 2025'}</span>
       </a>
+      {!minimal && (
       <button
         id='menu-btn'
         aria-expanded='false'
@@ -29,18 +37,23 @@ import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
         <span class='bg-white group-[.open]:opacity-0 h-[2px] w-6 bg-gray-300 transition ease transform duration-300'></span>
         <span class='bg-white group-[.open]:-translate-y-[0.6rem] group-[.open]:-rotate-45 h-[2px] w-6 bg-gray-300 transition ease transform duration-300'></span>
       </button>
+      )}
     </div>
-    <ul id='menu-content' class='hidden group-[.open]:flex lg:flex flex-col lg:flex-row justify-between items-center gap-[24px]'>
-      <li><a href='/2025' class='font-semibold whitespace-nowrap'>CaribeConf 2025</a></li>
+    <ul id='menu-content' class={`${minimal ? 'flex' : 'hidden group-[.open]:flex'} lg:flex flex-col lg:flex-row justify-between items-center gap-[24px]`}>
+      {!isOn2025 && <li><a href='/2025' class='font-semibold whitespace-nowrap'>Edicion Pasada 2025</a></li>}
+      {!minimal && (
       <li><a href='#speakers' class='font-semibold'>Speakers</a></li>
       <li><a href='#sponsors' class='font-semibold'>Sponsors</a></li>
       <li><a href='#aliados' class='font-semibold'>Aliados</a></li>
       <li><a href='#schedule' class='font-semibold'>Agenda</a></li>
       <li><a href='#volunteer' class='font-semibold'>Voluntarios</a></li>
+      )}
     </ul>
+    {!minimal && (
     <div class='hidden group-[.open]:flex lg:flex justify-center items-center'>
       <a href={BUY_TICKET_URL} class='btn btn--primary max-w-fit'>Compra tu ticket</a>
     </div>
+    )}
     <div class='hidden group-[.open]:flex flex-1 justify-end gap-[16px] flex-col md:hidden'>
       <div class='flex gap-[16px] justify-center items-end'>
         <a href="https://www.instagram.com/caribedev/" target="_blank" rel="noopener">

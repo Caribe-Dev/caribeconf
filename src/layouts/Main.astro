@@ -13,9 +13,10 @@ import '@/styles/helpers/fonts.css'
 
 interface Props {
   title?: string
+  minimal?: boolean
 }
 
-const title = Astro.props.title
+const { title, minimal = false } = Astro.props
 const image = DOMAIN + '/images/og.png'
 
 const jsonLd = {
@@ -102,7 +103,7 @@ const jsonLd = {
     <ClientRouter />
   </head>
   <body>
-    <Header />
+    <Header minimal={minimal} />
     <slot />
     <Footer />
   </body>

@@ -17,6 +17,12 @@ import PlantOneSvg from '@/public/images/plant-1.svg';
 import PlantSecondSvg from '@/public/images/plant-2.svg';
 
 import GroundSvg from '@/components/Svgs/Ground.astro';
+
+interface Props {
+  minimal?: boolean
+}
+
+const { minimal = false } = Astro.props;
 ---
 
 <section class='overflow-hidden'>
@@ -43,7 +49,7 @@ import GroundSvg from '@/components/Svgs/Ground.astro';
           <span class='uppercase text-purple font-bold tracking-[2px] text-sm'>conferencia de comunidades tech</span>
           <h1>
             CaribeConf
-            <span class="h1 hidden xs:inline">2025</span>
+            {minimal ? <span class="h1 hidden xs:inline">2026</span> : <span class="h1 hidden xs:inline">2025</span>}
             Barranquilla 🇨🇴
           </h1>
         </div>
@@ -51,12 +57,14 @@ import GroundSvg from '@/components/Svgs/Ground.astro';
           300+ personas de 16 comunidades tecnológicas donde aprenderás
           de los mejores en desarrollo de software, diseño, ciberseguridad, diversidad e innovación.
         </p>
+        {!minimal && (
         <div class='flex gap-2 items-center flex-col xs:flex-row xs:gap-4'>
           <div class='w-fit'>
             <a class='btn btn--primary text-lg' href={BUY_TICKET_URL} >Compra tu ticket</a>
           </div>
           <span class='small-text font-bold'>¡Entradas limitadas!</span>
         </div>
+        )}
       </div>
     </Layout>
     <div class='max-w-[1920px] mx-auto absolute flex justify-end left-0 right-0 bottom-0 z-5 translate-y-[-10px] xs:translate-y-[-50px] md:translate-y-[0px] lg:translate-y-[-40px] xl:translate-y-[-120px] z-[90]'>
