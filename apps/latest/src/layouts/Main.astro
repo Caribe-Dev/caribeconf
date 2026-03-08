@@ -1,0 +1,103 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import { DOMAIN, ENV } from "astro:env/client"
+
+import '@shared/styles/settings/typography.css'
+import '@shared/styles/global.css'
+import '@shared/styles/helpers/fonts.css'
+
+
+interface Props {
+  title?: string
+}
+
+const title = Astro.props.title
+const image = DOMAIN + '/images/og.png'
+
+// const jsonLd = {
+//   "@context": "https://schema.org",
+//   "@type": "Event",
+//   "name": "CaribeConf Barranquilla, Colombia 2026",
+//   "startDate": "2026-04-26",
+//   "endDate": "2026-04-26",
+//   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+//   "eventStatus": "https://schema.org/EventScheduled",
+//   "location": {
+//     "@type": "Place",
+//     "name": "CaribeConf Barranquilla, Colombia 2025",
+//     "address": {
+//       "@type": "PostalAddress",
+//       "streetAddress": "Calle 58 # 54-59",
+//       "addressLocality": "Barranquilla",
+//       "postalCode": "080002",
+//       "addressCountry": "ES"
+//     }
+//   },
+//   "image": image,
+//   "description": "Conferencia de Comunidades Tech en Barranquilla, Colombia (Coming soon 2026)",
+//   "organizer": {
+//     "@type": "Organization",
+//     "name": "CaribeConf Barranquilla, Colombia 2026",
+//     "url": "https://caribeconf.com"
+//   }
+// }
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="CaribeConf Barranquilla, Colombia (Coming soon 2026)" />
+    {
+      ENV !== 'production' &&
+        <meta name="robots" content="NOINDEX, NOFOLLOW">
+    }
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>
+      {
+        title
+          ? title + ' | Caribe Conf 2026'
+          : 'Caribe Conf - Conferencia de Comunidades Tech en Barranquilla, Colombia (Coming soon 2026)'
+      }
+    </title>
+    <meta
+      name="description"
+      content="Únete a CaribeConf Barranquilla, Colombia (Coming soon 2026). La conferencia de comunidades tech más esperada del Caribe. Charlas inspiradoras, networking y oportunidades únicas para desarrolladores, diseñadores y entusiastas de la tecnología. ¡No te lo pierdas!"
+    />
+    <meta
+      name="keywords"
+      content="Caribe Dev, CaribeDev, Caribe Conf, CaribeConf. JavaScript, Colombia, Barranquilla, Conferencias, Programación, Comunidades Tech"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="canonical" href="https://caribeconf.com" />
+
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:title" content="CaribeConf Barranquilla, Colombia (Coming soon 2026)" />
+    <meta
+      property="og:description"
+      content="Conferencia de Comunidades Tech en Barranquilla, Colombia (Coming soon 2026)"
+    />
+    <meta property="og:url" content="https://caribeconf.com" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@caribedev" />
+    <meta name="twitter:creator" content="@caribedev" />
+    <meta name="twitter:title" content="CaribeConf Barranquilla, Colombia (Coming soon 2026)" />
+    <meta
+      name="twitter:description"
+      content="Conferencia de Comunidades Tech en Barranquilla, Colombia (Coming soon 2026)"
+    />
+    <meta name="twitter:image" content={image} />
+
+    {/* <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} /> */}
+    <ClientRouter />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

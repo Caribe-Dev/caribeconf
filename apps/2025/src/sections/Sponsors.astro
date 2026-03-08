@@ -1,0 +1,151 @@
+---
+import { Image } from 'astro:assets';
+
+import DefumedCard from '@shared/components/DefumedCard.astro';
+
+import Layout from '@shared/components/Layout.astro';
+
+import { emeraldSponsors, pearlSponsors, quartzSponsors, allySponsors } from '@/utils/constants';
+
+const hasEmeraldSponsors = Boolean(emeraldSponsors.length)
+const hasPearlSponsors = Boolean(pearlSponsors.length)
+const hasQuartzSponsors = Boolean(quartzSponsors.length)
+const hasAllySponsors = Boolean(allySponsors.length)
+---
+<section id="sponsors" class='overflow-hidden'>
+  <Layout class='flex flex-col gap-52 items-center py-[60px] lg:py-[120px] relative z-[9]'>
+    <div class='flex flex-col gap-32 w-full'>
+      <h2>Sponsors</h2>
+      {
+        hasEmeraldSponsors && (
+        <div class='flex flex-col gap-20 w-full'>
+          <h3 class='h5 heading heading--emerald uppercase'>
+            <div class="flex flex-col justify-center items-center gap-2">
+              <Image src='/images/emerald.webp' width={80} height={80} alt='Imagen de una Esmeralda' />
+              Esmeralda
+            </div>
+          </h3>
+          <div class='flex justify-center items-center gap-20'>
+            {
+              emeraldSponsors.map((sponsor) => {
+                const props = sponsor.page ? {
+                  href: `/sponsors/${sponsor.name}`,
+                } : {
+                  href: sponsor.url,
+                  target: '_blank',
+                }
+
+                return (
+                <a class="sponsor-scale max-w-[280px] lg:max-w-[350px]" {...props}>
+                  <img
+                    transition:name={`sponsor-img-${sponsor.name}`}
+                    class="w-full"
+                    src={sponsor.image}
+                    alt={sponsor.alt}
+                  />
+                </a>
+              )
+              })
+            }
+          </div>
+        </div>
+        )
+      }
+      {
+        hasPearlSponsors && (
+          <div class='flex flex-col gap-20 w-full'>
+            <h3 class='h6 heading heading--pearl uppercase'>
+              <div class="flex flex-col justify-center items-center gap-2">
+                <Image src='/images/pearl.webp' width={70} height={70} alt='Imagen de una Perla' />
+                Perla
+              </div>
+            </h3>
+            <div class='flex justify-center items-center gap-20'>
+              {
+                pearlSponsors.map((sponsor) => (
+                  <a class="sponsor-scale max-w-[220px] lg:max-w-[300px]" href={sponsor.url} target='_blank'>
+                    <img
+                      class="w-full"
+                      src={sponsor.image}
+                      alt={sponsor.alt}
+                    />
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        )
+      }
+      {
+        hasQuartzSponsors && (
+        <div class='flex flex-col gap-20 w-full'>
+          <h3 class='h6 heading heading--quartz uppercase'>
+            <div class="flex flex-col justify-center items-center gap-2">
+              <Image src='/images/quartz.webp' width={60} height={60} alt='Imagen de un Cuarzo' />
+              Cuarzo
+            </div>
+          </h3>
+          <div class='flex justify-center items-center gap-20'>
+              {
+                quartzSponsors.map((sponsor) => (
+                  <a class="sponsor-scale max-w-[180px] lg:max-w-[200px]" href={sponsor.url} target='_blank'>
+                    <img
+                      class="w-full"
+                      src={sponsor.image}
+                      alt={sponsor.alt}
+                    />
+                  </a>
+                ))
+              }
+            </div>
+        </div>
+        )
+      }
+    </div>
+    {
+      hasAllySponsors && (
+        <DefumedCard id='aliados' class='w-full flex flex-col items-center gap-20 p-[80px] lg:p-[111px] lg:flex-row'>
+          <div class="w-full max-w-[30%]">
+            <h3 class='h3 text-center'>Aliados</h3>
+          </div>
+          <div class="flex flex-1 flex-wrap gap-16 justify-center items-center">
+            {
+              allySponsors.map((sponsor) => (
+                <a class="sponsor-scale" href={sponsor.url} target='_blank'>
+                  <Image
+                    src={sponsor.image}
+                    alt={sponsor.alt}
+                    width={sponsor.width}
+                    height={sponsor.height}
+                  />
+                </a>
+              ))
+            }
+          </div>
+        </DefumedCard>
+      )
+    }
+  </Layout>
+</section>
+
+<style>
+  .heading {
+    @apply flex items-center justify-center gap-10 w-full after:block after:content-[""] after:h-[1px] after:flex-1 before:block before:content-[""] before:h-[1px] before:flex-1;
+  }
+
+  .heading.heading--emerald {
+    @apply after:bg-[#03ac6b] before:bg-[#03ac6b] text-[#03ac6b];
+  }
+
+  .heading.heading--pearl {
+    @apply after:bg-[#f4fdf6] before:bg-[#f4fdf6] text-[#f4fdf6];
+  }
+
+  .heading.heading--quartz {
+    @apply after:bg-[#936403] before:bg-[#936403] text-[#936403];
+  }
+
+  .sponsor-scale {
+    @apply transition-[transform] hover:scale-[1.05];
+  }
+</style>
