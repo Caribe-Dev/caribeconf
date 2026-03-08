@@ -1,21 +1,28 @@
 ---
 import { Image } from 'astro:assets';
+
 import Main from '@/layouts/Main.astro';
+import Layout from '@shared/components/Layout.astro';
 
 import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
 
 ---
 <Main>
-  <main class="h-dvh flex justify-center">
-    <div class="flex flex-col items-center gap-4 mt-[30%] md:mt-[10%]">
-      <Image class='max-w-[180px] md:max-w-[280px]' src={CaribeDevPng} alt='Caribe dev logo' />
-      <h1 class="text-center">Coming Soon 2026</h1>
-      <p>
-        Estamos trabajando en la próxima edición de CaribeConf. ¡Mantente atento para más detalles!
-      </p>
+  <Layout>
+    <main class="h-dvh flex justify-center">
+      <div class="flex flex-col items-center gap-4 mt-[30%] md:mt-[10%]">
+        <Image class='max-w-[180px] md:max-w-[280px]' src={CaribeDevPng} alt='Caribe dev logo' />
+        <h1 class="text-center">Coming Soon 2026</h1>
+        <p class="text-center">
+          Estamos trabajando en la próxima edición de CaribeConf. ¡Mantente atento para más detalles!
+        </p>
+      </div>
+    </main>
+    <div class="glow"></div>
+    <div class="aura">
+      <div class="aura-spin"></div>
     </div>
-  </main>
-  <div class="glow"></div>
+  </Layout>
 </Main>
 
 <style>
@@ -38,5 +45,49 @@ import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
     filter: blur(60px);
     border-radius: 50%;
     pointer-events: none;
+  }
+
+  .aura {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 100;
+    -webkit-mask-image:
+      linear-gradient(to bottom, white 0px, transparent 8px),
+      linear-gradient(to top,    white 0px, transparent 8px),
+      linear-gradient(to right,  white 0px, transparent 8px),
+      linear-gradient(to left,   white 0px, transparent 8px);
+    -webkit-mask-composite: source-over, source-over, source-over;
+    mask-image:
+      linear-gradient(to bottom, white 0px, transparent 8px),
+      linear-gradient(to top,    white 0px, transparent 8px),
+      linear-gradient(to right,  white 0px, transparent 8px),
+      linear-gradient(to left,   white 0px, transparent 8px);
+    mask-composite: add, add, add;
+  }
+
+  .aura-spin {
+    position: absolute;
+    inset: -100%;
+    background: conic-gradient(
+      from 0deg,
+      transparent       0deg,
+      #41DEF4          50deg,
+      #1EB8F9          90deg,
+      #9333ea         150deg,
+      #BE357F         200deg,
+      transparent     230deg,
+      transparent     320deg,
+      #41DEF4         360deg
+    );
+    filter: blur(18px);
+    opacity: 0.45;
+    animation: aura-spin-rotate 7s linear infinite;
+  }
+
+  @keyframes aura-spin-rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
   }
 </style>

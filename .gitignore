@@ -28,8 +28,6 @@ apps/*/.env.*.local
 .claude/plans/
 .claude/projects/
 
-
-
 ### Linux ###
 *~
 
@@ -281,5 +279,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+.playwright-mcp
 
 # End of https://www.toptal.com/developers/gitignore/api/node,react,astro,sass,macos,windows,linux,visualstudiocode
