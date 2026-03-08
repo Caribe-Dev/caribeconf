@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import Main from '@/layouts/Main.astro';
+
+import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
+
+---
+
+<Main>
+  <main class="h-dvh flex justify-center">
+    <div class="flex flex-col items-center gap-4 mt-[30%] md:mt-[10%]">
+      <Image class='max-w-[180px] md:max-w-[280px]' src={CaribeDevPng} alt='Caribe dev logo' />
+      <h1 class="text-center">Coming Soon 2026</h1>
+      <p>
+        Estamos trabajando en la próxima edición de CaribeConf. ¡Mantente atento para más detalles!
+      </p>
+    </div>
+  </main>
+  <div class="glow"></div>
+</Main>
+
+<style>
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background-color: #0E1217;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glow {
+    position: fixed;
+    bottom: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse at center, #9333ea 0%, #7c3aed55 40%, transparent 70%);
+    filter: blur(60px);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+</style>

@@ -1,0 +1,34 @@
+{
+  "name": "caribeconf",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "CaribeConf website lastest",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "homepage": "https://github.com/caribe-dev/caribeconf/blob/main/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caribe-dev/caribeconf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/caribe-dev/caribeconf/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "20"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.6.1"
+  },
+  "devDependencies": {
+    "@astrojs/tailwind": "6.0.2",
+    "@tailwindcss/typography": "0.5.15",
+    "astro": "5.18.0",
+    "tailwind-merge": "3.0.2",
+    "tailwindcss": "3.4.17"
+  }
+}

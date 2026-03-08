@@ -6,6 +6,28 @@
 # Ignore content collection generated files
 .astro
 
+### Monorepo ###
+# Build outputs
+dist/
+apps/*/dist/
+
+# Astro caches (explicit for monorepo)
+apps/*/.astro/
+packages/*/.astro/
+
+# Dependencies (explicit for monorepo)
+apps/*/node_modules/
+packages/*/node_modules/
+
+# Env files in sub-apps
+apps/*/.env
+apps/*/.env.local
+apps/*/.env.*.local
+
+# Claude Code local files
+.claude/plans/
+.claude/projects/
+
 
 
 ### Linux ###
@@ -148,7 +170,7 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+dist/
 
 # Gatsby files
 .cache/

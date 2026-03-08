@@ -4,10 +4,12 @@
   "version": "0.0.1",
   "description": "CaribeConf website",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "dev:2025": "cd apps/2025 && npm run dev",
+    "dev:latest": "cd apps/latest && npm run dev",
+    "build:2025": "cd apps/2025 && npm run build",
+    "build:latest": "cd apps/latest && npm run build",
+    "install:2025": "cd apps/2025 && npm install",
+    "install:latest": "cd apps/latest && npm install"
   },
   "homepage": "https://github.com/caribe-dev/caribeconf/blob/main/README.md",
   "repository": {
@@ -18,19 +20,7 @@
     "url": "https://github.com/caribe-dev/caribeconf/issues"
   },
   "license": "MIT",
-  "dependencies": {
-    "@astrojs/tailwind": "5.1.3",
-    "astro": "5.0.9",
-    "tailwind-merge": "3.0.2",
-    "tailwindcss": "3.4.17"
-  },
   "engines": {
     "node": "20"
-  },
-  "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.6.1"
-  },
-  "devDependencies": {
-    "@tailwindcss/typography": "^0.5.15"
   }
 }
