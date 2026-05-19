@@ -136,7 +136,7 @@ const fourthColumn = allSpeakers.slice(15, 17)
             allSpeakers.map((speaker, i) => {
               const isFirst = i === 0
               return (
-                <div class:list={['aspect-[1] flex-shrink-0 snap-center overflow-hidden', { 'ml-[40%]': isFirst }]}>
+                <div class:list={['aspect-[1] shrink-0 snap-center overflow-hidden', { 'ml-[40%]': isFirst }]}>
                   <SpeakerCard
                     class:list={['speaker-card-js flex object-contain', { 'active': isFirst }]}
                     alt={`Foto del speaker ${speaker.name}`}
