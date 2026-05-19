@@ -1,0 +1,80 @@
+---
+import { Image } from 'astro:assets';
+
+import Layout from "@shared/components/Layout.astro";
+import VerticalDivider from '@/components/VerticalDivider.astro';
+
+import VectorTop from '@/public/images/vector-top.svg';
+import VectorBottom from '@/public/images/vector-bottom.svg';
+import PalmsV2 from '@/public/images/palms-v2.svg';
+---
+
+<section class="relative bg-[#9163BF]">
+  <Layout class="relative w-full flex flex-col pt-[120px] lg:pt-[160px] pb-[100px] lg:pb-[200px] gap-12">
+    <div class="absolute top-[-2px]">
+      <Image
+        class='w-full h-full'
+        src={VectorTop}
+        alt='Imagen de un vector decorativo'
+      />
+    </div>
+    <div class="flex flex-col w-full gap-[10px] lg:gap-[50px] lg:flex-row">
+      <h2 class="text-white font-bold text-left lg:py-5 lg:max-w-[400px]">¿Que es Caribeconf?</h2>
+      <div class="hidden lg:flex">
+        <VerticalDivider />
+      </div>
+      <div class="flex flex-col gap-4 w-full lg:py-5">
+        <p class="text-[#130A26] font-semibold text-left">
+          CaribeConf es más que una conferencia de tecnología.
+        </p>
+        <p class="text-white">
+          Es una experiencia que combina charlas, comunidad y cultura, diseñada para generar conexiones
+          reales y aprendizaje aplicable desde el Caribe para el mundo.
+        </p>
+      </div>
+    </div>
+    <div class="flex flex-col justify-between gap-[30px] md:flex-row lg:gap-[50px] lg:mt-20 px-[60px] py-[30px] bg-[#130A2645] rounded-[19px] z-20">
+      <div class="flex flex-col gap-[10px] justify-between items-center">
+        <h3 class="h1 md:h2 text-white font-bold">2</h3>
+        <p class="text-center">días de conferencias y experiencias</p>
+      </div>
+      <div class="hidden md:flex">
+        <VerticalDivider />
+      </div>
+      <div class="flex flex-col gap-[10px] justify-between items-center">
+        <h3 class="h1 text-white font-bold">16+</h3>
+        <p class="text-center">speakers nacionales e internacionales</p>
+      </div>
+      <div class="hidden md:flex">
+        <VerticalDivider />
+      </div>
+      <div class="flex flex-col gap-[10px] justify-between items-center">
+        <h3 class="h1 text-white font-bold">6+</h3>
+        <p class="text-center">comunidades tech participantes</p>
+      </div>
+    </div>
+    <div class="w-full flex justify-center">
+      <a
+        href='mailto:hello@caribedev.org'
+        target='_blank'
+        class='btn btn--primary btn-big btn-md-rounded bg-[#652A8C] w-fit z-90'
+      >
+        Conviértete en Sponsor
+      </a>
+    </div>
+    <div class="absolute bottom-0 translate-y-[70px] z-10 opacity-60">
+      <Image
+        class='w-full h-[500px]'
+        src={PalmsV2}
+        alt='Imagen de palmeras'
+      />
+    </div>
+    <div class="absolute bottom-[-2px]">
+      <Image
+        class='w-full h-full'
+        src={VectorBottom}
+        alt='Imagen de un vector decorativo'
+      />
+    </div>
+  </Layout>
+</section>

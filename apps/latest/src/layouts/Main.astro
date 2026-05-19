@@ -2,10 +2,10 @@
 import { ClientRouter } from 'astro:transitions';
 import { DOMAIN, ENV } from "astro:env/client"
 
-import '@shared/styles/settings/typography.css'
-import '@shared/styles/global.css'
-import '@shared/styles/helpers/fonts.css'
+import Header from '@/sections/Header.astro'
+import Footer from '@/sections/Footer.astro'
 
+import '@/styles/global.css'
 
 interface Props {
   title?: string
@@ -96,6 +96,8 @@ const image = DOMAIN + '/images/og.png'
     <ClientRouter />
   </head>
   <body>
+    <Header />
     <slot />
+    <Footer />
   </body>
 </html>
