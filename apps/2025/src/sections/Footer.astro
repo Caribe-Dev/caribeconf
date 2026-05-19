@@ -7,6 +7,7 @@ import TwitchSvg from '@shared/components/Svgs/Twitch.astro';
 import GithubSvg from '@shared/components/Svgs/Github.astro';
 import TwitterSvg from '@shared/components/Svgs/Twitter.astro';
 import LinkedInSvg from '@shared/components/Svgs/LinkedIn.astro';
+import Editions from '@shared/components/Editions.astro';
 
 import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
 
@@ -15,6 +16,9 @@ const currentYear = new Date().getFullYear();
 
 <footer class="bg-pink rounded-t-3xl relative z-10">
   <Layout class='flex flex-col py-[20px] gap-[16px]'>
+    <div class="flex justify-end">
+      <Editions />
+    </div>
     <div class="flex flex-1 justify-between items-center flex-col lg:flex-row gap-[16px]">
       <div class="flex items-center flex-col lg:flex-row gap-[16px]">
         <Image class='max-w-[65px]' src={CaribeDevPng} alt='Caribe dev logo' />
