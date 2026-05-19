@@ -14,6 +14,8 @@ const { id, class: className = ''  } = Astro.props
 </div>
 
 <style>
+  @reference "tailwindcss";
+
   .dashes-line {
     @apply after:block after:content-[""] after:h-[1px] after:flex-1 before:block before:content-[""] before:h-[1px] before:flex-1
   }

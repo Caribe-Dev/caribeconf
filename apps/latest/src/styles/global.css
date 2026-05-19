@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@source "../../../../packages/shared/**/*.{astro,html,js,jsx,ts,tsx}";
+
+@theme {
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-white: #FFFFFF;
+  --color-purple: #120B2F;
+  --color-aqua: #41DEF4;
+  --color-pink: #BE357F;
+  --color-cian: #1EB8F9;
+
+  --breakpoint-xs: 480px;
+  --breakpoint-3xl: 1920px;
+
+  --font-family-raleway: 'Raleway', -apple-system, 'Helvetica Neue', sans-serif;
+
+  --background-image-gradient-hero: linear-gradient(180deg, #394CC4 10.84%, #7259BF 26.62%, #A562A5 42.41%, #F1655F 58.2%, #F1974D 73.99%);
+;
+}
+
+@import "../../../../packages/shared/styles/settings/typography.css";
+@import "../../../../packages/shared/styles/global.css";
+@import "../../../../packages/shared/styles/helpers/fonts.css";
+@import "../../../../packages/shared/styles/helpers/buttons.css";

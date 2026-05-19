@@ -31,6 +31,8 @@ const { class: className, name, role, country, tumbnail, image, alt  } = Astro.p
 </div>
 
 <style>
+  @reference "tailwindcss";
+
   .speaker-card {
     @apply max-w-[120px] cursor-pointer w-full grayscale aspect-[1] object-cover opacity-80 transition-[transform,opacity];
   }

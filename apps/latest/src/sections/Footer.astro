@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+
+import Layout from '@shared/components/Layout.astro';
+import InstagramSvg from '@shared/components/Svgs/Instagram.astro';
+import TwitchSvg from '@shared/components/Svgs/Twitch.astro';
+import GithubSvg from '@shared/components/Svgs/Github.astro';
+import TwitterSvg from '@shared/components/Svgs/Twitter.astro';
+import LinkedInSvg from '@shared/components/Svgs/LinkedIn.astro';
+
+import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-pink rounded-t-3xl relative z-10">
+  <Layout class='flex flex-col py-5 gap-4'>
+    <div class="flex flex-1 justify-between items-center flex-col lg:flex-row gap-4">
+      <div class="flex items-center flex-col lg:flex-row gap-4">
+        <Image class='max-w-[65px]' src={CaribeDevPng} alt='Caribe dev logo' />
+        <span class="font-semibold">© Copyright Fundación CaribeDev {currentYear}</span>
+      </div>
+      <div class="flex gap-4">
+        <a href="https://www.instagram.com/caribedev/" target="_blank" rel="noopener">
+          <span class="sr-only">Instagram</span>
+          <InstagramSvg width={25} height={26} />
+        </a>
+        <a href="https://www.twitch.tv/caribedev" target="_blank" rel="noopener">
+          <span class="sr-only">Twitch</span>
+          <TwitchSvg width={25} height={26} />
+        </a>
+        <a href="https://x.com/caribedev" target="_blank" rel="noopener">
+          <span class="sr-only">LinkedIn</span>
+          <TwitterSvg width={25} height={26} />
+        </a>
+        <a href="https://www.linkedin.com/company/caribe-dev/" target="_blank" rel="noopener">
+          <span class="sr-only">LinkedIn</span>
+          <LinkedInSvg width={25} height={26} />
+        </a>
+        <a href="https://github.com/caribe-dev" target="_blank" rel="noopener">
+          <span class="sr-only">Twitch</span>
+          <GithubSvg width={25} height={26} />
+        </a>
+      </div>
+    </div>
+    <div class="flex flex-col items-center gap-2">
+      <a
+        class="text-white font-semibold underline"
+        href="https://github.com/Caribe-Dev/caribe-page/blob/main/CODE_OF_CONDUCT.md"
+        target="_blank"
+        rel="noopener"
+      >
+        Code of Conduct
+      </a>
+      <span class="text-base">
+        Design made with ❤️ by
+        <a
+          class="text-white underline"
+          href="https://dappsco.io/"
+          target="_blank"
+          rel="noopener"
+        >
+          DappsCo
+        </a>
+      </span>
+    </div>
+  </Layout>
+</footer>

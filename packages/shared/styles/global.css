@@ -1,9 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@plugin "@tailwindcss/typography";
-
 :root {
   --raleway-font: 'Raleway';
   --c-pink: #BE357F;
@@ -14,30 +8,31 @@
   color-scheme: light dark;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: var(--raleway-font), -apple-system, Helvetica Neue, sans-serif;
-}
-
-html, body {
-  color: var(--c-white);
-  background-color: var(--c-purple);
-  -webkit-font-smoothing: antialiased;
-  scroll-behavior: smooth;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--c-white);
+@layer base {
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--raleway-font), -apple-system, Helvetica Neue, sans-serif;
   }
-}
 
+  html, body {
+    color: var(--c-white);
+    background-color: var(--c-purple);
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-reduced-motion) {
-  html,
-  body {
-    scroll-behavior: auto;
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: var(--c-white);
+    }
+  }
+
+  @media (prefers-reduced-motion) {
+    html,
+    body {
+      scroll-behavior: auto;
+    }
   }
 }

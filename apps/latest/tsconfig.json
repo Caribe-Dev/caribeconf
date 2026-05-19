@@ -13,8 +13,6 @@
       "@shared/*": ["../../packages/shared/*"],
       "@/*": ["src/*"],
       "@/public/*": ["public/*"]
-    },
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    }
   }
 }

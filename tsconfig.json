@@ -2,6 +2,7 @@
   "files": [],
   "references": [
     { "path": "./apps/2025" },
-    { "path": "./apps/latest" }
+    { "path": "./apps/latest" },
+    { "path": "./packages/shared" }
   ]
 }

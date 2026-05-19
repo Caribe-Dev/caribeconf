@@ -1,0 +1,112 @@
+---
+import { Image } from 'astro:assets';
+
+import Layout from '@shared/components/Layout.astro';
+
+import { BUY_TICKET_URL } from "@/utils/constants";
+
+import CloudsSvg from '@/public/images/clouds.svg';
+import AguaPng from '@/public/images/agua.png';
+import BalsaOnePng from '@/public/images/balsa-1.png';
+import BalsaTwoPng from '@/public/images/balsa-2.png';
+import PlayaPng from '@/public/images/playa.png';
+import SolPng from '@/public/images/sol.png';
+import PalmaPng from '@/public/images/palmeras-derecha.png';
+import PalmasPng from '@/public/images/palmeras-izquierda.png';
+import MuellePuenteSvg from '@/public/images/muelle-puente.svg';
+---
+
+<section class='overflow-hidden w-full'>
+  <div class='overflow-hidden relative bg-gradient-hero h-[900px] md:h-[1000px]'>
+    <div class='absolute top-[50px] md:top-[80px] left-0 right-0 bottom-0'>
+      <Image class='w-full h-full object-cover' src={CloudsSvg} alt='Clouds image' />
+    </div>
+    <Layout class='relative flex justify-center top-30 sm:top-40 md:top-55 z-20'>
+      <div class='flex justify-center flex-col gap-4 max-w-[805px]'>
+        <div class="flex flex-col justify-center">
+          <span class='uppercase text-purple font-bold tracking-[2px] text-sm text-center'>
+            conferencia de comunidades tech
+          </span>
+          <h1 class="text-center">CaribeConf 2026</h1>
+          <p class="h5 font-medium text-center">
+            Tecnología que se amplifica <br /> desde el Caribe
+          </p>
+        </div>
+        <p class='small-text font-medium text-center'>
+          Un punto de encuentro para personas que aprenden, comparten
+          y construyen tecnología desde el Caribe para el mundo.
+        </p>
+        <div class="flex flex-col justify-center gap-2 items-center md:flex-row md:gap-3">
+          {
+            BUY_TICKET_URL && (
+             <>
+              <a
+                href={BUY_TICKET_URL}
+                target="_blank"
+                class='btn btn--primary bg-[#130A26] w-auto'
+              >
+                Comprar tu ticket
+              </a>
+              <span class="font-medium text-base">Cupos limitados</span>
+             </>
+            )
+          }
+        </div>
+      </div>
+    </Layout>
+    <Layout class="absolute w-full max-w-[1920px] mx-auto bottom-[230px] sm:bottom-[220px] lg:bottom-[190px] xl:bottom-[180px] 2xl:bottom-[160px] z-20 left-1/2 -translate-x-1/2">
+      <Image
+        class='w-full h-full object-cover scale-350 sm:scale-250 lg:scale-180 xl:scale-120 -translate-x-[100px] xl:-translate-x-0'
+        src={MuellePuenteSvg}
+        alt='Imagen de una bahia de una playa'
+      />
+    </Layout>
+    <div class="w-full absolute bottom-0">
+      <div class="relative w-full max-w-[1920px] mx-auto z-20">
+        <Image
+          class='absolute w-[clamp(40px,8vw,100px)] object-cover z-20 right-1/8 md:right-1/3 top-[30px] md:top-[20px]'
+          src={BalsaOnePng}
+          alt='Imagen de una balsa en el mar'
+        />
+        <Image
+          class='absolute w-[clamp(100px,20vw,250px)] object-cover z-20 right-1/6 top-[40px] md:top-[30px]'
+          src={BalsaOnePng}
+          alt='Imagen de una balsa en el mar'
+        />
+        <Image
+          class='absolute w-[clamp(100px,20vw,250px)] object-cover z-20 left-1/4 top-[30px]'
+          src={BalsaTwoPng}
+          alt='Imagen de una balsa en el mar'
+        />
+      </div>
+      <Image
+        class='absolute w-[450px] object-cover top-[10px] -translate-y-[50%] left-1/2 z-0 xl:translate-x-[80px] '
+        src={SolPng}
+        alt='Imagen del sol en el cielo'
+      />
+      <Image
+        class='relative w-full h-[130px] top-4 object-cover z-10'
+        src={AguaPng} alt='Imagen de una playa'
+      />
+      <Image
+        class='relative w-full h-[120px] object-cover z-20'
+        src={PlayaPng}
+        alt='Imagen de la arena de una playa'
+      />
+    </div>
+    <div class="hidden w-full max-w-[1920px] mx-auto absolute bottom-0 z-60 flex translate-y-[100px] lg:flex">
+      <Image
+        class='w-[450px] h-full object-contain max-h-[clamp(350px,46vw,700px)] -translate-x-[100px]'
+        src={PalmasPng}
+        alt='Imagen de unas palmas'
+      />
+    </div>
+    <div class="hidden w-full max-w-[1920px] mx-auto absolute bottom-0 z-60 flex justify-end translate-y-[100px] lg:flex">
+      <Image
+        class='w-[450px] h-full object-contain max-h-[clamp(250px,46vw,700px)] translate-x-[100px]'
+        src={PalmaPng}
+        alt='Imagen de unas palmas'
+      />
+    </div>
+  </div>
+</section>

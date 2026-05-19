@@ -1,0 +1,85 @@
+---
+import Layout from "@shared/components/Layout.astro";
+
+import { BUY_TICKET_URL } from "@/utils/constants";
+---
+
+<section class="gradient-bg">
+  <Layout class="w-full flex items-center flex-col pt-[100px] pb-[120px] gap-12">
+    <h2 class="h2">14 y 15 de Agosto 2026</h2>
+    <div class="w-full flex justify-between md:justify-center md:gap-20">
+      <div class="flex flex-col gap-5 items-center">
+        <span id="cd-days" class="countdown-box-shadow flex justify-center items-center w-[80px] aspect-square rounded-[19px] font-bold text-4xl md:text-6xl lg:text-7xl md:w-30">00</span>
+        <span class="text-[14px] md:text-3xl font-bold uppercase">días</span>
+      </div>
+      <div class="flex flex-col gap-5 items-center">
+        <span id="cd-hours" class="countdown-box-shadow p flex justify-center items-center w-[80px] aspect-square rounded-[19px] font-bold text-4xl md:text-6xl lg:text-7xl md:w-30">00</span>
+        <span class="text-[14px] md:text-3xl font-bold uppercase">horas</span>
+      </div>
+      <div class="flex flex-col gap-5 items-center">
+        <span id="cd-minutes" class="countdown-box-shadow p flex justify-center items-center w-[80px] aspect-square rounded-[19px] font-bold text-4xl md:text-6xl lg:text-7xl md:w-30">00</span>
+        <span class="text-[14px] md:text-3xl font-bold uppercase">minutos</span>
+      </div>
+      <div class="flex flex-col gap-5 items-center">
+        <span id="cd-seconds" class="countdown-box-shadow flex justify-center items-center w-[80px] aspect-square rounded-[19px] font-bold text-4xl md:text-6xl lg:text-7xl md:w-30">00</span>
+        <span class="text-[14px] md:text-3xl font-bold uppercase">segundos</span>
+      </div>
+    </div>
+    {
+      BUY_TICKET_URL && (
+         <a
+          href={BUY_TICKET_URL}
+          target="_blank"
+          class='btn btn--primary bg-[#D90081] w-auto'
+        >
+          Comprar tu ticket
+        </a>
+      )
+    }
+  </Layout>
+</section>
+
+<style>
+  .gradient-bg {
+    background: linear-gradient(180deg, #732F6E 0%, #23113B 47.63%);
+  }
+
+  .countdown-box-shadow {
+    box-shadow: 0px 0px 20.1px 0px #D9667BA3;
+  }
+</style>
+
+<script>
+  // Target: Aug 14, 2026 09:00 COT (UTC-5) = 14:00 UTC
+  const targetDate = new Date('2026-08-14T14:00:00Z').getTime();
+
+  const pad = (n: number) => String(n).padStart(2, '0');
+
+  const els = {
+    days: document.getElementById('cd-days')!,
+    hours: document.getElementById('cd-hours')!,
+    minutes: document.getElementById('cd-minutes')!,
+    seconds: document.getElementById('cd-seconds')!,
+  };
+
+  function tick() {
+    const diff = targetDate - Date.now();
+
+    if (diff <= 0) {
+      els.days.textContent = '00';
+      els.hours.textContent = '00';
+      els.minutes.textContent = '00';
+      els.seconds.textContent = '00';
+      return;
+    }
+
+    const totalSeconds = Math.floor(diff / 1000);
+    els.days.textContent    = pad(Math.floor(totalSeconds / 86400));
+    els.hours.textContent   = pad(Math.floor((totalSeconds % 86400) / 3600));
+    els.minutes.textContent = pad(Math.floor((totalSeconds % 3600) / 60));
+    els.seconds.textContent = pad(totalSeconds % 60);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+</script>

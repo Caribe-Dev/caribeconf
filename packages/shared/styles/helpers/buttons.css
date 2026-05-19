@@ -1,36 +1,45 @@
-.btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 60px;
-  border-radius: 40px;
-  font-weight: 600;
-  width: 100%;
-}
+@layer components {
+  .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 35px;
+    border-radius: 40px;
+    font-weight: 600;
+    width: 100%;
+  }
 
+  .btn.btn--primary {
+    background-color: var(--c-pink);
+    color: var(--c-white);
+  }
 
-.btn.btn--primary {
-  background-color: var(--c-pink);
-  color: var(--c-white);
-}
+  .btn.btn--primary:hover {
+    opacity: 0.9;
+  }
 
-.btn.btn--primary:hover {
-  opacity: 0.9;
-}
+  .btn.btn--pink {
+    @apply bg-pink;
+  }
 
-.btn.btn--pink {
-  @apply bg-pink;
-}
+  .btn.btn--pink:hover {
+    opacity: 0.9;
+  }
 
-.btn.btn--pink:hover {
-  opacity: 0.9;
-}
+  .btn.btn--cian {
+    @apply bg-cian;
+  }
 
-.btn.btn--cian {
-  @apply bg-cian;
-}
+  .btn.btn--cian:hover {
+    opacity: 0.9;
+  }
 
-.btn.btn--cian:hover {
-  opacity: 0.9;
+  .btn.btn-big {
+    padding: 14px 40px;
+  }
+
+  .btn.btn-md-rounded {
+    border-radius: 19px;
+  }
 }
