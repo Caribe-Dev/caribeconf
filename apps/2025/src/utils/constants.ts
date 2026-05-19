@@ -183,7 +183,7 @@ export const quartzSponsors = [
   {
     name: 'avvy',
     image: '/images/avvy-logo.webp',
-    url: 'https://www.avvy.co/',
+    url: 'https://avvytalent.com/',
     alt: 'Logo de Avvy',
     width: 180,
     height: 180,
