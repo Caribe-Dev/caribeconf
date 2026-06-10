@@ -40,7 +40,7 @@ import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
         BUY_TICKET_URL && (
           <li>
             <a
-              href="https://ti.to/caribeconf/2026"
+              href={BUY_TICKET_URL}
               target="_blank"
               class='btn btn--primary btn--pink lg:bg-[#130A26] w-fit'
             >
@@ -118,12 +118,16 @@ import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
 
     $menuContent?.addEventListener('click', function (e) {
       const $anchor = (e.target as Element).closest('a')
-      if ($anchor) {
-        e.preventDefault()
-        const id = $anchor.getAttribute('href') || ''
 
-        $header?.classList.remove('open')
-        handleSmoothScroll(id)
+      if ($anchor) {
+        const id = $anchor.getAttribute('href') || ''
+        
+        if (id.startsWith('#')) {
+          e.preventDefault()
+
+          $header?.classList.remove('open')
+          handleSmoothScroll(id)
+        }
       }
     })
 	})
