@@ -94,14 +94,14 @@ const jsonLd = {
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <ClientRouter />
-    {ENV === 'production' && GA_ID && (
+    {GA_ID && (
       <>
         <script is:inline define:vars={{ GA_ID }} async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
-        <script is:inline define:vars={{ GA_ID }}>
+        <script is:inline define:vars={{ GA_ID, ENV }}>
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', GA_ID);
+          window.gtag = function(){window.dataLayer.push(arguments);}
+          window.gtag('js', new Date());
+          window.gtag('config', GA_ID, { debug_mode: ENV !== 'production' });
         </script>
       </>
     )}
@@ -110,7 +110,7 @@ const jsonLd = {
     <Header />
     <slot />
     <Footer />
-    {ENV === 'production' && GA_ID && (
+    {GA_ID && (
       <script is:inline define:vars={{ GA_ID }}>
         document.addEventListener('astro:page-load', () => {
           if (typeof gtag !== 'undefined') {
@@ -124,7 +124,6 @@ const jsonLd = {
             el.addEventListener('click', () => {
               if (typeof gtag !== 'undefined') {
                 gtag('event', el.dataset.gaEvent, {
-                  event_category: 'engagement',
                   event_label: el.textContent?.trim(),
                 });
               }
