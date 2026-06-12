@@ -1,41 +1,120 @@
 ---
+import { Image } from 'astro:assets';
+// import SpeakerCard from '@shared/components/SpeakerCard.astro';
+
 import Layout from "@shared/components/Layout.astro";
 import VerticalDivider from '@/components/VerticalDivider.astro';
+import VectorBottom from '@/public/images/vector-bottom.svg';
+import PalmasPng from '@/public/images/palmeras-izquierda.png';
+import VectorTop from '@/public/images/purple-vector-top.svg';
+
+// import { speakers, speakerToBeConfirmed } from '@/utils/constants';
+
+
+// const remainingSpeakers = 12 - speakers.length
+
+// const allSpeakers = [
+//   ...speakers,
+//   ...Array.from({ length: remainingSpeakers }).map(() => speakerToBeConfirmed),
+// ]
+
+// const firstRow = allSpeakers.slice(0, 6)
+
 ---
 
-<section id="speakers" class="relative gradient-bg">
-  <Layout class="relative w-full flex flex-col pt-[120px] lg:pt-[160px] pb-[100px] lg:pb-[200px] gap-12">
-    <div class="become-speaker flex flex-col w-full lg:items-center gap-[20px] p-[30px] lg:p-[50px] lg:gap-[50px] lg:flex-row rounded-[19px]">
-      <h2 class="h3 text-[#FBC273] font-bold text-left lg:py-5 lg:max-w-[400px]">
-        ¡Conviértete en Speaker!
-      </h2>
-      <div class="hidden lg:block self-stretch">
-        <VerticalDivider />
-      </div>
-      <div class="flex flex-col gap-8 w-full lg:py-5">
-        <div class="flex flex-col gap-4 w-full">
-          <p class="small-text text-white text-left">
-            Comparte tu conocimiento, experiencias o
-            aprendizajes con la comunidad tecnológica del Caribe.
-          </p>
-          <p class="small-text text-white text-left">
-            Buscamos charlas y workshops prácticos, reales y cercanos.
-          </p>
-        </div>
-        <a
-          href='https://sessionize.com/caribeconf-2026/'
-          target='_blank'
-          class='btn btn--primary btn-big btn-md-rounded bg-[#F26457] md:w-fit uppercase text-center'
-        >
-          Postula tu charla
-        </a>
-      </div>
+<section id="speakers" class="relative overflow-hidden">
+  <div class="relative flex justify-center gradient-bg-1">
+    <div class="absolute top-[-2px] pointer-events-none" aria-hidden="true">
+      <Image
+        class='w-full h-full'
+        src={VectorTop}
+        alt=''
+      />
     </div>
-  </Layout>
+    <Layout class="relative w-full flex flex-col pt-[120px] lg:pt-[160px]">
+      <h2 class="h2 text-white font-bold text-center z-10">Speakers</h2>
+      <div class="mt-20 md:mt-40 lg:mt-60 relative">
+        <div class="absolute bottom-0 left-0 pointer-events-none md:translate-x-[-30px] z-10">
+          <Image
+            class='w-auto h-[220px] sm:h-[300px] md:h-[350px] lg:w-[450px] lg:h-auto object-contain max-h-[clamp(350px,46vw,600px)] '
+            src={PalmasPng}
+            alt='Imagen de unas palmas'
+          />
+        </div>
+        <div class="flex justify-center speaker-background before:max-w-[320px] md:before:max-w-[400px] lg:before:max-w-[500px]">
+          <div class='flex justify-center w-full max-w-[400px] lg:max-w-[450px] relative js-speaker-card'>
+            <img
+              class='w-full h-[280px] md:h-[350px] lg:h-[450px] object-contain mask-speaker js-speaker-image'
+              src='https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp'
+              alt='Imagen de conferencista'
+            />
+            <div class='flex flex-col items-center gap-[5px] absolute bottom-0'>
+              <img
+                class='hidden relative left-[10px] w-full max-w-[140px] js-country-flag'
+                src='https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/colombia-flag_o0xnlj.webp'
+                alt='Bandera de Colombia'
+              />
+              <p class='h5 js-speaker-name'></p>
+              <span class='js-speaker-role'></span>
+            </div>
+          </div>
+        </div>
+        <div class="absolute bottom-0 right-0 pointer-events-none md:translate-x-[30px]">
+          <Image
+            class='w-auto h-[220px] sm:h-[300px] md:h-[350px] lg:w-[450px] lg:h-auto object-contain max-h-[clamp(350px,46vw,600px)] -scale-x-100'
+            src={PalmasPng}
+            alt='Imagen de unas palmas'
+          />
+        </div>
+      </div>
+    </Layout>
+    <div class="absolute bottom-[24px] pointer-events-none z-10" aria-hidden="true">
+      <Image
+        class='w-full h-full'
+        src={VectorBottom}
+        alt=''
+      />
+    </div>
+  </div>
+  <div class="gradient-bg-2 relative mt-[-24px] z-10">
+    <Layout class="relative w-full flex flex-col pt-[120px] lg:pt-[160px] pb-[100px] lg:pb-[200px] gap-12">
+      <div class="become-speaker flex flex-col w-full lg:items-center gap-[20px] p-[30px] lg:p-[50px] lg:gap-[50px] lg:flex-row rounded-[19px]">
+        <h2 class="h3 text-[#FBC273] font-bold text-left lg:py-5 lg:max-w-[400px]">
+          ¡Conviértete en Speaker!
+        </h2>
+        <div class="hidden lg:block self-stretch">
+          <VerticalDivider />
+        </div>
+        <div class="flex flex-col gap-8 w-full lg:py-5">
+          <div class="flex flex-col gap-4 w-full">
+            <p class="small-text text-white text-left">
+              Comparte tu conocimiento, experiencias o
+              aprendizajes con la comunidad tecnológica del Caribe.
+            </p>
+            <p class="small-text text-white text-left">
+              Buscamos charlas y workshops prácticos, reales y cercanos.
+            </p>
+          </div>
+          <a
+            href='https://sessionize.com/caribeconf-2026/'
+            target='_blank'
+            class='btn btn--primary btn-big btn-md-rounded bg-[#F26457] md:w-fit uppercase text-center'
+            data-ga-event="call_for_papers_click"
+          >
+            Postula tu charla
+          </a>
+        </div>
+      </div>
+    </Layout>
+  </div>
 </section>
 
 <style>
-  .gradient-bg {
+  .gradient-bg-1 {
+    background: linear-gradient(180deg,#494DBE 6.81%,#845BBC 20.77%,#925DB3 34.23%,#C96980 89.68%);
+  }
+
+  .gradient-bg-2 {
     background: linear-gradient(180deg, #130A26 19.31%, #F26457 223.14%);
   }
 
@@ -43,4 +122,147 @@ import VerticalDivider from '@/components/VerticalDivider.astro';
     box-shadow: 0px 0px 20.1px 0px #D9667BA3;
     background: #FFFFFF12;
   }
+
+  .speaker-background {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .speaker-background:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    bottom: 5px;
+    aspect-ratio: 1/1;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #F2884B 58.17%, #9963B7 100%);
+  }
+
+  .mask-speaker {
+    mask-image: linear-gradient(#000 60%, #0000 100%);
+  }
 </style>
+
+
+<script>
+  const flags: Record<string, string> = {
+    colombia: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/colombia-flag_o0xnlj.webp',
+    venezuela: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741826111/venezuela-flag_lq9whn.webp',
+    chile: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/chile-flag_t6zi7b.webp',
+    canada: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/canada-flag_buhs2m.webp',
+    mexico: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/mexico-flag_exjqqm.webp',
+    peru: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744340053/peru-flag_nfmiyt.png',
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    const $speakerSection = document.getElementById('speakers')
+    const $speakerCard: HTMLImageElement | null = document.querySelector('.js-speaker-card')
+    const $speakerImage: HTMLImageElement | null = document.querySelector('.js-speaker-image')
+    const $speakerName: HTMLImageElement | null = document.querySelector('.js-speaker-name')
+    const $speakerRole: HTMLImageElement | null = document.querySelector('.js-speaker-role')
+    const $countryImage: HTMLImageElement | null = document.querySelector('.js-country-flag')
+    const $speakers: NodeListOf<HTMLDivElement> = document.querySelectorAll('.js-speaker-card')
+    const $carrousel = document.querySelector('.js-carrousel')
+    const mobileMediaQuery = window.matchMedia('(max-width: 1024px)')
+
+    if ($speakerSection) {
+      const boxerNavObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              boxerNavObserver.disconnect()
+              $speakers.forEach(($speaker) => {
+                const { speakerImage = '' } = $speaker.dataset
+                const preloadLink = document.createElement('link')
+                preloadLink.rel = 'preload'
+                preloadLink.as = 'image'
+                preloadLink.href = speakerImage
+                preloadLink.type = 'image/webp'
+                document.head.appendChild(preloadLink)
+              })
+            }
+          })
+        },
+        { root: null, threshold: 0.1}
+      )
+      boxerNavObserver.observe($speakerSection)
+    }
+
+    const setActiveSpeaker = ($speakerElem: HTMLDivElement) => {
+      const {
+        speakerImage = '',
+        speakerName,
+        speakerRole,
+        speakerCountry
+      } = $speakerElem.dataset
+
+      if ($speakerImage && speakerImage) {
+        $speakerImage.src = speakerImage
+        $speakerImage.alt = `${speakerName} image`
+        $speakerCard?.classList.add('z-10')
+      }
+
+      if ($speakerName && speakerName) {
+        $speakerName.textContent = speakerName
+      }
+
+      if ($speakerRole && speakerRole) {
+        $speakerRole.textContent = speakerRole
+      }
+
+      if ($countryImage && speakerCountry && flags[speakerCountry]) {
+        $countryImage.src = flags[speakerCountry]
+        $countryImage.alt = 'Bandera de ' + speakerCountry
+        $countryImage.classList.remove('hidden')
+      }
+    }
+
+    const onSetActiveSpeaker = ($speakerElem: HTMLDivElement) => {
+      const $activeSpeaker: HTMLDivElement | null  = document.querySelector('.speaker-card-js.active')
+      $activeSpeaker?.classList.remove('active')
+      $speakerElem.classList.add('active')
+      setActiveSpeaker($speakerElem)
+    }
+
+    $speakers.forEach(($speaker) => {
+      $speaker.addEventListener('click', () => onSetActiveSpeaker($speaker))
+    })
+
+    if (mobileMediaQuery.matches && $carrousel) {
+      const $activeSpeaker: HTMLDivElement | null = $carrousel.querySelector('.js-speaker-card.active')
+      const $allSpeakerCard = $carrousel.querySelectorAll('.js-speaker-card')
+
+      if ($activeSpeaker) {
+        setActiveSpeaker($activeSpeaker)
+      }
+
+			$carrousel.addEventListener('scroll', () => {
+        $allSpeakerCard.forEach(($elm) => {
+          const rect = $elm.getBoundingClientRect()
+          const { width } = $carrousel.getBoundingClientRect()
+
+          if (
+            rect.left > width / 2 - rect.width * 0.75 &&
+            rect.left < width / 2 + rect.width * 0.25
+          ) {
+            const $activeSpeaker: HTMLDivElement | null = $carrousel.querySelector('.js-speaker-card.active')
+            $activeSpeaker?.classList.remove('active')
+            $elm.classList.add('active')
+            setActiveSpeaker($elm as HTMLDivElement)
+
+          }
+        })
+			})
+
+      return
+		}
+
+    const $activeSpeaker: HTMLDivElement | null = document.querySelector('.js-speaker-card.active')
+
+    if ($activeSpeaker){
+      setActiveSpeaker($activeSpeaker)
+    }
+  })
+
+</script>

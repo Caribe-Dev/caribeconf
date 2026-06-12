@@ -19,7 +19,8 @@ export default defineConfig({
     schema: {
       BUY_TICKET_URL: envField.string({ context: "client", access: "public", optional: true }),
       DOMAIN: envField.string({ context: "client", access: "public", optional: true }),
-      ENV: envField.string({ context: "client", access: "public", optional: true })
+      ENV: envField.string({ context: "client", access: "public", optional: true }),
+      GA_ID: envField.string({ context: "client", access: "public", optional: true })
     }
   },
   image: {
