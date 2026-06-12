@@ -1,6 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
-import { DOMAIN, ENV } from "astro:env/client"
+import { DOMAIN, ENV, GA_ID } from "astro:env/client"
 
 import Header from '@/sections/Header.astro'
 import Footer from '@/sections/Footer.astro'
@@ -94,10 +94,44 @@ const jsonLd = {
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <ClientRouter />
+    {ENV === 'production' && GA_ID && (
+      <>
+        <script is:inline define:vars={{ GA_ID }} async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+        <script is:inline define:vars={{ GA_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', GA_ID);
+        </script>
+      </>
+    )}
   </head>
   <body>
     <Header />
     <slot />
     <Footer />
+    {ENV === 'production' && GA_ID && (
+      <script is:inline define:vars={{ GA_ID }}>
+        document.addEventListener('astro:page-load', () => {
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+              page_path: window.location.pathname,
+              page_title: document.title,
+            });
+          }
+
+          document.querySelectorAll('[data-ga-event]').forEach((el) => {
+            el.addEventListener('click', () => {
+              if (typeof gtag !== 'undefined') {
+                gtag('event', el.dataset.gaEvent, {
+                  event_category: 'engagement',
+                  event_label: el.textContent?.trim(),
+                });
+              }
+            });
+          });
+        });
+      </script>
+    )}
   </body>
 </html>
