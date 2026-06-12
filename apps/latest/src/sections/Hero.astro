@@ -18,7 +18,7 @@ import MuellePuenteSvg from '@/public/images/muelle-puente.svg';
 
 <section class='overflow-hidden w-full'>
   <div class='overflow-hidden relative bg-gradient-hero h-[900px] md:h-[1000px]'>
-    <div class='absolute top-[50px] md:top-[80px] left-0 right-0 bottom-0'>
+    <div class='absolute top-[50px] md:top-[80px] left-0 right-0 bottom-0 pointer-events-none'>
       <Image class='w-full h-full object-cover' src={CloudsSvg} alt='Clouds image' />
     </div>
     <Layout class='relative flex justify-center top-30 sm:top-40 md:top-55 z-90'>
@@ -94,14 +94,14 @@ import MuellePuenteSvg from '@/public/images/muelle-puente.svg';
         alt='Imagen de la arena de una playa'
       />
     </div>
-    <div class="pointer-events-none hidden w-full max-w-[1920px] mx-auto absolute bottom-0 z-60 flex translate-y-[100px] lg:flex">
+    <div class="pointer-events-none hidden right-0 left-0 w-full max-w-[1920px] mx-auto absolute bottom-0 z-60 flex translate-y-[100px] lg:flex">
       <Image
         class='w-[450px] h-full object-contain max-h-[clamp(350px,46vw,700px)] -translate-x-[100px]'
         src={PalmasPng}
         alt='Imagen de unas palmas'
       />
     </div>
-    <div class="pointer-events-none hidden w-full max-w-[1920px] mx-auto absolute bottom-0 z-60 flex justify-end translate-y-[100px] lg:flex">
+    <div class="pointer-events-none hidden right-0 left-0 w-full max-w-[1920px] mx-auto absolute bottom-0 z-60 flex justify-end translate-y-[100px] lg:flex">
       <Image
         class='w-[450px] h-full object-contain max-h-[clamp(250px,46vw,700px)] translate-x-[100px]'
         src={PalmaPng}
