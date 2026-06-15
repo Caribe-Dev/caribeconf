@@ -1,25 +1,26 @@
 ---
+
 import { Image } from 'astro:assets';
-// import SpeakerCard from '@shared/components/SpeakerCard.astro';
 
 import Layout from "@shared/components/Layout.astro";
+import SpeakerCard from '@shared/components/SpeakerCard.astro';
 import VerticalDivider from '@/components/VerticalDivider.astro';
+
 import VectorBottom from '@/public/images/vector-bottom.svg';
 import PalmasPng from '@/public/images/palmeras-izquierda.png';
 import VectorTop from '@/public/images/purple-vector-top.svg';
 
-// import { speakers, speakerToBeConfirmed } from '@/utils/constants';
+import { speakers, speakerToBeConfirmed } from '@/utils/constants';
 
 
-// const remainingSpeakers = 12 - speakers.length
+const remainingSpeakers = 12 - speakers.length
 
-// const allSpeakers = [
-//   ...speakers,
-//   ...Array.from({ length: remainingSpeakers }).map(() => speakerToBeConfirmed),
-// ]
+const allSpeakers = [
+  ...speakers,
+  ...Array.from({ length: remainingSpeakers }).map(() => speakerToBeConfirmed),
+]
 
-// const firstRow = allSpeakers.slice(0, 6)
-
+const firstRow = allSpeakers.slice(0, 6)
 ---
 
 <section id="speakers" class="relative overflow-hidden">
@@ -42,7 +43,7 @@ import VectorTop from '@/public/images/purple-vector-top.svg';
           />
         </div>
         <div class="flex justify-center speaker-background before:max-w-[320px] md:before:max-w-[400px] lg:before:max-w-[500px]">
-          <div class='flex justify-center w-full max-w-[400px] lg:max-w-[450px] relative js-speaker-card'>
+          <div class='flex justify-center w-full max-w-[400px] lg:max-w-[450px] relative js-speaker-card z-20'>
             <img
               class='w-full h-[280px] md:h-[350px] lg:h-[450px] object-contain mask-speaker js-speaker-image'
               src='https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp'
@@ -77,7 +78,22 @@ import VectorTop from '@/public/images/purple-vector-top.svg';
     </div>
   </div>
   <div class="gradient-bg-2 relative mt-[-24px] z-10">
-    <Layout class="relative w-full flex flex-col pt-[120px] lg:pt-[160px] pb-[100px] lg:pb-[200px] gap-12">
+    <Layout class="relative w-full flex flex-col pt-[120px] lg:pt-[160px] pb-[100px] lg:pb-[200px] gap-[100px]">
+      <div class="flex gap-15 justify-center">
+        {
+          firstRow.map((speaker, i) => (
+            <SpeakerCard
+              class:list={['js-speaker-card', { 'active': i === 0 }]}
+              tumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
+              name={speaker?.name || speakerToBeConfirmed.name}
+              role={speaker?.role || speakerToBeConfirmed.role}
+              country={speaker?.country}
+              image={speaker?.image || speakerToBeConfirmed.image}
+              alt={`Foto del speaker ${speaker?.name || 'por confirmar'}`}
+            />
+          ))
+        }
+      </div>
       <div class="become-speaker flex flex-col w-full lg:items-center gap-[20px] p-[30px] lg:p-[50px] lg:gap-[50px] lg:flex-row rounded-[19px]">
         <h2 class="h3 text-[#FBC273] font-bold text-left lg:py-5 lg:max-w-[400px]">
           ¡Conviértete en Speaker!
@@ -146,9 +162,12 @@ import VectorTop from '@/public/images/purple-vector-top.svg';
 
 
 <script>
+  const UNCONFIRMED = 'Por Confirmar'
+
   const flags: Record<string, string> = {
     colombia: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/colombia-flag_o0xnlj.webp',
     venezuela: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741826111/venezuela-flag_lq9whn.webp',
+    'venz-chl': 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781565554/venz-chl_vma4qk.webp',
     chile: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/chile-flag_t6zi7b.webp',
     canada: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/canada-flag_buhs2m.webp',
     mexico: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/mexico-flag_exjqqm.webp',
@@ -219,7 +238,11 @@ import VectorTop from '@/public/images/purple-vector-top.svg';
     }
 
     const onSetActiveSpeaker = ($speakerElem: HTMLDivElement) => {
-      const $activeSpeaker: HTMLDivElement | null  = document.querySelector('.speaker-card-js.active')
+      const $activeSpeaker: HTMLDivElement | null  = document.querySelector('.js-speaker-card.active')
+
+      const isUnConfirmed = $speakerElem?.dataset?.speakerName === UNCONFIRMED
+      if (isUnConfirmed) return
+
       $activeSpeaker?.classList.remove('active')
       $speakerElem.classList.add('active')
       setActiveSpeaker($speakerElem)

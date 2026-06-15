@@ -1,4 +1,5 @@
 // @ts-check
+// @ts-ignore
 import { fileURLToPath, URL } from 'node:url';
 import { defineConfig, envField, passthroughImageService } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
@@ -11,7 +12,8 @@ export default defineConfig({
     resolve: {
       alias: {
         '@shared': fileURLToPath(new URL('../../packages/shared', import.meta.url)),
-        'tailwind-merge': fileURLToPath(new URL('./node_modules/tailwind-merge', import.meta.url))
+        'tailwind-merge': fileURLToPath(new URL('./node_modules/tailwind-merge', import.meta.url)),
+        'tailwindcss': fileURLToPath(new URL('./node_modules/tailwindcss/index.css', import.meta.url))
       }
     }
   },
@@ -24,6 +26,7 @@ export default defineConfig({
     }
   },
   image: {
-    service: passthroughImageService()
+    service: passthroughImageService(),
+    domains: ['res.cloudinary.com']
   }
 });

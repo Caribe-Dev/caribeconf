@@ -20,6 +20,7 @@ const { class: className, name, role, country, tumbnail, image, alt  } = Astro.p
   data-speaker-role={role}
   data-speaker-country={country}
   data-speaker-image={image}
+  title={name}
 >
   <Image
     class='speaker-card__img'
@@ -35,6 +36,7 @@ const { class: className, name, role, country, tumbnail, image, alt  } = Astro.p
 
   .speaker-card {
     @apply max-w-[120px] cursor-pointer w-full grayscale aspect-[1] object-cover opacity-80 transition-[transform,opacity];
+    position: relative;
   }
 
   .speaker-card__img {
@@ -44,5 +46,15 @@ const { class: className, name, role, country, tumbnail, image, alt  } = Astro.p
 
   .speaker-card.active {
     @apply opacity-100 scale-[1.05] grayscale-0;
+  }
+
+  .speaker-card.active::before {
+    content: '';
+    position: absolute;
+    inset: -16px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(190, 53, 127, 0.75) 0%, rgba(153, 99, 183, 0.45) 45%, transparent 70%);
+    filter: blur(14px);
+    z-index: -1;
   }
 </style>
