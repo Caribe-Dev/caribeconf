@@ -3,8 +3,8 @@ export const BUY_TICKET_URL = import.meta.env.BUY_TICKET_URL;
 
 export const speakers = [
   {
-    name: 'Eramos Hernández',
-    role: 'Frontend Developer',
+    name: 'Erasmo Hernández',
+    role: 'Tech Lead',
     country: 'venz-chl',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781562658/erasmo_sjmcoh.png',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781562658/erasmo_sjmcoh.png',

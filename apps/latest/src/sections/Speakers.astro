@@ -9,6 +9,7 @@ import VerticalDivider from '@/components/VerticalDivider.astro';
 import VectorBottom from '@/public/images/vector-bottom.svg';
 import PalmasPng from '@/public/images/palmeras-izquierda.png';
 import VectorTop from '@/public/images/purple-vector-top.svg';
+import BirdsSvg from '@/public/images/birds.svg';
 
 import { speakers, speakerToBeConfirmed } from '@/utils/constants';
 
@@ -33,9 +34,12 @@ const firstRow = allSpeakers.slice(0, 6)
       />
     </div>
     <Layout class="relative w-full flex flex-col pt-[120px] lg:pt-[160px]">
-      <h2 class="h2 text-white font-bold text-center z-10">Speakers</h2>
+      <h2 class="h2 text-white font-bold text-center z-20">Speakers</h2>
+      <div class='pointer-events-none absolute right-0 translate-y-[70px] translate-x-[60px] md:translate-x-[0px] md:translate-y-[70px] xl:translate-y-[0px] sm:w-[350px] md:w-[450px] z-10'>
+        <Image class='w-full' src={BirdsSvg} alt='Birds image' />
+      </div>
       <div class="mt-20 md:mt-40 lg:mt-60 relative">
-        <div class="absolute bottom-0 left-0 pointer-events-none md:translate-x-[-30px] z-10">
+        <div class="absolute bottom-0 left-0 pointer-events-none translate-x-[-30px] z-10">
           <Image
             class='w-auto h-[220px] sm:h-[300px] md:h-[350px] lg:w-[450px] lg:h-auto object-contain max-h-[clamp(350px,46vw,600px)] '
             src={PalmasPng}
@@ -60,7 +64,7 @@ const firstRow = allSpeakers.slice(0, 6)
             </div>
           </div>
         </div>
-        <div class="absolute bottom-0 right-0 pointer-events-none md:translate-x-[30px]">
+        <div class="absolute bottom-0 right-0 pointer-events-none translate-x-[30px]">
           <Image
             class='w-auto h-[220px] sm:h-[300px] md:h-[350px] lg:w-[450px] lg:h-auto object-contain max-h-[clamp(350px,46vw,600px)] -scale-x-100'
             src={PalmasPng}
