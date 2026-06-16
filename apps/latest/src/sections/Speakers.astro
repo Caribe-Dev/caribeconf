@@ -78,8 +78,29 @@ const firstRow = allSpeakers.slice(0, 6)
     </div>
   </div>
   <div class="gradient-bg-2 relative mt-[-24px] z-10">
-    <Layout class="relative w-full flex flex-col pt-[120px] lg:pt-[160px] pb-[100px] lg:pb-[200px] gap-[100px]">
-      <div class="flex gap-15 justify-center">
+    <Layout class="relative w-full flex flex-col pt-[120px] lg:pt-[160px] pb-[100px] lg:pb-[200px] gap-[120px]">
+      <div class="flex snap-x snap-mandatory overflow-x-scroll w-full lg:hidden js-carrousel carousel-mobile gap-4 md:gap-10">
+        {
+          firstRow.map((speaker, i) => {
+            const isFirst = i === 0
+            const isLast = i === firstRow.length - 1
+            return (
+            <div class:list={['w-30 shrink-0 snap-center', { 'ml-[calc(50%-60px)]': isFirst, 'mr-[calc(50%-60px)]': isLast }]}>
+              <SpeakerCard
+                class:list={['js-speaker-card', { 'active': i === 0 }]}
+                tumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
+                name={speaker?.name || speakerToBeConfirmed.name}
+                role={speaker?.role || speakerToBeConfirmed.role}
+                country={speaker?.country}
+                image={speaker?.image || speakerToBeConfirmed.image}
+                alt={`Foto del speaker ${speaker?.name || 'por confirmar'}`}
+              />
+            </div>
+          )
+          })
+        }
+      </div>
+      <div class="hidden lg:flex gap-15 justify-center">
         {
           firstRow.map((speaker, i) => (
             <SpeakerCard
@@ -131,7 +152,7 @@ const firstRow = allSpeakers.slice(0, 6)
   }
 
   .gradient-bg-2 {
-    background: linear-gradient(180deg, #130A26 19.31%, #F26457 223.14%);
+    background: linear-gradient(180deg,#130A26 5.31%,#F26457 223.14%);
   }
 
   .become-speaker {
@@ -157,6 +178,17 @@ const firstRow = allSpeakers.slice(0, 6)
 
   .mask-speaker {
     mask-image: linear-gradient(#000 60%, #0000 100%);
+  }
+
+  .carousel-mobile {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: clip;
+    padding-block: 50px;
+  }
+
+  .carousel-mobile::-webkit-scrollbar {
+    display: none;
   }
 </style>
 
@@ -238,10 +270,15 @@ const firstRow = allSpeakers.slice(0, 6)
     }
 
     const onSetActiveSpeaker = ($speakerElem: HTMLDivElement) => {
-      const $activeSpeaker: HTMLDivElement | null  = document.querySelector('.js-speaker-card.active')
+      if (mobileMediaQuery.matches) {
+        $speakerElem.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
+      }
 
       const isUnConfirmed = $speakerElem?.dataset?.speakerName === UNCONFIRMED
+
       if (isUnConfirmed) return
+
+      const $activeSpeaker: HTMLDivElement | null  = document.querySelector('.js-speaker-card.active')
 
       $activeSpeaker?.classList.remove('active')
       $speakerElem.classList.add('active')
@@ -271,9 +308,13 @@ const firstRow = allSpeakers.slice(0, 6)
           ) {
             const $activeSpeaker: HTMLDivElement | null = $carrousel.querySelector('.js-speaker-card.active')
             $activeSpeaker?.classList.remove('active')
-            $elm.classList.add('active')
-            setActiveSpeaker($elm as HTMLDivElement)
 
+            const isUnConfirmed = ($elm as HTMLDivElement).dataset?.speakerName === UNCONFIRMED
+
+            if (!isUnConfirmed) {
+              setActiveSpeaker($elm as HTMLDivElement)
+              $elm.classList.add('active')
+            }
           }
         })
 			})
