@@ -10,6 +10,15 @@ export const speakers = [
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781562658/erasmo_sjmcoh.png',
     talk: '',
     schedule: '',
+  },
+  {
+    name: 'Andrea Monsalve',
+    role: 'Senior Product Designer',
+    country: 'venz-chl',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781707610/andrea-monsalve_kjbgwg.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781707610/andrea-monsalve_kjbgwg.webp',
+    talk: '',
+    schedule: '',
   }
 ]
 
