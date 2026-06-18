@@ -19,7 +19,25 @@ export const speakers = [
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781707610/andrea-monsalve_kjbgwg.webp',
     talk: '',
     schedule: '',
-  }
+  },
+  {
+    name: 'Oscar Barrajas',
+    role: 'Senior Software Architech',
+    country: 'mx-col',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781739722/oscar-barrajas_qn2bxg.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781739722/oscar-barrajas_qn2bxg.webp',
+    talk: 'Hacking Your Life with AI',
+    schedule: '',
+  },
+  // {
+  //   name: 'Eduardo Alvarez',
+  //   role: 'Tech Lead',
+  //   country: 'chile-v2',
+  //   image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781739417/eduardo-alvarez_larqbk.webp',
+  //   thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781739417/eduardo-alvarez_larqbk.webp',
+  //   talk: '',
+  //   schedule: '',
+  // }
 ]
 
 
