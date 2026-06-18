@@ -49,7 +49,7 @@ const firstRow = allSpeakers.slice(0, 6)
         <div class="flex justify-center speaker-background before:max-w-[320px] md:before:max-w-[400px] lg:before:max-w-[500px]">
           <div class='flex justify-center w-full max-w-[400px] lg:max-w-[450px] relative js-speaker-card z-20'>
             <img
-              class='w-full h-[280px] md:h-[350px] lg:h-[450px] object-contain mask-speaker js-speaker-image'
+              class='w-full h-[280px] md:h-[400px] lg:h-[480px] object-contain mask-speaker js-speaker-image'
               src='https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp'
               alt='Imagen de conferencista'
             />
@@ -83,15 +83,15 @@ const firstRow = allSpeakers.slice(0, 6)
   </div>
   <div class="gradient-bg-2 relative mt-[-24px] z-10">
     <Layout class="relative w-full flex flex-col pt-[120px] lg:pt-[160px] pb-[100px] lg:pb-[200px] gap-[120px]">
-      <div class="flex snap-x snap-mandatory overflow-x-scroll w-full lg:hidden js-carrousel carousel-mobile gap-4 md:gap-10">
+      <div class="flex snap-x snap-mandatory overflow-x-scroll lg:overflow-x-visible lg:snap-none w-full js-carrousel carousel-mobile gap-4 md:gap-10 lg:gap-15 lg:justify-center">
         {
           firstRow.map((speaker, i) => {
             const isFirst = i === 0
             const isLast = i === firstRow.length - 1
             return (
-            <div class:list={['w-30 shrink-0 snap-center', { 'ml-[calc(50%-60px)]': isFirst, 'mr-[calc(50%-60px)]': isLast }]}>
+            <div class:list={['w-30 lg:w-auto shrink-0 lg:shrink snap-center lg:snap-align-none', { 'ml-[calc(50%-60px)] lg:ml-0': isFirst, 'mr-[calc(50%-60px)] lg:mr-0': isLast }]}>
               <SpeakerCard
-                class:list={['js-speaker-card', { 'active': i === 0 }]}
+                class:list={['js-speaker-card max-w-[200px]', { 'active': i === 0 }]}
                 tumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
                 name={speaker?.name || speakerToBeConfirmed.name}
                 role={speaker?.role || speakerToBeConfirmed.role}
@@ -102,21 +102,6 @@ const firstRow = allSpeakers.slice(0, 6)
             </div>
           )
           })
-        }
-      </div>
-      <div class="hidden lg:flex gap-15 justify-center">
-        {
-          firstRow.map((speaker, i) => (
-            <SpeakerCard
-              class:list={['js-speaker-card', { 'active': i === 0 }]}
-              tumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
-              name={speaker?.name || speakerToBeConfirmed.name}
-              role={speaker?.role || speakerToBeConfirmed.role}
-              country={speaker?.country}
-              image={speaker?.image || speakerToBeConfirmed.image}
-              alt={`Foto del speaker ${speaker?.name || 'por confirmar'}`}
-            />
-          ))
         }
       </div>
       <div class="become-speaker flex flex-col w-full lg:items-center gap-[20px] p-[30px] lg:p-[50px] lg:gap-[50px] lg:flex-row rounded-[19px]">
@@ -196,19 +181,10 @@ const firstRow = allSpeakers.slice(0, 6)
   }
 </style>
 
-
 <script>
-  const UNCONFIRMED = 'Por Confirmar'
+  import { FLAGS } from '@shared/utils/constants'
 
-  const flags: Record<string, string> = {
-    colombia: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/colombia-flag_o0xnlj.webp',
-    venezuela: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741826111/venezuela-flag_lq9whn.webp',
-    'venz-chl': 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781565554/venz-chl_vma4qk.webp',
-    chile: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/chile-flag_t6zi7b.webp',
-    canada: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/canada-flag_buhs2m.webp',
-    mexico: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/mexico-flag_exjqqm.webp',
-    peru: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1744340053/peru-flag_nfmiyt.png',
-  }
+  const UNCONFIRMED = 'Por Confirmar'
 
   document.addEventListener('astro:page-load', () => {
     const $speakerSection = document.getElementById('speakers')
@@ -266,8 +242,8 @@ const firstRow = allSpeakers.slice(0, 6)
         $speakerRole.textContent = speakerRole
       }
 
-      if ($countryImage && speakerCountry && flags[speakerCountry]) {
-        $countryImage.src = flags[speakerCountry]
+      if ($countryImage && speakerCountry && FLAGS[speakerCountry]) {
+        $countryImage.src = FLAGS[speakerCountry]
         $countryImage.alt = 'Bandera de ' + speakerCountry
         $countryImage.classList.remove('hidden')
       }
@@ -284,9 +260,11 @@ const firstRow = allSpeakers.slice(0, 6)
 
       const $activeSpeaker: HTMLDivElement | null  = document.querySelector('.js-speaker-card.active')
 
+      if ($activeSpeaker === $speakerElem) return
+
       $activeSpeaker?.classList.remove('active')
-      $speakerElem.classList.add('active')
       setActiveSpeaker($speakerElem)
+      $speakerElem.classList.add('active')
     }
 
     $speakers.forEach(($speaker) => {
