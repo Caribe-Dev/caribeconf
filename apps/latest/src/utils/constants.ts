@@ -10,6 +10,10 @@ export const speakers = [
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781562658/erasmo_sjmcoh.png',
     talk: '',
     schedule: '',
+    social: {
+      type: 'website',
+      url: 'https://www.erasmoh.dev/es'
+    }
   },
   {
     name: 'Andrea Monsalve',
@@ -19,6 +23,10 @@ export const speakers = [
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781707610/andrea-monsalve_kjbgwg.webp',
     talk: '',
     schedule: '',
+    social: {
+      type: 'instagram',
+      url: 'https://www.instagram.com/soyandreamons/'
+    }
   },
   {
     name: 'Oscar Barajas',
@@ -28,6 +36,10 @@ export const speakers = [
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781739722/oscar-barrajas_qn2bxg.webp',
     talk: 'Hacking Your Life with AI',
     schedule: '',
+    social: {
+      type: 'website',
+      url: 'https://gndx.dev/'
+    }
   },
   // {
   //   name: 'Eduardo Alvarez',
@@ -47,5 +59,6 @@ export const speakerToBeConfirmed = {
   country: '',
   thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
   image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
-  alt: 'Imagen de conferencista por confirmar'
+  alt: 'Imagen de conferencista por confirmar',
+  social: null
 }

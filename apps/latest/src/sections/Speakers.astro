@@ -11,6 +11,9 @@ import PalmasPng from '@/public/images/palmeras-izquierda.png';
 import VectorTop from '@/public/images/purple-vector-top.svg';
 import BirdsSvg from '@/public/images/birds.svg';
 
+import InstagramSvg from '@shared/components/Svgs/Instagram.astro';
+import WebsiteSvg from '@shared/components/Svgs/LaptopIcon.astro';
+
 import { speakers, speakerToBeConfirmed } from '@/utils/constants';
 
 
@@ -61,6 +64,11 @@ const firstRow = allSpeakers.slice(0, 6)
               />
               <p class='h5 js-speaker-name'></p>
               <span class='js-speaker-role'></span>
+              <div class='js-speaker-social'></div>
+            </div>
+            <div class="hidden">
+              <span id="tpl-instagram"><InstagramSvg /></span>
+              <span id="tpl-website"><WebsiteSvg /></span>
             </div>
           </div>
         </div>
@@ -73,7 +81,7 @@ const firstRow = allSpeakers.slice(0, 6)
         </div>
       </div>
     </Layout>
-    <div class="absolute bottom-[24px] pointer-events-none z-10" aria-hidden="true">
+    <div class="absolute bottom-[23px] pointer-events-none z-10" aria-hidden="true">
       <Image
         class='w-full h-full'
         src={VectorBottom}
@@ -82,7 +90,7 @@ const firstRow = allSpeakers.slice(0, 6)
     </div>
   </div>
   <div class="gradient-bg-2 relative mt-[-24px] z-10">
-    <Layout class="relative w-full flex flex-col pt-[120px] lg:pt-[160px] pb-[100px] lg:pb-[200px] gap-[120px]">
+    <Layout class="relative w-full flex flex-col pt-[30px] lg:pt-[80px] pb-[100px] lg:pb-[200px] gap-[120px]">
       <div class="flex snap-x snap-mandatory overflow-x-scroll lg:overflow-x-visible lg:snap-none w-full js-carrousel carousel-mobile gap-4 md:gap-10 lg:gap-15 lg:justify-center">
         {
           firstRow.map((speaker, i) => {
@@ -97,6 +105,8 @@ const firstRow = allSpeakers.slice(0, 6)
                 role={speaker?.role || speakerToBeConfirmed.role}
                 country={speaker?.country}
                 image={speaker?.image || speakerToBeConfirmed.image}
+                socialType={speaker?.social?.type}
+                socialUrl={speaker?.social?.url}
                 alt={`Foto del speaker ${speaker?.name || 'por confirmar'}`}
               />
             </div>
@@ -192,6 +202,7 @@ const firstRow = allSpeakers.slice(0, 6)
     const $speakerImage: HTMLImageElement | null = document.querySelector('.js-speaker-image')
     const $speakerName: HTMLImageElement | null = document.querySelector('.js-speaker-name')
     const $speakerRole: HTMLImageElement | null = document.querySelector('.js-speaker-role')
+    const $speakerSocial: HTMLDivElement | null = document.querySelector('.js-speaker-social')
     const $countryImage: HTMLImageElement | null = document.querySelector('.js-country-flag')
     const $speakers: NodeListOf<HTMLDivElement> = document.querySelectorAll('.js-speaker-card')
     const $carrousel = document.querySelector('.js-carrousel')
@@ -225,7 +236,9 @@ const firstRow = allSpeakers.slice(0, 6)
         speakerImage = '',
         speakerName,
         speakerRole,
-        speakerCountry
+        speakerCountry,
+        socialType,
+        socialUrl
       } = $speakerElem.dataset
 
       if ($speakerImage && speakerImage) {
@@ -247,11 +260,27 @@ const firstRow = allSpeakers.slice(0, 6)
         $countryImage.alt = 'Bandera de ' + speakerCountry
         $countryImage.classList.remove('hidden')
       }
+
+      if ($speakerSocial) {
+        if (socialType && socialUrl) {
+          const tplId = socialType === 'instagram' ? 'tpl-instagram' : 'tpl-website'
+          const svgHtml = document.getElementById(tplId)?.innerHTML ?? ''
+          $speakerSocial.innerHTML = `<a href="${socialUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">${svgHtml}</a>`
+        } else {
+          $speakerSocial.innerHTML = ''
+        }
+      }
     }
+
+    let isProgrammaticScroll = false
+    let scrollEndTimer: ReturnType<typeof setTimeout>
 
     const onSetActiveSpeaker = ($speakerElem: HTMLDivElement) => {
       if (mobileMediaQuery.matches) {
+        isProgrammaticScroll = true
+        clearTimeout(scrollEndTimer)
         $speakerElem.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
+        return
       }
 
       const isUnConfirmed = $speakerElem?.dataset?.speakerName === UNCONFIRMED
@@ -279,7 +308,32 @@ const firstRow = allSpeakers.slice(0, 6)
         setActiveSpeaker($activeSpeaker)
       }
 
+      const activateCenteredCard = () => {
+        isProgrammaticScroll = false
+        $allSpeakerCard.forEach(($elm) => {
+          const rect = $elm.getBoundingClientRect()
+          const { width } = $carrousel.getBoundingClientRect()
+          if (
+            rect.left > width / 2 - rect.width * 0.75 &&
+            rect.left < width / 2 + rect.width * 0.25
+          ) {
+            const isUnConfirmed = ($elm as HTMLDivElement).dataset?.speakerName === UNCONFIRMED
+            if (!isUnConfirmed) {
+              const $active: HTMLDivElement | null = $carrousel.querySelector('.js-speaker-card.active')
+              $active?.classList.remove('active')
+              setActiveSpeaker($elm as HTMLDivElement)
+              $elm.classList.add('active')
+            }
+          }
+        })
+      }
+
 			$carrousel.addEventListener('scroll', () => {
+        clearTimeout(scrollEndTimer)
+        scrollEndTimer = setTimeout(activateCenteredCard, 150)
+
+        if (isProgrammaticScroll) return
+
         $allSpeakerCard.forEach(($elm) => {
           const rect = $elm.getBoundingClientRect()
           const { width } = $carrousel.getBoundingClientRect()
@@ -299,7 +353,7 @@ const firstRow = allSpeakers.slice(0, 6)
             }
           }
         })
-			})
+			}, { passive: true })
 
       return
 		}
