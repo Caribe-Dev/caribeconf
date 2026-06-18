@@ -21,7 +21,7 @@ export const speakers = [
     schedule: '',
   },
   {
-    name: 'Oscar Barrajas',
+    name: 'Oscar Barajas',
     role: 'Senior Software Architech',
     country: 'mx-col',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781739722/oscar-barrajas_qn2bxg.webp',
