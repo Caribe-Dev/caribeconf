@@ -56,18 +56,18 @@ const firstRow = allSpeakers.slice(0, 6)
               src='https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp'
               alt='Imagen de conferencista'
             />
-            <div class='flex flex-col items-center gap-[5px] absolute bottom-0'>
+            <div class='flex flex-col items-center md:gap-[5px] absolute bottom-0'>
               <img
-                class='hidden relative left-[10px] w-full max-w-[140px] js-country-flag'
+                class='hidden relative left-[10px] w-full max-w-[65px] md:max-w-[140px] js-country-flag'
                 src='https://res.cloudinary.com/dpu0uajtw/image/upload/v1741747850/colombia-flag_o0xnlj.webp'
                 alt='Bandera de Colombia'
               />
               <p class='h5 js-speaker-name'></p>
               <span class='js-speaker-role'></span>
-              <div class='js-speaker-social'></div>
+              <div class='js-speaker-social h-[32px] flex justify-between items-center'></div>
             </div>
             <div class="hidden">
-              <span id="tpl-instagram"><InstagramSvg /></span>
+              <span id="tpl-instagram"><InstagramSvg height="29" width="29" /></span>
               <span id="tpl-website"><WebsiteSvg /></span>
             </div>
           </div>
