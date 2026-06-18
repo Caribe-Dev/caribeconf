@@ -9,10 +9,21 @@ interface Props {
   name: string
   role?: string
   country?: string
+  socialType?: string
+  socialUrl?: string
 	alt: string
 }
 
-const { class: className, name, role, country, tumbnail, image, alt  } = Astro.props
+const {
+  class: className,
+  name, role,
+  country,
+  tumbnail,
+  image,
+  alt,
+  socialType,
+  socialUrl
+} = Astro.props
 
 ---
 <div
@@ -21,6 +32,8 @@ const { class: className, name, role, country, tumbnail, image, alt  } = Astro.p
   data-speaker-role={role}
   data-speaker-country={country}
   data-speaker-image={image}
+  data-social-type={socialType}
+  data-social-url={socialUrl}
   title={name}
 >
   <Image
