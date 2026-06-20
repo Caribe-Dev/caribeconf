@@ -32,8 +32,8 @@ export const speakers = [
     name: 'Oscar Barajas',
     role: 'Senior Software Architech',
     country: 'mx-col',
-    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781739722/oscar-barrajas_qn2bxg.webp',
-    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781739722/oscar-barrajas_qn2bxg.webp',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781969942/oscar-barajas_qknfss.png',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781969942/oscar-barajas_qknfss.png',
     talk: 'Hacking Your Life with AI',
     schedule: '',
     social: {
@@ -41,15 +41,45 @@ export const speakers = [
       url: 'https://gndx.dev/'
     }
   },
+  {
+    name: 'Eduardo Alvarez',
+    role: 'Tech Lead',
+    country: 'chile-v2',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781969588/eduardo-alvarez_npsfwa.png',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781969588/eduardo-alvarez_npsfwa.png',
+    talk: '',
+    schedule: '',
+    social: {
+      type: 'website',
+      url: 'https://www.eduardoalvarez.dev/'
+    }
+  },
   // {
-  //   name: 'Eduardo Alvarez',
-  //   role: 'Tech Lead',
-  //   country: 'chile-v2',
-  //   image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781739417/eduardo-alvarez_larqbk.webp',
-  //   thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781739417/eduardo-alvarez_larqbk.webp',
-  //   talk: '',
+  //   name: 'Giselle Ulloa',
+  //   role: 'Tech Community Leader',
+  //   country: 'colombia-v2',
+  //   image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781968559/giselle-ulloa_eh7k1a.webp',
+  //   thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781968559/giselle-ulloa_eh7k1a.webp',
+  //   talk: '¿IA local o en la nube? Cómo integrar Gemma 4 en tus sistemas sin depender de APIs externas',
   //   schedule: '',
-  // }
+  //   social: {
+  //     type: 'website',
+  //     url: 'https://www.eduardoalvarez.dev/'
+  //   }
+  // },
+  {
+    name: 'Luis Araujo',
+    role: 'CTO de Tienda Negocio',
+    country: 'ven-v2',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781969201/luis-araujo_ygmsgf.png',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781969201/luis-araujo_ygmsgf.png',
+    talk: 'Jugando en Serio: Beneficios de aplicar técnicas UX de videojuegos en tu APP',
+    schedule: '',
+    social: {
+      type: 'instagram',
+      url: 'https://www.instagram.com/lucholabs/'
+    }
+  }
 ]
 
 

@@ -51,6 +51,7 @@ const {
   .speaker-card {
     @apply cursor-pointer w-full grayscale aspect-[1] object-cover opacity-80 transition-[transform,opacity];
     position: relative;
+    isolation: isolate;
   }
 
   .speaker-card__img {
@@ -68,7 +69,10 @@ const {
     inset: -18px;
     border-radius: 50%;
     background: radial-gradient(ellipse, rgba(190, 53, 127, 0.85) 0%, rgba(153, 99, 183, 0.5) 40%, transparent 70%);
+    -webkit-filter: blur(20px);
     filter: blur(20px);
     z-index: -1;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 </style>
