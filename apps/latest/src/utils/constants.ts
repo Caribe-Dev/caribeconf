@@ -54,23 +54,23 @@ export const speakers = [
       url: 'https://www.eduardoalvarez.dev/'
     }
   },
-  // {
-  //   name: 'Giselle Ulloa',
-  //   role: 'Tech Community Leader',
-  //   country: 'colombia-v2',
-  //   image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781968559/giselle-ulloa_eh7k1a.webp',
-  //   thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781968559/giselle-ulloa_eh7k1a.webp',
-  //   talk: '¿IA local o en la nube? Cómo integrar Gemma 4 en tus sistemas sin depender de APIs externas',
-  //   schedule: '',
-  //   social: {
-  //     type: 'website',
-  //     url: 'https://www.eduardoalvarez.dev/'
-  //   }
-  // },
+  {
+    name: 'Gisell Ulloa',
+    role: 'Tech Community Leader',
+    country: 'colombia-v2',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1782170322/gisell-ulloa_jymnnp.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1782170322/gisell-ulloa_jymnnp.webp',
+    talk: '¿IA local o en la nube? Cómo integrar Gemma 4 en tus sistemas sin depender de APIs externas',
+    schedule: '',
+    social: {
+      type: 'instagram',
+      url: 'https://www.instagram.com/giulloa/'
+    }
+  },
   {
     name: 'Luis Araujo',
     role: 'CTO de Tienda Negocio',
-    country: 'ven-v2',
+    country: 'ven-arg',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781969201/luis-araujo_ygmsgf.png',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781969201/luis-araujo_ygmsgf.png',
     talk: 'Jugando en Serio: Beneficios de aplicar técnicas UX de videojuegos en tu APP',
