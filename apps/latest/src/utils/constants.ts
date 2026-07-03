@@ -79,6 +79,58 @@ export const speakers = [
       type: 'instagram',
       url: 'https://www.instagram.com/lucholabs/'
     }
+  },
+  {
+    name: 'Julián Luna',
+    role: 'Cloud Solutions Architect ',
+    country: 'colombia-v2',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783025894/Julian-luna_lyajxd.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783025894/Julian-luna_lyajxd.webp',
+    talk: 'Me ascendieron a arquitecto ¿y ahora qué?',
+    schedule: '',
+    social: {
+      type: 'website',
+      url: 'https://trycatch.tv/'
+    }
+  },
+  {
+    name: 'Santiago Carrillo',
+    role: 'CEO Co-Founder de Ada School',
+    country: 'colombia-v2',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783025894/santiago-carrillo_di3o9c.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783025894/santiago-carrillo_di3o9c.webp',
+    talk: 'Del Vibe Coding al Desarrollo Guiado por Especficaciones {SDD} en Android Nativo',
+    schedule: '',
+    social: {
+      type: 'instagram',
+      url: 'https://www.instagram.com/sancarbar/'
+    }
+  },
+  {
+    name: 'Mateo Robayo',
+    role: 'Gameplay Programmer',
+    country: 'colombia-v2',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783025894/mateo-robayo_wlrjop.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783025894/mateo-robayo_wlrjop.webp',
+    talk: 'Haz un videojuego rápido con Popochiu',
+    schedule: '',
+    social: {
+      type: 'linkedin',
+      url: 'https://www.linkedin.com/in/mapedorr/'
+    }
+  },
+  {
+    name: 'Mariam Villa',
+    role: 'Developer Advocate en Interledger',
+    country: 'colombia-v2',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783040533/mariam-villa_sfrpyh.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783040533/mariam-villa_sfrpyh.webp',
+    talk: '¿Agentes para Pagos? Sí, con Open Payments es Posible.',
+    schedule: '',
+    social: {
+      type: 'linkedin',
+      url: 'https://www.linkedin.com/in/marianvilla/'
+    }
   }
 ]
 
