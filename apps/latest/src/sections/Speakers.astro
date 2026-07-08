@@ -16,18 +16,26 @@ import WebsiteSvg from '@shared/components/Svgs/LaptopIcon.astro';
 import LinkedInSvg from '@shared/components/Svgs/LinkedIn.astro';
 
 import { speakers, speakerToBeConfirmed } from '@/utils/constants';
+import { FLAGS } from '@shared/utils/constants';
 
 
-const remainingSpeakers = 12 - speakers.length
+const remainingSpeakers = 14 - speakers.length
 
 const allSpeakers = [
   ...speakers,
   ...Array.from({ length: remainingSpeakers }).map(() => speakerToBeConfirmed),
 ]
 
-const firstRow = allSpeakers.slice(0, 6)
-const secondRow = allSpeakers.slice(6, 10)
+const uniqueImages = [...new Set(allSpeakers.map(s => s?.image || speakerToBeConfirmed.image).filter(Boolean))]
+const uniqueFlags = [...new Set(allSpeakers.map(s => s?.country ? FLAGS[s.country] : '').filter(Boolean))]
 ---
+
+{uniqueImages.map((url, i) => (
+  <link rel={i === 0 ? 'preload' : 'prefetch'} as="image" href={url} />
+))}
+{uniqueFlags.map(url => (
+  <link rel="prefetch" as="image" href={url} />
+))}
 
 <section id="speakers" class="relative overflow-hidden">
   <div class="relative flex justify-center gradient-bg-1">
@@ -101,9 +109,9 @@ const secondRow = allSpeakers.slice(6, 10)
   <div class="gradient-bg-2 relative mt-[-24px] z-10">
     <Layout class="relative w-full flex flex-col pt-[30px] lg:pt-[80px] pb-[100px] lg:pb-[200px] gap-[120px]">
       <div class="flex snap-x snap-mandatory overflow-x-scroll w-full js-carrousel carousel-mobile speaker-pyramid gap-4 md:gap-10">
-        {[...firstRow, ...secondRow].map((speaker, i) => {
+        {allSpeakers.map((speaker, i) => {
           const isFirst = i === 0
-          const isLast = i === firstRow.length + secondRow.length - 1
+          const isLast = i === allSpeakers.length - 1
           return (
             <div class:list={['w-30 shrink-0 snap-center', { 'ml-[calc(50%-60px)]': isFirst, 'mr-[calc(50%-60px)]': isLast }]}>
               <SpeakerCard
@@ -224,7 +232,6 @@ const secondRow = allSpeakers.slice(6, 10)
   const UNCONFIRMED = 'Por Confirmar'
 
   document.addEventListener('astro:page-load', () => {
-    const $speakerSection = document.getElementById('speakers')
     const $speakerCard: HTMLImageElement | null = document.querySelector('.js-speaker-card')
     const $speakerImage: HTMLImageElement | null = document.querySelector('.js-speaker-image')
     const $speakerName: HTMLImageElement | null = document.querySelector('.js-speaker-name')
@@ -234,29 +241,6 @@ const secondRow = allSpeakers.slice(6, 10)
     const $speakers: NodeListOf<HTMLDivElement> = document.querySelectorAll('.js-speaker-card')
     const $carrousel = document.querySelector('.js-carrousel')
     const mobileMediaQuery = window.matchMedia('(max-width: 1024px)')
-
-    if ($speakerSection) {
-      const boxerNavObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              boxerNavObserver.disconnect()
-              $speakers.forEach(($speaker) => {
-                const { speakerImage = '' } = $speaker.dataset
-                const preloadLink = document.createElement('link')
-                preloadLink.rel = 'preload'
-                preloadLink.as = 'image'
-                preloadLink.href = speakerImage
-                preloadLink.type = 'image/webp'
-                document.head.appendChild(preloadLink)
-              })
-            }
-          })
-        },
-        { root: null, threshold: 0.1}
-      )
-      boxerNavObserver.observe($speakerSection)
-    }
 
     const setActiveSpeaker = ($speakerElem: HTMLDivElement) => {
       const {
