@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 
 import Layout from '@shared/components/Layout.astro';
 
@@ -15,7 +15,36 @@ import PalmaPng from '@/public/images/palmeras-derecha.png';
 import PalmasPng from '@/public/images/palmeras-izquierda.png';
 import MuellePuenteSvg from '@/public/images/muelle-puente.svg';
 import BirdsSvg from '@/public/images/birds.svg';
+
+const [
+  preloadAgua, preloadPlaya, preloadSol,
+  preloadPalmas, preloadPalma,
+  preloadBalsaOne, preloadBalsaTwo,
+  preloadClouds, preloadMuelle, preloadBirds,
+] = await Promise.all([
+  getImage({ src: AguaPng, format: 'webp' }),
+  getImage({ src: PlayaPng, format: 'webp' }),
+  getImage({ src: SolPng, format: 'webp', width: 450 }),
+  getImage({ src: PalmasPng, format: 'webp', width: 450 }),
+  getImage({ src: PalmaPng, format: 'webp', width: 450 }),
+  getImage({ src: BalsaOnePng, format: 'webp' }),
+  getImage({ src: BalsaTwoPng, format: 'webp' }),
+  getImage({ src: CloudsSvg }),
+  getImage({ src: MuellePuenteSvg }),
+  getImage({ src: BirdsSvg }),
+])
 ---
+
+<link rel="preload" as="image" href={preloadAgua.src} fetchpriority="high" />
+<link rel="preload" as="image" href={preloadPlaya.src} fetchpriority="high" />
+<link rel="preload" as="image" href={preloadSol.src} fetchpriority="high" />
+<link rel="preload" as="image" href={preloadClouds.src} fetchpriority="high" />
+<link rel="preload" as="image" href={preloadMuelle.src} />
+<link rel="preload" as="image" href={preloadBirds.src} />
+<link rel="preload" as="image" href={preloadBalsaOne.src} />
+<link rel="preload" as="image" href={preloadBalsaTwo.src} />
+<link rel="preload" as="image" href={preloadPalmas.src} media="(min-width: 1024px)" />
+<link rel="preload" as="image" href={preloadPalma.src} media="(min-width: 1024px)" />
 
 <section class='overflow-hidden w-full'>
   <div class='overflow-hidden relative bg-gradient-hero h-[900px] md:h-[1000px]'>
@@ -89,15 +118,22 @@ import BirdsSvg from '@/public/images/birds.svg';
         class='absolute w-[450px] object-cover top-[10px] -translate-y-[50%] left-1/2 z-0 xl:translate-x-[80px] '
         src={SolPng}
         alt='Imagen del sol en el cielo'
+        loading='eager'
+        fetchpriority='high'
       />
       <Image
         class='relative w-full h-[130px] top-4 object-cover z-10'
-        src={AguaPng} alt='Imagen de una playa'
+        src={AguaPng}
+        alt='Imagen de una playa'
+        loading='eager'
+        fetchpriority='high'
       />
       <Image
         class='relative w-full h-[121px] object-cover z-20 translate-y-[1px]'
         src={PlayaPng}
         alt='Imagen de la arena de una playa'
+        loading='eager'
+        fetchpriority='high'
       />
     </div>
     <div class="pointer-events-none hidden right-0 left-0 w-full max-w-[1920px] mx-auto absolute bottom-0 z-60 flex translate-y-[100px] lg:flex">
