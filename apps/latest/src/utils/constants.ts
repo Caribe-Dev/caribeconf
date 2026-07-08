@@ -131,6 +131,58 @@ export const speakers = [
       type: 'linkedin',
       url: 'https://www.linkedin.com/in/marianvilla/'
     }
+  },
+  {
+    name: 'Maicol Ruidiaz',
+    role: 'Software Architecture',
+    country: 'colombia-v2',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470997/maicol-ruidiaz_htkcl7.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470997/maicol-ruidiaz_htkcl7.webp',
+    talk: 'API Gateway: El pilar de la gestión de APIs y microservicios',
+    schedule: '',
+    social: {
+      type: 'linkedin',
+      url: 'https://www.linkedin.com/in/maicol-r-8365a4b1/'
+    }
+  },
+  {
+    name: 'Zuleima De la Rosa',
+    role: 'Chief Product Officer en Certena',
+    country: 'colombia-v2',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470773/zuleima-de-la-rosa_zlsxo1.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470773/zuleima-de-la-rosa_zlsxo1.webp',
+    talk: 'IA-First, Humanos Siempre: Liderazgo y propósito en la era de la automatización.',
+    schedule: '',
+    social: {
+      type: 'linkedin',
+      url: 'https://www.linkedin.com/in/zullydelarosa/'
+    }
+  },
+  {
+    name: 'Renzo Tincopa',
+    role: 'Freelance Developer en Wiracocha labs',
+    country: 'peru-v2',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470359/renzo-tincopa_ks4ybr.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470359/renzo-tincopa_ks4ybr.webp',
+    talk: 'Más allá de la productividad: Creando productos para los próximos 20 años.',
+    schedule: '',
+    social: {
+      type: 'instagram',
+      url: 'https://www.instagram.com/wiracocha_labs'
+    }
+  },
+  {
+    name: 'Rob Rimola',
+    role: 'Project Manager en TELUS International',
+    country: 'guatemala-v2',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470372/rob-rimola_pkhtxo.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470372/rob-rimola_pkhtxo.webp',
+    talk: 'Ingeniería de humor: campos semánticos con LLMs',
+    schedule: '',
+    social: {
+      type: 'instagram',
+      url: 'https://www.instagram.com/robrimola'
+    }
   }
 ]
 

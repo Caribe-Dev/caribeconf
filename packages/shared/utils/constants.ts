@@ -17,4 +17,6 @@ export const FLAGS: Record<string, string> = {
   'mexico-v2': `${CDN}/${FLAG_TRANSFORM}/v1781741594/mexico_gacpsf.webp`,
   'ven-v2': `${CDN}/${FLAG_TRANSFORM}/v1781741595/venezuela_ncnkvo.webp`,
   'ven-arg': `${CDN}/${FLAG_TRANSFORM}/v1782171998/vez-arg_yohnnt.webp`,
+  'guatemala-v2': `${CDN}/${FLAG_TRANSFORM}/v1783478006/guatemala-v2_f0ajuw.webp`,
+  'peru-v2': `${CDN}/${FLAG_TRANSFORM}/v1783477751/peru-v2_zfv97r.webp`,
 }
