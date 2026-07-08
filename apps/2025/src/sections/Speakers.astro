@@ -54,7 +54,7 @@ const fourthColumn = allSpeakers.slice(15, 17)
                 firstColumn.map((speaker, i) => (
                   <SpeakerCard
                     class:list={['speaker-card-js', { 'active': i === 0 }]}
-                    tumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
+                    thumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
                     name={speaker?.name || speakerToBeConfirmed.name}
                     role={speaker?.role || speakerToBeConfirmed.role}
                     country={speaker?.country}
@@ -69,7 +69,7 @@ const fourthColumn = allSpeakers.slice(15, 17)
                 secondColumn.map((speaker) => (
                   <SpeakerCard
                     class='speaker-card-js'
-                    tumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
+                    thumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
                     name={speaker?.name || speakerToBeConfirmed.name}
                     role={speaker?.role || speakerToBeConfirmed.role}
                     country={speaker?.country}
@@ -85,7 +85,7 @@ const fourthColumn = allSpeakers.slice(15, 17)
                   return (
                     <SpeakerCard
                       class='speaker-card-js'
-                      tumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
+                      thumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
                       name={speaker?.name || speakerToBeConfirmed.name}
                       role={speaker?.role || speakerToBeConfirmed.role}
                       country={speaker?.country}
@@ -102,7 +102,7 @@ const fourthColumn = allSpeakers.slice(15, 17)
                   return (
                     <SpeakerCard
                       class='speaker-card-js'
-                      tumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
+                      thumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
                       name={speaker?.name || speakerToBeConfirmed.name}
                       role={speaker?.role || speakerToBeConfirmed.role}
                       country={speaker?.country}
@@ -140,7 +140,7 @@ const fourthColumn = allSpeakers.slice(15, 17)
                   <SpeakerCard
                     class:list={['speaker-card-js flex object-contain', { 'active': isFirst }]}
                     alt={`Foto del speaker ${speaker.name}`}
-                    tumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
+                    thumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
                     name={speaker?.name || speakerToBeConfirmed.name}
                     role={speaker?.role || speakerToBeConfirmed.role}
                     country={speaker?.country}

@@ -1,10 +1,9 @@
 ---
-import { Image } from 'astro:assets';
 import { cnx } from '../utils/csx';
 
 interface Props {
 	class?: string
-	tumbnail: string
+	thumbnail: string
 	image: string
   name: string
   role?: string
@@ -18,13 +17,18 @@ const {
   class: className,
   name, role,
   country,
-  tumbnail,
+  thumbnail,
   image,
   alt,
   socialType,
   socialUrl
 } = Astro.props
 
+const thumbSrc = thumbnail.includes('/upload/')
+  // If the thumbnail is from Cloudinary, we can optimize it by requesting a
+  // smaller size and using automatic format and quality.
+  ? thumbnail.replace('/upload/', '/upload/w_240,f_auto,q_auto/')
+  : thumbnail
 ---
 <div
   class={cnx('speaker-card max-w-[120px]', className)}
@@ -36,12 +40,12 @@ const {
   data-social-url={socialUrl}
   title={name}
 >
-  <Image
+  <img
     class='speaker-card__img'
-    src={tumbnail}
+    src={thumbSrc}
     alt={alt}
-    inferSize={true}
     loading='eager'
+    decoding='async'
   />
 </div>
 

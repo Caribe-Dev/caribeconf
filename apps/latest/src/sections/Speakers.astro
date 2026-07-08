@@ -116,7 +116,7 @@ const uniqueFlags = [...new Set(allSpeakers.map(s => s?.country ? FLAGS[s.countr
             <div class:list={['w-30 shrink-0 snap-center', { 'ml-[calc(50%-60px)]': isFirst, 'mr-[calc(50%-60px)]': isLast }]}>
               <SpeakerCard
                 class:list={['js-speaker-card max-w-50', { 'active': i === 0 }]}
-                tumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
+                thumbnail={speaker?.thumbnail || speakerToBeConfirmed.image}
                 name={speaker?.name || speakerToBeConfirmed.name}
                 role={speaker?.role || speakerToBeConfirmed.role}
                 country={speaker?.country}
