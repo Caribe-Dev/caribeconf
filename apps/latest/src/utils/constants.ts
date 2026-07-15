@@ -186,7 +186,6 @@ export const speakers = [
   }
 ]
 
-
 export const speakerToBeConfirmed = {
   name: 'Por Confirmar',
   role: '',
@@ -196,3 +195,74 @@ export const speakerToBeConfirmed = {
   alt: 'Imagen de conferencista por confirmar',
   social: null
 }
+
+// `h`: altura óptica en px. Normalizada por área para que todos los logos
+// pesen visualmente igual (los cuadrados van más altos, los wordmarks anchos
+// más bajos). Ajustar por logo si alguno se ve grande/chico. Default 40.
+export const allies = [
+  {
+    name: 'Fomo',
+    img: '/images/allies/fomo-logo.webp',
+    url: 'https://holafomo.com/',
+    h: 80
+  },
+  {
+    name: 'Miguel Teheran',
+    img: '/images/allies/miguel-teheran.svg',
+    url: 'https://mteheran.dev/',
+    h: 60
+  },
+  {
+    name: 'JetBrains',
+    img: '/images/allies/jetbrains-logo.webp',
+    url: 'https://www.jetbrains.com/',
+    h: 40
+  },
+  {
+    name: '4Geeks',
+    img: '/images/allies/4geeks.svg',
+    url: 'https://www.4geeks.com/',
+    h: 54
+  },
+  // {
+  //   name: 'BaqJUG',
+  //   img: '/images/allies/baqjug.jpeg',
+  //   url: 'https://www.instagram.com/barranquillajug/'
+  // },
+  {
+    name: 'Dappsco',
+    img: '/images/allies/dappsco.svg',
+    url: 'https://dappsco.io/',
+    h: 50
+  },
+  {
+    name: 'QuillaBlocks',
+    img: '/images/allies/quilla-blocks.png',
+    url: 'https://www.quillablocks.org/',
+    h: 52
+  },
+  {
+    name: 'RubyBaq',
+    img: '/images/allies/rubybaq.svg',
+    url: 'https://www.instagram.com/rubybarranquilla',
+    h: 74
+  },
+  {
+    name: 'ZTM',
+    img: '/images/allies/ztm.svg',
+    url: 'https://zerotomastery.io/',
+    h: 60
+  },
+  {
+    name: 'Lider IA',
+    img: '/images/allies/lider-ai-logo.png',
+    url: 'https://lideria.org/',
+    h: 68
+  },
+  {
+    name: 'BaqJS',
+    img: '/images/allies/baqjs.svg',
+    url: 'https://barranquillajs.org/',
+    h: 76
+  },
+]
