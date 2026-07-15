@@ -6,10 +6,11 @@ import Layout from "@shared/components/Layout.astro";
 import SpeakerCard from '@shared/components/SpeakerCard.astro';
 import VerticalDivider from '@/components/VerticalDivider.astro';
 
-import VectorBottom from '@/public/images/vector-bottom.svg';
+import VectorBottomSvg from '@/public/images/vector-bottom.svg';
 import PalmasPng from '@/public/images/palmeras-izquierda.png';
-import VectorTop from '@/public/images/purple-vector-top.svg';
+import VectorTopSvg from '@/public/images/purple-vector-top.svg';
 import BirdsSvg from '@/public/images/birds.svg';
+import BottomWaveSvg from '@/public/images/bottom-wave.svg';
 
 import InstagramSvg from '@shared/components/Svgs/Instagram.astro';
 import WebsiteSvg from '@shared/components/Svgs/LaptopIcon.astro';
@@ -44,7 +45,7 @@ const uniqueFlags = [...new Set(allSpeakers.map(s => s?.country ? FLAGS[s.countr
     <div class="absolute top-[-2px] pointer-events-none" aria-hidden="true">
       <Image
         class='w-full h-full'
-        src={VectorTop}
+        src={VectorTopSvg}
         alt=''
       />
     </div>
@@ -111,7 +112,7 @@ const uniqueFlags = [...new Set(allSpeakers.map(s => s?.country ? FLAGS[s.countr
     <div class="absolute bottom-[23px] pointer-events-none z-10" aria-hidden="true">
       <Image
         class='w-full h-full'
-        src={VectorBottom}
+        src={VectorBottomSvg}
         alt=''
       />
     </div>
@@ -159,6 +160,15 @@ const uniqueFlags = [...new Set(allSpeakers.map(s => s?.country ? FLAGS[s.countr
         </div>
       </div>
     </Layout>
+    <div class="w-full absolute bottom-[-2px] pointer-events-none" aria-hidden="true">
+      <div class="flex justify-center items-center">
+        <Image
+          class='w-auto'
+          src={BottomWaveSvg}
+          alt=''
+        />
+      </div>
+    </div>
   </div>
 </section>
 
