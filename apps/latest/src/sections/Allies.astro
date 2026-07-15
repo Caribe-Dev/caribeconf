@@ -6,12 +6,12 @@ import Layout from '@shared/components/Layout.astro';
 import DefumedCard from '@shared/components/DefumedCard.astro';
 
 ---
-<Layout class='py-50'>
-  <DefumedCard id='aliados' class='w-full flex flex-col items-center gap-20 p-[80px] lg:p-[111px] lg:flex-row'>
-    <div class="w-full max-w-[30%]">
+<Layout class='py-50 w-full'>
+  <DefumedCard id='aliados' class='w-full flex flex-col items-center gap-10 p-8 sm:p-12 lg:gap-20 lg:p-[111px] lg:flex-row'>
+    <div class="w-full lg:max-w-[30%]">
       <h3 class='h2 text-center'>Aliados</h3>
     </div>
-    <div class="flex flex-1 flex-wrap gap-x-24 gap-y-16 justify-center items-center">
+    <div class="flex flex-1 flex-col items-center gap-8 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-16 sm:gap-y-12 lg:gap-x-24 lg:gap-y-16">
       {
         allies.map((ally) => {
           const alt = `Logo de ${ally.name}`;
@@ -23,7 +23,7 @@ import DefumedCard from '@shared/components/DefumedCard.astro';
                 alt={alt}
                 width={240}
                 height={96}
-                style={`height:${ally.h ?? 40}px`}
+                style={`--h:${ally.h ?? 40}px`}
               />
             </a>
           )
@@ -38,12 +38,25 @@ import DefumedCard from '@shared/components/DefumedCard.astro';
 
   .ally {
     @apply flex items-center justify-center transition-[transform] hover:scale-[1.05];
-    min-height: 96px;
+    min-height: 60px;
   }
 
   .ally :global(img) {
+    /* Mobile: escala todos los logos por igual (preserva la normalización por área) */
+    height: calc(var(--h) * 0.85);
     width: auto;
-    max-width: 200px;
+    max-width: 180px;
     object-fit: contain;
+  }
+
+  @media (min-width: 1024px) {
+    .ally {
+      min-height: 96px;
+    }
+
+    .ally :global(img) {
+      height: var(--h);
+      max-width: 200px;
+    }
   }
 </style>
