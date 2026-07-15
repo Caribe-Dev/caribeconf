@@ -196,9 +196,6 @@ export const speakerToBeConfirmed = {
   social: null
 }
 
-// `h`: altura óptica en px. Normalizada por área para que todos los logos
-// pesen visualmente igual (los cuadrados van más altos, los wordmarks anchos
-// más bajos). Ajustar por logo si alguno se ve grande/chico. Default 40.
 export const allies = [
   {
     name: 'Fomo',

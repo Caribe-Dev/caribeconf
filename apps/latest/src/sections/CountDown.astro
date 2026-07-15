@@ -1,12 +1,30 @@
 ---
 import Layout from "@shared/components/Layout.astro";
+import MapPointerIcon from "@shared/components/Svgs/MapPointerIcon.astro";
 
 import { BUY_TICKET_URL } from "@/utils/constants";
+
+const venue = {
+  name: 'Universidad CUC',
+  city: 'Barranquilla',
+};
+
 ---
 
 <section class="gradient-bg">
   <Layout class="relative w-full flex items-center flex-col pt-[100px] pb-[120px] gap-12">
-    <h2 class="text-center">14 y 15 de Agosto 2026</h2>
+    <div class="flex flex-col items-center gap-8">
+      <div class="location-pill group inline-flex items-center gap-3.5 rounded-full py-3 pl-3 pr-7 md:py-3.5 md:pr-8">
+        <span class="icon-chip flex items-center justify-center rounded-full w-11 h-11 md:w-12 md:h-12 shrink-0">
+          <MapPointerIcon fill="#41DEF4" width={24} height={24} class="md:w-6.5 md:h-6.5" />
+        </span>
+        <span class="text-lg md:text-2xl font-semibold text-white leading-none">
+          {venue.name}
+          <span class="font-normal text-white/55">· {venue.city}</span>
+        </span>
+      </div>
+      <h2 class="text-center">14 y 15 de Agosto 2026</h2>
+    </div>
     <div class="w-full flex justify-between md:justify-center md:gap-20">
       <div class="flex flex-col gap-5 items-center">
         <span id="cd-days" class="countdown-box-shadow flex justify-center items-center w-[80px] aspect-square rounded-[19px] font-bold text-4xl md:text-6xl lg:text-7xl md:w-30">00</span>
@@ -43,6 +61,38 @@ import { BUY_TICKET_URL } from "@/utils/constants";
 <style>
   .gradient-bg {
     background: linear-gradient(180deg,#DA5B57 -10%,#732F6E 1%,#23113B 50.63%);
+  }
+
+  .location-pill {
+    position: relative;
+    background: #241a42;
+    box-shadow: 0px 0px 16px 0px rgba(226, 73, 231, 0.45);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .location-pill .icon-chip {
+    background: radial-gradient(circle at 50% 35%, rgba(65, 222, 244, 0.28), rgba(65, 222, 244, 0.08));
+    border: 1px solid rgba(65, 222, 244, 0.35);
+    transition: box-shadow 0.2s ease;
+  }
+
+  a.location-pill:hover .icon-chip {
+    box-shadow: 0px 0px 14px 0px rgba(65, 222, 244, 0.5);
+  }
+
+  /* Borde degradado pink→cyan (mismo lenguaje que .defumed-banner) */
+  .location-pill::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 9999px;
+    z-index: -1;
+    background: linear-gradient(180deg, #BE357F 0%, #41DEF4 100%);
+  }
+
+  a.location-pill:hover {
+    transform: translateY(-1px);
+    box-shadow: 0px 0px 22px 0px rgba(226, 73, 231, 0.6);
   }
 
   .countdown-box-shadow {
