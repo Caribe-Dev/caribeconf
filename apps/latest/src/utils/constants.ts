@@ -147,7 +147,7 @@ export const speakers = [
   },
   {
     name: 'Zuleima De la Rosa',
-    role: 'Chief Product Officer en Certena',
+    role: 'Chief Product Officer',
     country: 'colombia-v2',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470773/zuleima-de-la-rosa_zlsxo1.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470773/zuleima-de-la-rosa_zlsxo1.webp',
@@ -160,7 +160,7 @@ export const speakers = [
   },
   {
     name: 'Renzo Tincopa',
-    role: 'Freelance Developer en Wiracocha labs',
+    role: 'Freelance Developer',
     country: 'peru-v2',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470359/renzo-tincopa_ks4ybr.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470359/renzo-tincopa_ks4ybr.webp',
@@ -173,7 +173,7 @@ export const speakers = [
   },
   {
     name: 'Rob Rimola',
-    role: 'Project Manager en TELUS International',
+    role: 'Project Manager',
     country: 'guatemala-v2',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470372/rob-rimola_pkhtxo.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470372/rob-rimola_pkhtxo.webp',
@@ -182,6 +182,32 @@ export const speakers = [
     social: {
       type: 'instagram',
       url: 'https://www.instagram.com/robrimola'
+    }
+  },
+  {
+    name: 'Geovanny Mendoza',
+    role: 'Backend Developer ',
+    country: 'colombia-v2',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1784673165/geovanny-mendoza_rglsur.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1784673165/geovanny-mendoza_rglsur.webp',
+    talk: 'Construyendo un backend real con Kotlin: de cero a producción',
+    schedule: '',
+    social: {
+      type: 'linkedin',
+      url: 'https://www.linkedin.com/in/geovannycode/'
+    }
+  },
+  {
+    name: 'Luis Delascar Valencia',
+    role: 'CIO en Dirsoft',
+    country: 'colombia-v2',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1784673166/luis-delascar-valencia_txs6ua.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1784673166/luis-delascar-valencia_txs6ua.webp',
+    talk: 'Tecnoloia paTransformación digital real en comunidades olvidadas para la agricultura',
+    schedule: '',
+    social: {
+      type: 'linkedin',
+      url: 'https://www.linkedin.com/in/luis-delascar-valencia-mena-6803441a/'
     }
   }
 ]
@@ -221,11 +247,12 @@ export const allies = [
     url: 'https://www.4geeks.com/',
     h: 54
   },
-  // {
-  //   name: 'BaqJUG',
-  //   img: '/images/allies/baqjug.jpeg',
-  //   url: 'https://www.instagram.com/barranquillajug/'
-  // },
+  {
+    name: 'BaqJUG',
+    img: '/images/allies/baqjug.png',
+    url: 'https://www.instagram.com/barranquillajug/',
+    h: 80
+  },
   {
     name: 'Dappsco',
     img: '/images/allies/dappsco.svg',
