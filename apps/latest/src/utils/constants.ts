@@ -209,6 +209,19 @@ export const speakers = [
       type: 'linkedin',
       url: 'https://www.linkedin.com/in/luis-delascar-valencia-mena-6803441a/'
     }
+  },
+  {
+    name: 'Sandy Atencio en Bancolombia',
+    role: 'Data engineer',
+    country: 'colombia-v2',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1784680020/sandy-atencio_hg2lnb.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1784680020/sandy-atencio_hg2lnb.webp',
+    talk: 'Observabilidad para aplicaciones basadas en LLMs: la historia detrás de cada respuesta',
+    schedule: '',
+    social: {
+      type: 'linkedin',
+      url: 'https://www.linkedin.com/in/satencioh/'
+    }
   }
 ]
 
