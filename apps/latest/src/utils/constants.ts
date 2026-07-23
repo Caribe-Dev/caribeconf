@@ -66,7 +66,7 @@ export const speakers = [
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1782170322/gisell-ulloa_jymnnp.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1782170322/gisell-ulloa_jymnnp.webp',
     talk: '¿IA local o en la nube? Cómo integrar Gemma 4 en tus sistemas sin depender de APIs externas',
-    schedule: '11:00 – 11:25',
+    schedule: '15:45 – 17:15',
     social: {
       type: 'instagram',
       url: 'https://www.instagram.com/giulloa/'
@@ -192,7 +192,7 @@ export const speakers = [
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470372/rob-rimola_pkhtxo.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470372/rob-rimola_pkhtxo.webp',
     talk: 'Ingeniería de humor: campos semánticos con LLMs',
-    schedule: '16:30 – 16:45',
+    schedule: '9:25 – 9:40',
     social: {
       type: 'instagram',
       url: 'https://www.instagram.com/robrimola'
@@ -234,7 +234,7 @@ export const speakers = [
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1784680020/sandy-atencio_hg2lnb.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1784680020/sandy-atencio_hg2lnb.webp',
     talk: 'Observabilidad para aplicaciones basadas en LLMs: la historia detrás de cada respuesta',
-    schedule: '15:45 – 17:15',
+    schedule: '11:00 – 11:25',
     social: {
       type: 'linkedin',
       url: 'https://www.linkedin.com/in/satencioh/'
@@ -287,7 +287,7 @@ export const speakers = [
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1784763808/nathalia-gonzalez_ianva3.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1784763808/nathalia-gonzalez_ianva3.webp',
     talk: '¿Quién construye tech — y quién decide quién puede?',
-    schedule: '9:25 – 9:40',
+    schedule: '16:30 – 16:50',
     social: {
       type: 'linkedin',
       url: 'https://www.linkedin.com/in/nathaliagoos'
