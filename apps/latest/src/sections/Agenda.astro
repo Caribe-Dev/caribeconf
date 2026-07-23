@@ -1,0 +1,277 @@
+---
+import Layout from '@shared/components/Layout.astro'
+import { agenda, type AgendaItem } from '@/utils/agenda'
+
+const withSides = (items: AgendaItem[]) => {
+  let talkCount = 0
+  return items.map((item) => {
+    if (item.type === 'talk') {
+      const side = talkCount % 2 === 0 ? 'left' : 'right'
+      talkCount++
+      return { ...item, side }
+    }
+    return item
+  })
+}
+---
+
+<section id="agenda" class="agenda-section relative overflow-hidden py-25 lg:py-35">
+  <Layout class="relative w-full flex flex-col items-center gap-12 lg:gap-16">
+    <h2 class="h2 text-white font-bold text-center z-20">Agenda</h2>
+
+    <div class="agenda-tabs flex justify-center gap-2 p-1.5 rounded-full" role="tablist">
+      {agenda.map((day, i) => (
+        <button
+          type="button"
+          role="tab"
+          class:list={['agenda-tab', { active: i === 0 }]}
+          data-tab={day.id}
+          aria-selected={i === 0 ? 'true' : 'false'}
+        >
+          <span class="block leading-tight text-lg md:text-xl">{day.label}</span>
+          <span class="agenda-tab__date block text-sm md:text-base font-medium leading-tight">{day.date}</span>
+        </button>
+      ))}
+    </div>
+
+    <div class="w-full max-w-4xl">
+      {agenda.map((day, dayIndex) => (
+        <div
+          class:list={['agenda-panel', { hidden: dayIndex !== 0 }]}
+          data-panel={day.id}
+          role="tabpanel"
+        >
+          <ol class="timeline relative flex flex-col gap-10 lg:gap-14">
+            <span class="spine hidden lg:block" aria-hidden="true"></span>
+            {withSides(day.items).map((item) => {
+              if (item.type === 'break') {
+                return (
+                  <li class="break-row relative flex items-center py-6 lg:py-10 z-10">
+                    <span class="dash dash--left" aria-hidden="true"></span>
+                    <div class="mask-bg text-center shrink-0 px-6 py-4">
+                      <p class="h6 text-white uppercase tracking-[0.14em]">{item.title}</p>
+                      {item.note && <span class="block text-white/50 text-sm md:text-base italic">{item.note}</span>}
+                      <span class="block text-white/70 text-base md:text-lg mt-0.5">{item.time}</span>
+                    </div>
+                    <span class="dash dash--right" aria-hidden="true"></span>
+                  </li>
+                )
+              }
+
+              if (item.type === 'parallel') {
+                return (
+                  <li class="relative z-10 pt-2 pb-8 lg:pt-4 lg:pb-12">
+                    <div class="flex justify-center mb-6 lg:mb-8">
+                      <div class="mask-bg flex flex-col items-center gap-1 px-5 py-3 text-center relative z-10">
+                        <span class="parallel-label">{item.label}</span>
+                        <span class="text-white/70 text-base md:text-lg">{item.time}</span>
+                        {item.note && <span class="parallel-note">{item.note}</span>}
+                      </div>
+                    </div>
+                    <div class="relative grid gap-4 md:grid-cols-2 lg:gap-20">
+                      <span class="dot hidden lg:block" aria-hidden="true"></span>
+                      {item.sessions.map((s) => (
+                        <article class="agenda-card">
+                          <span class="agenda-card__title block">{s.title}</span>
+                          <span class="agenda-card__speaker block">{s.speaker}</span>
+                        </article>
+                      ))}
+                    </div>
+                  </li>
+                )
+              }
+
+              const side = item.side
+              return (
+                <li
+                  class:list={[
+                    'talk-row relative z-10 lg:grid lg:grid-cols-2 lg:items-center',
+                    side === 'left' ? 'lg:[&>article]:col-start-1' : 'lg:[&>article]:col-start-2',
+                  ]}
+                >
+                  <span class="dot hidden lg:block" aria-hidden="true"></span>
+                  <article
+                    class:list={[
+                      'agenda-card',
+                      side === 'left' ? 'lg:text-right lg:mr-10' : 'lg:ml-10',
+                    ]}
+                  >
+                    <span class="agenda-card__time">{item.time}</span>
+                    <span class="agenda-card__title block">{item.title}</span>
+                    {item.speaker && <span class="agenda-card__speaker block">{item.speaker}</span>}
+                    {item.note && <span class="agenda-card__note">{item.note}</span>}
+                  </article>
+                </li>
+              )
+            })}
+          </ol>
+        </div>
+      ))}
+    </div>
+  </Layout>
+</section>
+
+<style>
+  @reference "../styles/global.css";
+
+  .agenda-section {
+    --agenda-bg: #120B2F;
+    background: var(--agenda-bg);
+  }
+
+  /* solid bg that masks the spine behind break labels */
+  .mask-bg {
+    background: var(--agenda-bg);
+    position: relative;
+    z-index: 2;
+  }
+
+  .agenda-tabs {
+    background: #FFFFFF14;
+    border: 1px solid #FFFFFF29;
+    box-shadow: inset 0 1px 1px 0 #FFFFFF1A;
+  }
+
+  .agenda-tab {
+    @apply px-10 py-2 rounded-full font-bold text-white/75 transition-all;
+    min-width: 140px;
+    cursor: pointer;
+  }
+
+  .agenda-tab:hover:not(.active) {
+    color: #fff;
+    background: #FFFFFF14;
+  }
+
+  .agenda-tab.active {
+    background: linear-gradient(135deg, #41DEF4 0%, #1EB8F9 100%);
+    color: #0A0620;
+    box-shadow: 0 6px 22px 0 #41DEF459;
+  }
+
+  /* date sub-label: strong contrast in both states */
+  .agenda-tab .agenda-tab__date {
+    opacity: 0.6;
+  }
+
+  .agenda-tab.active .agenda-tab__date {
+    opacity: 0.8;
+  }
+
+  /* central spine — thin light line, like 2025 */
+  .spine {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    transform: translateX(-50%);
+    background: #FFFFFF;
+    opacity: 0.28;
+    z-index: 0;
+  }
+
+  .dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    transform: translate(-50%, -50%);
+    border-radius: 999px;
+    background: #41DEF4;
+    box-shadow: 0 0 0 4px #41DEF433, 0 0 12px 0 #41DEF4AA;
+    z-index: 2;
+  }
+
+  .talk-row .dot {
+    top: 50%;
+  }
+
+  /* break bars span full width across the spine */
+  .break-row .dash {
+    display: block;
+    flex: 1;
+    height: 1px;
+  }
+
+  .break-row .dash--left {
+    background: linear-gradient(90deg, transparent, #FFFFFF40 85%);
+  }
+
+  .break-row .dash--right {
+    background: linear-gradient(90deg, #FFFFFF40 15%, transparent);
+  }
+
+  .parallel-label {
+    @apply text-sm md:text-base uppercase tracking-[0.18em] font-bold;
+    color: #41DEF4;
+  }
+
+  .parallel-note {
+    @apply mt-1 rounded-full px-3 py-1 text-sm font-medium;
+    background: #BE357F26;
+    color: #F0A8CE;
+  }
+
+  .agenda-card {
+    @apply flex flex-col gap-2 rounded-2xl p-5 md:p-6 transition-all;
+    background: #FFFFFF08;
+    border: 1px solid #41DEF429;
+    backdrop-filter: blur(4px);
+  }
+
+  .agenda-card:hover {
+    border-color: #41DEF4;
+    background: #FFFFFF12;
+    box-shadow: 0 8px 30px -8px #41DEF44D, 0 0 0 1px #41DEF433;
+    transform: translateY(-2px);
+  }
+
+  .agenda-card__time {
+    @apply text-base md:text-lg font-bold tracking-wide;
+    color: #41DEF4;
+  }
+
+  /* title uses the shared `span` scale (text-base → xl), just bold */
+  .agenda-card__title {
+    @apply text-white font-bold leading-snug;
+  }
+
+  .agenda-card__speaker {
+    color: #FDB473;
+  }
+
+  .agenda-card__note {
+    @apply inline-block self-start rounded-full px-3 py-0.5 text-sm font-bold;
+    background: #BE357F33;
+    color: #F0A8CE;
+  }
+
+  .agenda-card.lg\:text-right .agenda-card__note {
+    align-self: flex-end;
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.agenda-tab')
+    const panels = document.querySelectorAll<HTMLElement>('.agenda-panel')
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab
+
+        tabs.forEach((t) => {
+          const isActive = t === tab
+          t.classList.toggle('active', isActive)
+          t.setAttribute('aria-selected', isActive ? 'true' : 'false')
+        })
+
+        panels.forEach((panel) => {
+          panel.classList.toggle('hidden', panel.dataset.panel !== target)
+        })
+      })
+    })
+  })
+</script>
