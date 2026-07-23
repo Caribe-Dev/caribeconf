@@ -76,7 +76,9 @@ const resolveItem = (item: RawItem): AgendaItem => {
   return {
     type,
     time: time ?? resolved.schedule ?? '',
-    note: note ?? (resolved.title === 'Charla por confirmar' ? UNCONFIRMED : undefined),
+    note: note ?? (
+      resolved.title === 'Charla por confirmar' ? UNCONFIRMED : undefined
+    ),
     ...resolved,
   }
 }
@@ -88,7 +90,7 @@ const rawAgenda: RawDay[] = [
     date: '14 Ago',
     items: [
       { type: 'break', title: 'Bienvenida', time: '9:00 – 9:20' },
-      { type: 'talk', id: 'nathalia-gonzalez' },
+      { type: 'talk', id: 'rob-rimola' },
       { type: 'talk', id: 'oscar-barajas' },
       { type: 'talk', id: 'harold-combita' },
       { type: 'talk', id: 'andrea-monsalve' },
@@ -105,7 +107,7 @@ const rawAgenda: RawDay[] = [
         type: 'parallel',
         label: 'Talleres · simultáneos',
         note: 'Cada asistente debe traer su laptop',
-        sessions: [{ id: 'sandy-atencio' }, { id: 'dario-guzman' }],
+        sessions: [{ id: 'gisell-ulloa' }, { title: 'Por confirmar' }],
       },
       { type: 'break', title: 'Cierre de la jornada', time: '17:30' },
     ],
@@ -120,7 +122,7 @@ const rawAgenda: RawDay[] = [
       { type: 'talk', id: 'mariam-villa' },
       { type: 'break', title: 'Snack', time: '9:50 – 10:20' },
       { type: 'talk', id: 'renzo-tincopa' },
-      { type: 'talk', id: 'gisell-ulloa' },
+      { type: 'talk', id: 'sandy-atencio' },
       { type: 'talk', id: 'rina-plata' },
       { type: 'break', title: 'Almuerzo', time: '12:00 – 13:30', note: 'No incluido' },
       { type: 'talk', id: 'mateo-robayo' },
@@ -128,9 +130,9 @@ const rawAgenda: RawDay[] = [
       { type: 'talk', id: 'santiago-carrillo' },
       { type: 'talk', id: 'luis-araujo' },
       { type: 'talk', id: 'luis-delascar' },
-      { type: 'talk', id: 'rob-rimola' },
-      { type: 'talk', title: 'Panel de Empresarios', time: '16:50 – 17:20', note: '' },
-      { type: 'break', title: 'Clausura', time: '17:20' },
+      { type: 'talk', id: 'nathalia-gonzalez' },
+      { type: 'talk', title: 'Panel de Empresarios', time: '16:55 – 17:25', note: '' },
+      { type: 'break', title: 'Clausura', time: '17:25' },
     ],
   },
 ]

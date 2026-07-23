@@ -24,9 +24,12 @@ const withSides = (items: AgendaItem[]) => {
         <button
           type="button"
           role="tab"
+          id={`tab-${day.id}`}
           class:list={['agenda-tab', { active: i === 0 }]}
           data-tab={day.id}
           aria-selected={i === 0 ? 'true' : 'false'}
+          aria-controls={`panel-${day.id}`}
+          tabindex={i === 0 ? '0' : '-1'}
         >
           <span class="block leading-tight text-lg md:text-xl">{day.label}</span>
           <span class="agenda-tab__date block text-sm md:text-base font-medium leading-tight">{day.date}</span>
@@ -39,7 +42,10 @@ const withSides = (items: AgendaItem[]) => {
         <div
           class:list={['agenda-panel', { hidden: dayIndex !== 0 }]}
           data-panel={day.id}
+          id={`panel-${day.id}`}
           role="tabpanel"
+          aria-labelledby={`tab-${day.id}`}
+          tabindex="0"
         >
           <ol class="timeline relative flex flex-col gap-10 lg:gap-14">
             <span class="spine hidden lg:block" aria-hidden="true"></span>
@@ -73,7 +79,7 @@ const withSides = (items: AgendaItem[]) => {
                       {item.sessions.map((s) => (
                         <article class="agenda-card">
                           <span class="agenda-card__title block">{s.title}</span>
-                          <span class="agenda-card__speaker block">{s.speaker}</span>
+                          {s.speaker && <span class="agenda-card__speaker block">{s.speaker}</span>}
                         </article>
                       ))}
                     </div>
@@ -255,22 +261,39 @@ const withSides = (items: AgendaItem[]) => {
 
 <script>
   document.addEventListener('astro:page-load', () => {
-    const tabs = document.querySelectorAll<HTMLButtonElement>('.agenda-tab')
-    const panels = document.querySelectorAll<HTMLElement>('.agenda-panel')
+    const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.agenda-tab'))
+    const panels = Array.from(document.querySelectorAll<HTMLElement>('.agenda-panel'))
 
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        const target = tab.dataset.tab
+    const activate = (tab: HTMLButtonElement, focus = false) => {
+      const target = tab.dataset.tab
 
-        tabs.forEach((t) => {
-          const isActive = t === tab
-          t.classList.toggle('active', isActive)
-          t.setAttribute('aria-selected', isActive ? 'true' : 'false')
-        })
+      tabs.forEach((t) => {
+        const isActive = t === tab
+        t.classList.toggle('active', isActive)
+        t.setAttribute('aria-selected', isActive ? 'true' : 'false')
+        t.tabIndex = isActive ? 0 : -1
+      })
 
-        panels.forEach((panel) => {
-          panel.classList.toggle('hidden', panel.dataset.panel !== target)
-        })
+      panels.forEach((panel) => {
+        panel.classList.toggle('hidden', panel.dataset.panel !== target)
+      })
+
+      if (focus) tab.focus()
+    }
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => activate(tab))
+
+      tab.addEventListener('keydown', (e) => {
+        let next = -1
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % tabs.length
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + tabs.length) % tabs.length
+        else if (e.key === 'Home') next = 0
+        else if (e.key === 'End') next = tabs.length - 1
+        else return
+
+        e.preventDefault()
+        activate(tabs[next], true)
       })
     })
   })
