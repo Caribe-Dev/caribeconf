@@ -5,6 +5,7 @@ import Layout from '@shared/components/Layout.astro';
 
 import { BUY_TICKET_URL } from "@/utils/constants";
 
+import InterledgerPng from '@/public/images/interledger.png';
 import CloudsSvg from '@/public/images/clouds.svg';
 import AguaPng from '@/public/images/agua.png';
 import BalsaOnePng from '@/public/images/balsa-1.png';
@@ -51,8 +52,26 @@ const [
     <div class='absolute top-[50px] md:top-[80px] left-0 right-0 bottom-0 pointer-events-none'>
       <Image class='w-full h-full object-cover' src={CloudsSvg} alt='Clouds image' />
     </div>
-    <Layout class='relative flex justify-center top-30 sm:top-40 md:top-55 z-90'>
+    <Layout class='relative flex justify-center top-25 sm:top-30 lg:top-42 z-90'>
       <div class='flex justify-center flex-col gap-4 max-w-[805px]'>
+        <div class="flex justify-center">
+          <a
+            href="https://interledger.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-sponsor-badge inline-flex items-center gap-2 rounded-full pl-3 pr-4 py-1.5 md:pl-4 md:pr-5 md:py-2 transition-all"
+          >
+            <span class="uppercase text-white/85 text-xs md:text-sm font-bold tracking-widest">By</span>
+            <Image
+              class="h-8 md:h-10 w-auto"
+              src={InterledgerPng}
+              alt="Interledger Foundation"
+              width={604}
+              height={166}
+              loading="eager"
+            />
+          </a>
+        </div>
         <div class="flex flex-col justify-center">
           <span class='uppercase text-purple font-bold tracking-[2px] text-sm text-center'>
             conferencia de comunidades tech
@@ -152,3 +171,19 @@ const [
     </div>
   </div>
 </section>
+
+<style>
+  @reference "../styles/global.css";
+
+  .hero-sponsor-badge {
+    background: #FFFFFF1F;
+    border: 1px solid #FFFFFF3D;
+    box-shadow: inset 0 1px 1px 0 #FFFFFF33, 0 4px 16px -4px #00000033;
+    backdrop-filter: blur(6px);
+  }
+
+  .hero-sponsor-badge:hover {
+    background: #FFFFFF2E;
+    border-color: #FFFFFF59;
+  }
+</style>

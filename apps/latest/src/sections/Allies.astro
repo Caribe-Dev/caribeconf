@@ -3,41 +3,36 @@ import { Image } from 'astro:assets';
 import { allies } from '@/utils/constants';
 
 import Layout from '@shared/components/Layout.astro';
-import DefumedCard from '@shared/components/DefumedCard.astro';
 
 ---
-<Layout class='py-50 w-full'>
-  <DefumedCard id='aliados' class='w-full flex flex-col items-center gap-10 p-8 sm:p-12 lg:gap-20 lg:p-[111px] lg:flex-row'>
-    <div class="w-full lg:max-w-[30%]">
-      <h3 class='h2 text-center'>Aliados</h3>
-    </div>
-    <div class="flex flex-1 flex-col items-center gap-8 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-16 sm:gap-y-12 lg:gap-x-24 lg:gap-y-16">
-      {
-        allies.map((ally) => {
-          const alt = `Logo de ${ally.name}`;
-          return (
-            <a class="ally" href={ally.url} target='_blank' rel='noopener noreferrer'>
-              <Image
-                title={alt}
-                src={ally.img}
-                alt={alt}
-                width={240}
-                height={96}
-                style={`--h:${ally.h ?? 40}px`}
-              />
-            </a>
-          )
-        })
-      }
-    </div>
-  </DefumedCard>
+<Layout id='aliados' class='w-full flex flex-col items-center gap-20 pt-20 pb-50 lg:gap-30'>
+  <h2 class="h2 text-white font-bold text-center z-20">Aliados</h2>
+  <div class="flex flex-wrap justify-center items-center gap-20 max-w-[1000px] w-full">
+    {
+      allies.map((ally) => {
+        const alt = `Logo de ${ally.name}`;
+        return (
+          <a class="ally" href={ally.url} target='_blank' rel='noopener noreferrer'>
+            <Image
+              title={alt}
+              src={ally.img}
+              alt={alt}
+              width={240}
+              height={96}
+              style={`--h:${ally.h ?? 40}px`}
+            />
+          </a>
+        )
+      })
+    }
+  </div>
 </Layout>
 
 <style>
   @reference "../styles/global.css";
 
   .ally {
-    @apply flex items-center justify-center transition-[transform] hover:scale-[1.05];
+    @apply flex items-center justify-center transition-transform hover:scale-[1.05];
     min-height: 60px;
   }
 

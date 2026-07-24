@@ -1,0 +1,22 @@
+---
+import Layout from '@shared/components/Layout.astro';
+import Main from '@/layouts/Main.astro';
+
+const title = 'Interledger Foundation';
+const img = '/images/interledger.png';
+const url = 'https://interledger.org/';
+---
+
+<Main title={title}>
+  <Layout class="flex min-h-[900px] flex-col items-center gap-20 pt-[200px] pb-[100px]">
+    <a href={url} target="_blank">
+      <img transition:name="sponsor-img-interledger" class="max-w-[320px] md:max-w-[450px]" src={img} alt={title} />
+    </a>
+    <div class="prose max-w-[700px] prose-p:text-base prose-p:xs:text-lg prose-p:md:text-xl prose-a:text-white text-white font-[500]">
+      <p>
+        The Interledger Foundation works to create the conditions for financial access at a global scale. We build the tech, grow the movement, and shift the system to advance financial infrastructure that is open, connected, and designed to serve people.
+      </p>
+      <p>Learn more at <a href={url} target="_blank">https://interledger.org/</a></p>
+    </div>
+  </Layout>
+</Main>
