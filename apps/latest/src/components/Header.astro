@@ -32,10 +32,10 @@ import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
       </button>
     </div>
     <ul id='menu-content' class='hidden group-[.open]:flex lg:flex flex-col lg:flex-row justify-between items-center gap-[24px]'>
-      <li><a href='#about-us' class='font-semibold'>Sponsors</a></li>
-      <li><a href='#speakers' class='font-semibold'>Speakers</a></li>
-      <li><a href='#agenda' class='font-semibold'>Agenda</a></li>
-      <li><a href='#aliados' class='font-semibold'>Aliados</a></li>
+      <li><a href='/#speakers' class='font-semibold'>Speakers</a></li>
+      <li><a href='/#sponsors' class='font-semibold'>Sponsors</a></li>
+      <li><a href='/#agenda' class='font-semibold'>Agenda</a></li>
+      <li><a href='/#aliados' class='font-semibold'>Aliados</a></li>
       {
         BUY_TICKET_URL && (
           <li>
@@ -120,16 +120,33 @@ import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
     $menuContent?.addEventListener('click', function (e) {
       const $anchor = (e.target as Element).closest('a')
 
-      if ($anchor) {
-        const id = $anchor.getAttribute('href') || ''
-        
-        if (id.startsWith('#')) {
-          e.preventDefault()
+      if (!$anchor) return
 
-          $header?.classList.remove('open')
-          handleSmoothScroll(id)
-        }
+      const href = $anchor.getAttribute('href') || ''
+      const hashIndex = href.indexOf('#')
+
+      if (hashIndex === -1) return
+
+      const hash = href.slice(hashIndex)
+      const path = href.slice(0, hashIndex) || '/'
+      const onHome = window.location.pathname === '/'
+
+      $header?.classList.remove('open')
+
+      // Same page: smooth scroll. Different page: let navigation happen,
+      // then scroll to hash on load.
+      if (onHome && (path === '/' || path === window.location.pathname)) {
+        e.preventDefault()
+        handleSmoothScroll(hash)
       }
     })
+
+    // Smooth scroll to hash after landing on a page from another route,
+    // then strip the hash so it doesn't stay in the URL.
+    if (window.location.hash) {
+      const hash = window.location.hash
+      history.replaceState(null, '', window.location.pathname)
+      requestAnimationFrame(() => handleSmoothScroll(hash))
+    }
 	})
 </script>

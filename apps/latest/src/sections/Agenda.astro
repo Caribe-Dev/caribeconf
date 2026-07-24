@@ -1,6 +1,12 @@
 ---
+import { Image } from 'astro:assets';
+
 import Layout from '@shared/components/Layout.astro'
+
 import { agenda, type AgendaItem } from '@/utils/agenda'
+
+import BottomWaveSvg from '@/public/images/bottom-wave.svg';
+import VectorTopSvg from '@/public/images/navy-vector-top.png';
 
 const withSides = (items: AgendaItem[]) => {
   let talkCount = 0
@@ -15,119 +21,139 @@ const withSides = (items: AgendaItem[]) => {
 }
 ---
 
-<section id="agenda" class="agenda-section relative overflow-hidden py-25 lg:py-35">
-  <Layout class="relative w-full flex flex-col items-center gap-12 lg:gap-16">
-    <h2 class="h2 text-white font-bold text-center z-20">Agenda</h2>
-
-    <div class="agenda-tabs flex justify-center gap-2 p-1.5 rounded-full" role="tablist">
-      {agenda.map((day, i) => (
-        <button
-          type="button"
-          role="tab"
-          id={`tab-${day.id}`}
-          class:list={['agenda-tab', { active: i === 0 }]}
-          data-tab={day.id}
-          aria-selected={i === 0 ? 'true' : 'false'}
-          aria-controls={`panel-${day.id}`}
-          tabindex={i === 0 ? '0' : '-1'}
-        >
-          <span class="block leading-tight text-lg md:text-xl">{day.label}</span>
-          <span class="agenda-tab__date block text-sm md:text-base font-medium leading-tight">{day.date}</span>
-        </button>
-      ))}
+<section id="agenda" class="agenda-section relative overflow-hidden pt-25 lg:py-35">
+  <div class="w-full absolute top-[-2px] pointer-events-none" aria-hidden="true">
+    <div class="flex justify-center">
+      <Image
+        class='w-auto max-w-[1920px]'
+        src={VectorTopSvg}
+        alt=''
+      />
     </div>
+  </div>
+  <Layout class="relative w-full flex flex-col items-center gap-20 lg:gap-30 pt-20">
+    <h2 class="h2 text-white font-bold text-center z-20">Agenda</h2>
+    <div class="flex flex-col items-center gap-12 lg:gap-16">
+      <div class="agenda-tabs flex justify-center gap-2 p-1.5 rounded-full" role="tablist">
+        {agenda.map((day, i) => (
+          <button
+            type="button"
+            role="tab"
+            id={`tab-${day.id}`}
+            class:list={['agenda-tab', { active: i === 0 }]}
+            data-tab={day.id}
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-controls={`panel-${day.id}`}
+            tabindex={i === 0 ? '0' : '-1'}
+          >
+            <span class="block leading-tight text-lg md:text-xl">{day.label}</span>
+            <span class="agenda-tab__date block text-sm md:text-base font-medium leading-tight">{day.date}</span>
+          </button>
+        ))}
+      </div>
 
-    <div class="w-full max-w-4xl">
-      {agenda.map((day, dayIndex) => (
-        <div
-          class:list={['agenda-panel', { hidden: dayIndex !== 0 }]}
-          data-panel={day.id}
-          id={`panel-${day.id}`}
-          role="tabpanel"
-          aria-labelledby={`tab-${day.id}`}
-          tabindex="0"
-        >
-          <ol class="timeline relative flex flex-col gap-10 lg:gap-14">
-            <span class="spine hidden lg:block" aria-hidden="true"></span>
-            {withSides(day.items).map((item) => {
-              if (item.type === 'break') {
-                return (
-                  <li class="break-row relative flex items-center py-6 lg:py-10 z-10">
-                    <span class="dash dash--left" aria-hidden="true"></span>
-                    <div class="mask-bg text-center shrink-0 px-6 py-4">
-                      <p class="h6 text-white uppercase tracking-[0.14em]">{item.title}</p>
-                      {item.note && <span class="block text-white/50 text-sm md:text-base italic">{item.note}</span>}
-                      <span class="block text-white/70 text-base md:text-lg mt-0.5">{item.time}</span>
-                    </div>
-                    <span class="dash dash--right" aria-hidden="true"></span>
-                  </li>
-                )
-              }
-
-              if (item.type === 'parallel') {
-                return (
-                  <li class="relative z-10 pt-2 pb-8 lg:pt-4 lg:pb-12">
-                    <div class="flex justify-center mb-6 lg:mb-8">
-                      <div class="mask-bg flex flex-col items-center gap-1 px-5 py-3 text-center relative z-10">
-                        <span class="parallel-label">{item.label}</span>
-                        <span class="text-white/70 text-base md:text-lg">{item.time}</span>
-                        {item.note && <span class="parallel-note">{item.note}</span>}
+      <div class="w-full max-w-4xl">
+        {agenda.map((day, dayIndex) => (
+          <div
+            class:list={['agenda-panel', { hidden: dayIndex !== 0 }]}
+            data-panel={day.id}
+            id={`panel-${day.id}`}
+            role="tabpanel"
+            aria-labelledby={`tab-${day.id}`}
+            tabindex="0"
+          >
+            <ol class="timeline relative flex flex-col gap-10 lg:gap-14">
+              <span class="spine hidden lg:block" aria-hidden="true"></span>
+              {withSides(day.items).map((item) => {
+                if (item.type === 'break') {
+                  return (
+                    <li class="break-row relative flex items-center py-6 lg:py-10 z-10">
+                      <span class="dash dash--left" aria-hidden="true"></span>
+                      <div class="mask-bg text-center shrink-0 px-6 py-4">
+                        <p class="h6 text-white uppercase tracking-[0.14em]">{item.title}</p>
+                        {item.note && <span class="block text-white/50 text-sm md:text-base italic">{item.note}</span>}
+                        <span class="block text-white/70 text-base md:text-lg mt-0.5">{item.time}</span>
                       </div>
-                    </div>
-                    <div class="relative grid gap-4 md:grid-cols-2 lg:gap-20">
-                      <span class="dot hidden lg:block" aria-hidden="true"></span>
-                      {item.sessions.map((s) => (
-                        <article class="agenda-card">
-                          <span class="agenda-card__title block">{s.title}</span>
-                          {s.speaker && <span class="agenda-card__speaker block">{s.speaker}</span>}
-                        </article>
-                      ))}
-                    </div>
-                  </li>
-                )
-              }
+                      <span class="dash dash--right" aria-hidden="true"></span>
+                    </li>
+                  )
+                }
 
-              const side = item.side
-              return (
-                <li
-                  class:list={[
-                    'talk-row relative z-10 lg:grid lg:grid-cols-2 lg:items-center',
-                    side === 'left' ? 'lg:[&>article]:col-start-1' : 'lg:[&>article]:col-start-2',
-                  ]}
-                >
-                  <span class="dot hidden lg:block" aria-hidden="true"></span>
-                  <article
+                if (item.type === 'parallel') {
+                  return (
+                    <li class="relative z-10 pt-2 pb-8 lg:pt-4 lg:pb-12">
+                      <div class="flex justify-center mb-6 lg:mb-8">
+                        <div class="mask-bg flex flex-col items-center gap-1 px-5 py-3 text-center relative z-10">
+                          <span class="parallel-label">{item.label}</span>
+                          <span class="text-white/70 text-base md:text-lg">{item.time}</span>
+                          {item.note && <span class="parallel-note">{item.note}</span>}
+                        </div>
+                      </div>
+                      <div class="relative grid gap-4 md:grid-cols-2 lg:gap-20">
+                        <span class="dot hidden lg:block" aria-hidden="true"></span>
+                        {item.sessions.map((s) => (
+                          <article class="agenda-card">
+                            <span class="agenda-card__title block">{s.title}</span>
+                            {s.speaker && <span class="agenda-card__speaker block">{s.speaker}</span>}
+                          </article>
+                        ))}
+                      </div>
+                    </li>
+                  )
+                }
+
+                const side = item.side
+                return (
+                  <li
                     class:list={[
-                      'agenda-card',
-                      side === 'left' ? 'lg:text-right lg:mr-10' : 'lg:ml-10',
+                      'talk-row relative z-10 lg:grid lg:grid-cols-2 lg:items-center',
+                      side === 'left' ? 'lg:[&>article]:col-start-1' : 'lg:[&>article]:col-start-2',
                     ]}
                   >
-                    <span class="agenda-card__time">{item.time}</span>
-                    <span class="agenda-card__title block">{item.title}</span>
-                    {item.speaker && <span class="agenda-card__speaker block">{item.speaker}</span>}
-                    {item.note && <span class="agenda-card__note">{item.note}</span>}
-                  </article>
-                </li>
-              )
-            })}
-          </ol>
-        </div>
-      ))}
+                    <span class="dot hidden lg:block" aria-hidden="true"></span>
+                    <article
+                      class:list={[
+                        'agenda-card',
+                        side === 'left' ? 'lg:text-right lg:mr-10' : 'lg:ml-10',
+                      ]}
+                    >
+                      <span class="agenda-card__time">{item.time}</span>
+                      <span class="agenda-card__title block">{item.title}</span>
+                      {item.speaker && <span class="agenda-card__speaker block">{item.speaker}</span>}
+                      {item.note && <span class="agenda-card__note">{item.note}</span>}
+                    </article>
+                  </li>
+                )
+              })}
+            </ol>
+          </div>
+        ))}
+      </div>
     </div>
   </Layout>
+  <div class="w-full absolute bottom-[-2px] pointer-events-none" aria-hidden="true">
+    <div class="flex justify-center items-center">
+      <Image
+        class='w-auto'
+        src={BottomWaveSvg}
+        alt=''
+      />
+    </div>
+  </div>
 </section>
 
 <style>
   @reference "../styles/global.css";
 
   .agenda-section {
-    --agenda-bg: #120B2F;
+    --agenda-bg: linear-gradient(180deg, #723073 0%, #652A8C 100%);
     background: var(--agenda-bg);
+    background-attachment: fixed;
   }
 
-  /* solid bg that masks the spine behind break labels */
   .mask-bg {
     background: var(--agenda-bg);
+    background-attachment: fixed;
     position: relative;
     z-index: 2;
   }
@@ -215,23 +241,21 @@ const withSides = (items: AgendaItem[]) => {
   }
 
   .parallel-note {
-    @apply mt-1 rounded-full px-3 py-1 text-sm font-medium;
-    background: #BE357F26;
-    color: #F0A8CE;
+    @apply mt-1 rounded-full px-3 py-1 text-sm font-bold;
+    background: #FDB473;
+    color: #120B2F;
   }
 
   .agenda-card {
     @apply flex flex-col gap-2 rounded-2xl p-5 md:p-6 transition-all;
-    background: #FFFFFF08;
-    border: 1px solid #41DEF429;
-    backdrop-filter: blur(4px);
+    background: #FFFFFF1C;
+    border: 1px solid #41DEF4;
+    box-shadow: 0 8px 30px -8px #41DEF44D, 0 0 0 1px #41DEF433;
+    transform: translateY(-2px);
   }
 
   .agenda-card:hover {
-    border-color: #41DEF4;
-    background: #FFFFFF12;
-    box-shadow: 0 8px 30px -8px #41DEF44D, 0 0 0 1px #41DEF433;
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.02);
   }
 
   .agenda-card__time {
@@ -250,8 +274,8 @@ const withSides = (items: AgendaItem[]) => {
 
   .agenda-card__note {
     @apply inline-block self-start rounded-full px-3 py-0.5 text-sm font-bold;
-    background: #BE357F33;
-    color: #F0A8CE;
+    background: #FDB473;
+    color: #120B2F;
   }
 
   .agenda-card.lg\:text-right .agenda-card__note {

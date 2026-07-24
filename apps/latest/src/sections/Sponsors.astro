@@ -1,0 +1,134 @@
+---
+import { Image } from 'astro:assets';
+
+import Layout from '@shared/components/Layout.astro';
+import DefumedCard from '@shared/components/DefumedCard.astro';
+import VerticalDivider from '@/components/VerticalDivider.astro';
+
+import RubyPng from '@/public/images/ruby.png';
+import EmeraldWebp from '@/public/images/emerald.webp';
+import PearlWebp from '@/public/images/pearl.webp';
+import QuartzWebp from '@/public/images/quartz.webp';
+import BridgePng from '@/public/images/bridge.png';
+import InterledgerPng from '@/public/images/interledger.png';
+
+const topTier = { name: 'Rubí', image: RubyPng, alt: 'Imagen de un Rubí' }
+
+const tiers = [
+  { name: 'Esmeralda', image: EmeraldWebp, alt: 'Imagen de una Esmeralda' },
+  { name: 'Perla', image: PearlWebp, alt: 'Imagen de una Perla' },
+  { name: 'Cuarzo', image: QuartzWebp, alt: 'Imagen de un Cuarzo' },
+]
+---
+
+<section id="sponsors" class="relative overflow-hidden pt-20 pb-50 lg:pt-40 lg:pb-100">
+  <Layout class="w-full flex flex-col gap-20 lg:gap-30 items-center">
+    <h2 class="h2 text-white font-bold text-center z-20">Sponsors</h2>
+
+    <div class='w-full flex flex-col gap-30 lg:gap-60 z-20'>
+      <div class='flex flex-col gap-15 lg:gap-20 w-full'>
+        <h3 class='h5 heading heading--emerald uppercase'>
+          <div class="flex flex-col justify-center items-center gap-2">
+            <Image src='/images/ruby.png' width={80} height={80} alt='Imagen de un Rubí' />
+            Rubí
+          </div>
+        </h3>
+        <div class='flex justify-center items-center'>
+          <a
+            class="sponsor-scale max-w-[280px] lg:max-w-[350px]"
+            href="/sponsors/interledger"
+          >
+            <Image
+              transition:name="sponsor-img-interledger"
+              class="w-full"
+              src={InterledgerPng}
+              alt='Interledger Logo'
+            />
+          </a>
+        </div>
+      </div>
+      <DefumedCard class="w-full flex flex-col gap-10 p-8 sm:p-12 lg:flex-row lg:items-stretch lg:gap-16 lg:p-16">
+        <div class="flex flex-col gap-10 lg:w-[34%] lg:shrink-0">
+          <h2 class="h3 text-[#D90081] font-bold text-center">¡Conviértete en Sponsor!</h2>
+
+          <div class="flex flex-col items-center gap-8">
+            <div class="flex flex-col items-center gap-3">
+              <Image src={topTier.image} alt={topTier.alt} width={96} height={96} class="h-20 w-20 object-contain lg:h-24 lg:w-24" />
+              <span class="font-bold uppercase tracking-wide text-white text-2xl lg:text-3xl">{topTier.name}</span>
+            </div>
+
+            <ul class="flex flex-wrap items-start justify-center gap-x-10 gap-y-6">
+              {tiers.map((tier) => (
+                <li class="flex flex-col items-center gap-2">
+                  <Image src={tier.image} alt={tier.alt} width={44} height={44} class="h-9 w-9 object-contain lg:h-11 lg:w-11" />
+                  <span class="font-bold uppercase tracking-wide text-white/70 text-xs lg:text-sm">{tier.name}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div class="hidden lg:flex">
+          <VerticalDivider />
+        </div>
+
+        <div class="flex flex-1 flex-col justify-center gap-6">
+          <h3 class="h6 text-[#F2884B] font-bold">¿Por qué patrocinarnos?</h3>
+          <ul class="flex flex-col gap-3 list-disc pl-5 marker:text-white">
+            <li>
+              <span class="font-bold text-white">Acceso al talento:</span>{' '}
+              <span class="text-white/80">CaribeConf reúne a los mejores devs o desarrolladores y líderes de comunidad de la región.</span>
+            </li>
+            <li>
+              <span class="font-bold text-white">Visibilidad de marca:</span>{' '}
+              <span class="text-white/80">asegúrate de ser reconocido como aliado en la industria tecnológica.</span>
+            </li>
+            <li>
+              <span class="font-bold text-white">Impacto regional:</span>{' '}
+              <span class="text-white/80">Somos un ecosistema tecnológico emergente con alto potencial.</span>
+            </li>
+          </ul>
+
+          <a
+            href="mailto:hello@caribedev.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            class='w-full btn btn--primary btn-big btn-md-rounded bg-[#D90081] md:w-fit z-90 uppercase'
+            data-ga-event="become_sponsor_click"
+          >
+            Hazte Sponsor
+          </a>
+
+          <p class="text-white text-sm">
+            Tu apoyo será clave para impulsar la innovación, el talento y la diversidad en el Caribe.
+          </p>
+        </div>
+      </DefumedCard>
+    </div>
+  </Layout>
+  <div class="w-full absolute bottom-0 translate-y-[15%] pointer-events-none z-10" aria-hidden="true">
+    <div class="flex justify-center items-center">
+      <Image
+        class='w-auto max-w-[800px] md:max-w-[1800px]'
+        src={BridgePng}
+        alt=''
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference "../styles/global.css";
+
+  .heading {
+    @apply flex items-center justify-center gap-10 w-full after:block after:content-[""] after:h-[1px] after:flex-1 before:block before:content-[""] before:h-[1px] before:flex-1;
+  }
+
+  .heading.heading--emerald {
+    @apply after:bg-[#D90081] before:bg-[#D90081] text-[#D90081];
+  }
+
+  .sponsor-scale {
+    @apply transition-transform hover:scale-[1.05];
+  }
+</style>
