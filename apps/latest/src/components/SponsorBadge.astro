@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+
+import { cnx } from '@shared/utils/csx';
+
+import InterledgerPng from '@/public/images/interledger.png';
+
+const { class: className } = Astro.props;
+---
+
+<a
+  href="https://interledger.org"
+  target="_blank"
+  rel="noopener noreferrer"
+  class:list={cnx(
+    'sponsor-badge inline-flex items-center gap-2 rounded-full leading-none pl-3 pr-4 py-1.5 md:pl-4 md:pr-5 md:py-2 transition-all',
+    className,
+  )}
+>
+  <span class="uppercase text-white/85 text-xs md:text-sm font-bold tracking-widest">By</span>
+  <Image
+    class="h-7 sm:h-8 md:h-10 w-auto"
+    src={InterledgerPng}
+    alt="Interledger Foundation"
+    width={604}
+    height={166}
+    loading="eager"
+  />
+</a>
+
+<style>
+  .sponsor-badge {
+    background: #FFFFFF1F;
+    border: 1px solid #FFFFFF3D;
+    box-shadow: inset 0 1px 1px 0 #FFFFFF33, 0 4px 16px -4px #00000033;
+    backdrop-filter: blur(6px);
+  }
+
+  .sponsor-badge:hover {
+    background: #FFFFFF2E;
+    border-color: #FFFFFF59;
+  }
+</style>
