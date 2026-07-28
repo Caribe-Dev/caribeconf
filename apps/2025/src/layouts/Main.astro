@@ -39,7 +39,7 @@ const jsonLd = {
   "organizer": {
     "@type": "Organization",
     "name": "CaribeConf Barranquilla, Colombia 2025",
-    "url": "https://caribeconf.com"
+    "url": DOMAIN
   }
 }
 ---
@@ -72,7 +72,7 @@ const jsonLd = {
     />
     <meta name="robots" content="index, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="canonical" href="https://caribeconf.com" />
+    <link rel="canonical" href={DOMAIN} />
 
     <meta property="og:image" content={image} />
     <meta property="og:image:width" content="1200" />
@@ -82,7 +82,7 @@ const jsonLd = {
       property="og:description"
       content="Conferencia de Comunidades Tech en Barranquilla, Colombia (26 de Abril 2025)"
     />
-    <meta property="og:url" content="https://caribeconf.com" />
+    <meta property="og:url" content={DOMAIN} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@caribedev" />
