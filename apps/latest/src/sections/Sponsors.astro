@@ -6,13 +6,15 @@ import DefumedCard from '@shared/components/DefumedCard.astro';
 import VerticalDivider from '@/components/VerticalDivider.astro';
 
 import RubyPng from '@/public/images/ruby.png';
+import CorondinPng from '@/public/images/corondin.png';
 import EmeraldWebp from '@/public/images/emerald.webp';
 import PearlWebp from '@/public/images/pearl.webp';
 import QuartzWebp from '@/public/images/quartz.webp';
 import BridgePng from '@/public/images/bridge.png';
 import InterledgerPng from '@/public/images/interledger.png';
+import CucLogoPng from '@/public/images/cuc-logo.png';
 
-const topTier = { name: 'Rubí', image: RubyPng, alt: 'Imagen de un Rubí' }
+const topTier = { name: 'Corondin', image: CorondinPng, alt: 'Imagen de un Corondin Colombiano' }
 
 const tiers = [
   { name: 'Esmeralda', image: EmeraldWebp, alt: 'Imagen de una Esmeralda' },
@@ -24,13 +26,12 @@ const tiers = [
 <section id="sponsors" class="relative overflow-hidden pt-20 pb-50 lg:pt-40 lg:pb-100">
   <Layout class="w-full flex flex-col gap-20 lg:gap-30 items-center">
     <h2 class="h2 text-white font-bold text-center z-20">Sponsors</h2>
-
     <div class='w-full flex flex-col gap-30 lg:gap-60 z-20'>
       <div class='flex flex-col gap-15 lg:gap-20 w-full'>
-        <h3 class='h5 heading heading--emerald uppercase'>
+        <h3 class='h5 heading heading--corondin uppercase'>
           <div class="flex flex-col justify-center items-center gap-2">
-            <Image src='/images/ruby.png' width={80} height={80} alt='Imagen de un Rubí' />
-            Rubí
+            <Image src='/images/corondin.png' width={80} height={80} alt='Imagen de un Rubí' />
+            Corondin
           </div>
         </h3>
         <div class='flex justify-center items-center'>
@@ -43,6 +44,27 @@ const tiers = [
               class="w-full"
               src={InterledgerPng}
               alt='Interledger Logo'
+            />
+          </a>
+        </div>
+      </div>
+      <div class='flex flex-col gap-15 lg:gap-20 w-full'>
+        <h3 class='h5 heading heading--emerald uppercase'>
+          <div class="flex flex-col justify-center items-center gap-2">
+            <Image src='/images/emerald.webp' width={60} height={60} alt='Imagen de un Rubí' />
+            Esmeralda
+          </div>
+        </h3>
+        <div class='flex justify-center items-center'>
+          <a
+            class="sponsor-scale max-w-[280px] lg:max-w-[350px]"
+            href="https://www.cuc.edu.co/"
+            target="_blank"
+          >
+            <Image
+              class="w-full"
+              src={CucLogoPng}
+              alt='Cuc Logo'
             />
           </a>
         </div>
@@ -124,8 +146,16 @@ const tiers = [
     @apply flex items-center justify-center gap-10 w-full after:block after:content-[""] after:h-[1px] after:flex-1 before:block before:content-[""] before:h-[1px] before:flex-1;
   }
 
-  .heading.heading--emerald {
+  .heading.heading--corondin {
+    @apply after:bg-[#9ab9f8] before:bg-[#9ab9f8] text-[#9ab9f8];
+  }
+
+  .heading.heading--ruby {
     @apply after:bg-[#D90081] before:bg-[#D90081] text-[#D90081];
+  }
+
+  .heading.heading--emerald {
+    @apply after:bg-[#03ac6b] before:bg-[#03ac6b] text-[#03ac6b];
   }
 
   .sponsor-scale {

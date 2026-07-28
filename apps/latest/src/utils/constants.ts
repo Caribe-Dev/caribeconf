@@ -80,7 +80,7 @@ export const speakers = [
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781969201/luis-araujo_ygmsgf.png',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1781969201/luis-araujo_ygmsgf.png',
     talk: 'Jugando en Serio: Beneficios de aplicar técnicas UX de videojuegos en tu APP',
-    schedule: '15:20 – 15:50',
+    schedule: '11:35 – 12:00',
     social: {
       type: 'instagram',
       url: 'https://www.instagram.com/lucholabs/'
@@ -94,7 +94,7 @@ export const speakers = [
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783025894/Julian-luna_lyajxd.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783025894/Julian-luna_lyajxd.webp',
     talk: 'Me ascendieron a arquitecto ¿y ahora qué?',
-    schedule: '11:35 – 12:00',
+    schedule: '15:20 – 15:50',
     social: {
       type: 'website',
       url: 'https://trycatch.tv/'

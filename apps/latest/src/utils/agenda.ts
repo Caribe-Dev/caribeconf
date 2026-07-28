@@ -95,7 +95,7 @@ const rawAgenda: RawDay[] = [
       { type: 'talk', id: 'harold-combita' },
       { type: 'talk', id: 'andrea-monsalve' },
       { type: 'talk', id: 'zuleima-de-la-rosa' },
-      { type: 'talk', id: 'julian-luna' },
+      { type: 'talk', id: 'luis-araujo' },
       { type: 'break', title: 'Snack', time: '12:00 – 14:00', note: 'Snack incluido · almuerzo no incluido' },
       {
         type: 'parallel',
@@ -128,7 +128,7 @@ const rawAgenda: RawDay[] = [
       { type: 'talk', id: 'mateo-robayo' },
       { type: 'talk', id: 'eduardo-alvarez' },
       { type: 'talk', id: 'santiago-carrillo' },
-      { type: 'talk', id: 'luis-araujo' },
+      { type: 'talk', id: 'julian-luna' },
       { type: 'talk', id: 'luis-delascar' },
       { type: 'talk', id: 'nathalia-gonzalez' },
       { type: 'talk', title: 'Panel de Empresarios', time: '16:55 – 17:25', note: '' },

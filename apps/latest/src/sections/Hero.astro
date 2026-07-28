@@ -2,10 +2,10 @@
 import { Image, getImage } from 'astro:assets';
 
 import Layout from '@shared/components/Layout.astro';
+import SponsorBadge from '@/components/SponsorBadge.astro';
 
 import { BUY_TICKET_URL } from "@/utils/constants";
 
-import InterledgerPng from '@/public/images/interledger.png';
 import CloudsSvg from '@/public/images/clouds.svg';
 import AguaPng from '@/public/images/agua.png';
 import BalsaOnePng from '@/public/images/balsa-1.png';
@@ -54,30 +54,23 @@ const [
     </div>
     <Layout class='relative flex justify-center top-25 sm:top-30 lg:top-42 z-90'>
       <div class='flex justify-center flex-col gap-4 max-w-[805px]'>
-        <div class="flex justify-center">
-          <a
-            href="https://interledger.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hero-sponsor-badge inline-flex items-center gap-2 rounded-full pl-3 pr-4 py-1.5 md:pl-4 md:pr-5 md:py-2 transition-all"
-          >
-            <span class="uppercase text-white/85 text-xs md:text-sm font-bold tracking-widest">By</span>
-            <Image
-              class="h-8 md:h-10 w-auto"
-              src={InterledgerPng}
-              alt="Interledger Foundation"
-              width={604}
-              height={166}
-              loading="eager"
-            />
-          </a>
-        </div>
         <div class="flex flex-col justify-center">
           <span class='uppercase text-purple font-bold tracking-[2px] text-sm text-center'>
             conferencia de comunidades tech
           </span>
-          <h1 class="text-center">CaribeConf 2026</h1>
-          <p class="h5 font-medium text-center">
+          <h1 class="text-center">
+            CaribeConf
+            <span class="relative text-[1em] leading-[inherit]">
+              2026
+              <SponsorBadge
+                class="hidden lg:inline-flex absolute bottom-full -translate-x-[90%] w-max -mb-2 z-10"
+              />
+            </span>
+          </h1>
+          <div class="flex justify-center mt-4 lg:hidden">
+            <SponsorBadge />
+          </div>
+          <p class="h5 font-medium text-center mt-2 lg:mt-0">
             Tecnología que se amplifica <br /> desde el Caribe
           </p>
         </div>
@@ -171,19 +164,3 @@ const [
     </div>
   </div>
 </section>
-
-<style>
-  @reference "../styles/global.css";
-
-  .hero-sponsor-badge {
-    background: #FFFFFF1F;
-    border: 1px solid #FFFFFF3D;
-    box-shadow: inset 0 1px 1px 0 #FFFFFF33, 0 4px 16px -4px #00000033;
-    backdrop-filter: blur(6px);
-  }
-
-  .hero-sponsor-badge:hover {
-    background: #FFFFFF2E;
-    border-color: #FFFFFF59;
-  }
-</style>

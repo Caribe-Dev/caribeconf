@@ -31,7 +31,7 @@ const withSides = (items: AgendaItem[]) => {
       />
     </div>
   </div>
-  <Layout class="relative w-full flex flex-col items-center gap-20 lg:gap-30 pt-20">
+  <Layout class="relative w-full flex flex-col items-center gap-20 lg:gap-30 pt-20 pb-15">
     <h2 class="h2 text-white font-bold text-center z-20">Agenda</h2>
     <div class="flex flex-col items-center gap-12 lg:gap-16">
       <div class="agenda-tabs flex justify-center gap-2 p-1.5 rounded-full" role="tablist">
@@ -67,14 +67,12 @@ const withSides = (items: AgendaItem[]) => {
               {withSides(day.items).map((item) => {
                 if (item.type === 'break') {
                   return (
-                    <li class="break-row relative flex items-center py-6 lg:py-10 z-10">
-                      <span class="dash dash--left" aria-hidden="true"></span>
+                    <li class="break-row relative flex items-center gap-6 lg:gap-10 py-6 lg:py-10 z-10">
                       <div class="mask-bg text-center shrink-0 px-6 py-4">
                         <p class="h6 text-white uppercase tracking-[0.14em]">{item.title}</p>
                         {item.note && <span class="block text-white/50 text-sm md:text-base italic">{item.note}</span>}
                         <span class="block text-white/70 text-base md:text-lg mt-0.5">{item.time}</span>
                       </div>
-                      <span class="dash dash--right" aria-hidden="true"></span>
                     </li>
                   )
                 }
@@ -199,7 +197,6 @@ const withSides = (items: AgendaItem[]) => {
     width: 1px;
     transform: translateX(-50%);
     background: #FFFFFF;
-    opacity: 0.28;
     z-index: 0;
   }
 
@@ -220,19 +217,14 @@ const withSides = (items: AgendaItem[]) => {
     top: 50%;
   }
 
-  /* break bars span full width across the spine */
-  .break-row .dash {
+  /* break bars span full width across the spine — solid white like 2025 .dashes-line */
+  .break-row::before,
+  .break-row::after {
+    content: "";
     display: block;
     flex: 1;
     height: 1px;
-  }
-
-  .break-row .dash--left {
-    background: linear-gradient(90deg, transparent, #FFFFFF40 85%);
-  }
-
-  .break-row .dash--right {
-    background: linear-gradient(90deg, #FFFFFF40 15%, transparent);
+    background: #FFFFFF;
   }
 
   .parallel-label {
