@@ -129,8 +129,8 @@ export const speakers = [
     }
   },
   {
-    id: 'mariam-villa',
-    name: 'Mariam Villa',
+    id: 'marian-villa',
+    name: 'Marian Villa',
     role: 'Developer Advocate en Interledger',
     country: 'colombia-v2',
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783040533/mariam-villa_sfrpyh.webp',
