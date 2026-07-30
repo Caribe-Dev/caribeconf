@@ -119,7 +119,7 @@ const rawAgenda: RawDay[] = [
     items: [
       { type: 'break', title: 'Bienvenida', time: '8:00 – 9:00' },
       { type: 'talk', id: 'erasmo-hernandez' },
-      { type: 'talk', id: 'mariam-villa' },
+      { type: 'talk', id: 'marian-villa' },
       { type: 'break', title: 'Snack', time: '9:50 – 10:20' },
       { type: 'talk', id: 'renzo-tincopa' },
       { type: 'talk', id: 'sandy-atencio' },
