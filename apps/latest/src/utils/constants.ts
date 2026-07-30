@@ -150,7 +150,7 @@ export const speakers = [
     image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470997/maicol-ruidiaz_htkcl7.webp',
     thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1783470997/maicol-ruidiaz_htkcl7.webp',
     talk: 'API Gateway: El pilar de la gestión de APIs y microservicios',
-    schedule: '14:00 – 15:30',
+    schedule: '15:45 – 17:15',
     social: {
       type: 'linkedin',
       url: 'https://www.linkedin.com/in/maicol-r-8365a4b1/'
@@ -240,17 +240,20 @@ export const speakers = [
       url: 'https://www.linkedin.com/in/satencioh/'
     }
   },
-  // {
-  //   id: 'dario-guzman',
-  //   name: 'Dario Guzmán',
-  //   role: '',
-  //   country: 'colombia-v2',
-  //   image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
-  //   thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1741668329/speaker_gndva4.webp',
-  //   talk: 'Ingestión de video de alto rendimiento con Python asíncrono',
-  //   schedule: '15:45 – 17:15',
-  //   social: null
-  // },
+  {
+    id: 'dario-guzman',
+    name: 'Dario Guzmán',
+    role: 'Founder & CEO en Gudar Devs',
+    country: 'colombia-v2',
+    image: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1785381085/dario-guzman_kml5jq.webp',
+    thumbnail: 'https://res.cloudinary.com/dpu0uajtw/image/upload/v1785381085/dario-guzman_kml5jq.webp',
+    talk: 'Ingestión de video de alto rendimiento con Python asíncrono',
+    schedule: '14:00 – 15:30',
+    social: {
+      type: 'linkedin',
+      url: 'https://www.linkedin.com/in/gudarjs'
+    }
+  },
   {
     id: 'rina-plata',
     name: 'Rina Plata',
