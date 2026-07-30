@@ -5,8 +5,8 @@ import Layout from '@shared/components/Layout.astro';
 import DefumedCard from '@shared/components/DefumedCard.astro';
 import VerticalDivider from '@/components/VerticalDivider.astro';
 
-import RubyPng from '@/public/images/ruby.png';
-import CorondinPng from '@/public/images/corondin.png';
+// import RubyPng from '@/public/images/ruby.png';
+import CorindonPng from '@/public/images/corindon.png';
 import EmeraldWebp from '@/public/images/emerald.webp';
 import PearlWebp from '@/public/images/pearl.webp';
 import QuartzWebp from '@/public/images/quartz.webp';
@@ -14,7 +14,7 @@ import BridgePng from '@/public/images/bridge.png';
 import InterledgerPng from '@/public/images/interledger.png';
 import CucLogoPng from '@/public/images/cuc-logo.png';
 
-const topTier = { name: 'Corondin', image: CorondinPng, alt: 'Imagen de un Corondin Colombiano' }
+const topTier = { name: 'Corindón', image: CorindonPng, alt: 'Imagen de un Corindón Colombiano' }
 
 const tiers = [
   { name: 'Esmeralda', image: EmeraldWebp, alt: 'Imagen de una Esmeralda' },
@@ -28,10 +28,10 @@ const tiers = [
     <h2 class="h2 text-white font-bold text-center z-20">Sponsors</h2>
     <div class='w-full flex flex-col gap-30 lg:gap-60 z-20'>
       <div class='flex flex-col gap-15 lg:gap-20 w-full'>
-        <h3 class='h5 heading heading--corondin uppercase'>
+        <h3 class='h5 heading heading--corindon uppercase'>
           <div class="flex flex-col justify-center items-center gap-2">
-            <Image src='/images/corondin.png' width={80} height={80} alt='Imagen de un Rubí' />
-            Corondin
+            <Image src='/images/corindon.png' width={80} height={80} alt='Imagen de un Rubí' />
+            Corindón
           </div>
         </h3>
         <div class='flex justify-center items-center'>
@@ -146,7 +146,7 @@ const tiers = [
     @apply flex items-center justify-center gap-10 w-full after:block after:content-[""] after:h-[1px] after:flex-1 before:block before:content-[""] before:h-[1px] before:flex-1;
   }
 
-  .heading.heading--corondin {
+  .heading.heading--corindon {
     @apply after:bg-[#9ab9f8] before:bg-[#9ab9f8] text-[#9ab9f8];
   }
 
