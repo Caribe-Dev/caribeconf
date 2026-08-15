@@ -375,4 +375,10 @@ export const allies = [
     url: 'https://barranquillajs.org/',
     h: 76
   },
+  {
+    name: 'Platzi',
+    img: '/images/allies/platzi-logo.png',
+    url: 'https://platzi.com/',
+    h: 120
+  },
 ]
