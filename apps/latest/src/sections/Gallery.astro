@@ -1,0 +1,20 @@
+---
+import Layout from '@shared/components/Layout.astro';
+import PhotoGallery from '@shared/components/PhotoGallery.astro';
+
+import { galleryImages, GALLERY_ALBUM_URL_2026 } from '@/utils/constants';
+---
+
+{galleryImages.length > 0 && (
+  <section id="fotos" class="relative bg-purple">
+    <Layout class="w-full flex flex-col items-center gap-12 pt-20 pb-28 lg:gap-16 lg:pt-28 lg:pb-40">
+      <div class="flex flex-col items-center gap-3">
+        <h2 class="h2 text-white font-bold text-center">Fotos</h2>
+        <p class="small-text text-white/80 text-center max-w-[520px]">
+          Un vistazo a lo que se vivió en ediciones anteriores de CaribeConf.
+        </p>
+      </div>
+      <PhotoGallery images={galleryImages} albumUrl={GALLERY_ALBUM_URL_2026} />
+    </Layout>
+  </section>
+)}

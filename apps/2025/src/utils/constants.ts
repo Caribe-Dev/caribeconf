@@ -300,3 +300,71 @@ export const volunteers = [
     photo: '/images/volunteer/joel-rodriguez.jpg',
   },
 ];
+// --- Galería de fotos de la edición 2025 (Issue #44) ------------------------
+// Fotos servidas directo desde la carpeta pública de Google Drive vía
+// lh3.googleusercontent.com. `id` = ID del archivo de Drive. Muestra
+// distribuida sobre toda la carpeta; "Ver álbum completo" enlaza al folder.
+const driveImage = (id: string, width: number) =>
+  `https://lh3.googleusercontent.com/d/${id}=w${width}`;
+
+const galleryPhotos2025: { id: string }[] = [
+  { id: '1ZJ2Of9190AsjfxUPyRnERjjonMBJwbvk' },
+  { id: '13hkroJNVssjCFHq05elZKuJwGtVOn7ss' },
+  { id: '1B3ixZlJAY48krH-49QglVSPrpgl2gPTJ' },
+  { id: '1j1hAEC3UD_MYatf3FYyJIK_OOa7d27qt' },
+  { id: '1sImtwLqf9q6Ry6zObcPzIaImNbUmmDAQ' },
+  { id: '1IAOluR1P5Qg3ORTAkcnJbJFWv0hnd1Dz' },
+  { id: '1ZYAIffhZPgiSgBIbx7cuRfEL_1XpdmeI' },
+  { id: '1-dP2RSl6Op1yEUAmg4ktr6gXYYtOLSx5' },
+  { id: '1YJ3sbq18waNT5B50RSWPGmwPr0rCTb2i' },
+  { id: '1EMcTZsPElG4kLOiYmI5MfytlBgFto0L7' },
+  { id: '16dRqFyFDdv_h0FPUHotlI2p7U4n2kLEa' },
+  { id: '1upCL9EfviZShCXNs1KPks6aYA4WdF8Qs' },
+  { id: '1XchDXHrTrTLSAvnkC3x0m0yYYRPMWrvZ' },
+  { id: '1hFYwc_k1WJOWbwYBf9Mir2-vGW8WqNJb' },
+  { id: '1KbRJKMjghZf2uZJFSx8X0m-lwH0Rc_p8' },
+  { id: '1slKmEFDMxjThGnQqWZA1Ty7ECjmven0b' },
+  { id: '1juCOoquZq2YLawCWrdtMNk5JTJQkIUGs' },
+  { id: '1gpuuMPR7b8H4oEj0_ZhndEnRqS8EOH_T' },
+  { id: '1SkyKDFHquhD-VkpXaGVk-TJkVpts9wM7' },
+  { id: '1zVmVelxTN6hJXq2nerhtctGbDGv9vpCc' },
+  { id: '1Nvp6dEmMNSoBE3RKQx5luZ-x3c75KEZt' },
+  { id: '15H3d2TCamQTfsvECpFx4z62SPYbUKB-A' },
+  { id: '1hWNHmc38jYlFMS0EEkK9M2vBETEG8Ap0' },
+  { id: '1PazjBbry9T_I8YXXMPsoTwyFM3e6pv9u' },
+  { id: '1qzf7iU4IPvuHQ-NRO7adowVqt0UL9VAQ' },
+  { id: '1sbVPhfJpr3sHgJCcORky75jtjgwmKj4D' },
+  { id: '1eNUMgZWxU3isKOtCz5nDZ0cLtJ-GrXof' },
+  { id: '10Am0y0XY5-yptp47jO-ZIrxbJr-l1cmE' },
+  { id: '1VN5Enpz0J7xmRQyTBJprrQKgsCzMmRxq' },
+  { id: '16ZbKE24-CW6Fs3d92x3aECQEZoCP-vjC' },
+  { id: '1zVEIT4uqE-WFWXzhfrAt7Ha5LXagSZS-' },
+  { id: '1YBz34N26zESgOnHq1lTizs7tibdCw6m0' },
+  { id: '1ozVTRtjx1Tjm__tpM0CgOgl6JWMwJfYw' },
+  { id: '1wMVszEej2eQM1-sable8U6jdm-RUBvKs' },
+  { id: '1scghfu9sgiX9Pp1pH1YMEQINuKzILxKA' },
+  { id: '1EgYqmvS_ETxJBGI3IFChG5f9WzdnqGiH' },
+  { id: '1k4fqtMMzKivbSVrLBGuiiplefPbBH3v7' },
+  { id: '1p7BHAOcF2Y_BwEltivxoNk8uiEo1b5pr' },
+  { id: '1-8634wah0Xyg0mgDEOHQWqyWtAEcAtK3' },
+  { id: '1fOc9L7nVeJyN9k99k9hHbn2FIf9ehc_m' },
+  { id: '1nXSrErclH5YWznZS7mrfKE9dCaaGNip1' },
+  { id: '13dCjzimG279f6U2w1TP2fgbc9hDobxXT' },
+  { id: '1Da2xyjn9nDlirFovEBOFD0fS2cmx49cf' },
+  { id: '1jeWBbmr6WlpDnbUEKxLYhXngiXvae3HG' },
+  { id: '1WF9XIsfPndqBHADWIthJ0c2X-w0xSZOf' },
+  { id: '1JrgAxh-DSDpTN8VcL7jBFVEPTCzk4lb_' },
+  { id: '1bpiandAhrHY6YD6APgaqQRw7WmW3Pjj9' },
+  { id: '15E4y8kBMIX_6f1b7Zvca6wdCn_bgsoJ3' },
+  { id: '1VRz6bbsRR9rlma6RKX5RPNhAszC35wHO' },
+  { id: '1Rpo3vXKoqJX9ZcFfrbzutGEj5YsTVaEn' },
+];
+
+export const GALLERY_ALBUM_URL_2025 =
+  'https://drive.google.com/drive/folders/1Gm2qj5I5ZuU3F531pRsvlS7YbbF1pNNy';
+
+export const galleryImages = galleryPhotos2025.map(({ id }) => ({
+  src: driveImage(id, 1600),
+  thumb: driveImage(id, 320),
+  alt: 'Foto de CaribeConf 2025',
+}));

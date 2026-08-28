@@ -1,0 +1,24 @@
+---
+import Layout from '@shared/components/Layout.astro';
+import PhotoGallery from '@shared/components/PhotoGallery.astro';
+import GroundSvg from '@shared/components/Svgs/Ground.astro';
+
+import { galleryImages, GALLERY_ALBUM_URL_2025 } from '@/utils/constants';
+---
+
+{galleryImages.length > 0 && (
+  <section id="fotos" class="mx-auto relative bg-[#1F183C]">
+    <div class="relative h-[70px] sm:h-[100px] md:h-[160px] mx-auto">
+      <div class="absolute top-0 translate-y-[-10px] left-0 right-0 w-full z-[4] mx-auto rotate-180">
+        <GroundSvg class="h-full w-full" fill="#1F183C" width={null} height={null} />
+      </div>
+    </div>
+    <Layout class="flex flex-col items-center gap-12 pb-24 lg:gap-16 lg:pb-32">
+      <div class="flex flex-col items-center gap-3">
+        <h2 class="text-left">Fotos</h2>
+        <span>Así se vivió CaribeConf 2025</span>
+      </div>
+      <PhotoGallery images={galleryImages} albumUrl={GALLERY_ALBUM_URL_2025} />
+    </Layout>
+  </section>
+)}

@@ -1,0 +1,539 @@
+---
+import { cnx } from '@shared/utils/csx';
+
+export interface GalleryImage {
+  /** Large image URL shown in the main viewer / lightbox. */
+  src: string
+  /** Small image URL for the thumbnail strip. Falls back to `src`. */
+  thumb?: string
+  /** Accessible description of the photo. */
+  alt?: string
+}
+
+interface Props {
+  images: GalleryImage[]
+  /** Optional "Ver álbum completo" link (public album, not the raw Drive). */
+  albumUrl?: string
+  class?: string
+}
+
+const { images = [], albumUrl, class: className } = Astro.props
+
+const photos = images.filter((image) => Boolean(image?.src))
+const firstPhoto = photos[0]
+---
+
+{photos.length > 0 && (
+  <div class={cnx('photo-gallery js-photo-gallery', className)}>
+    <div class="pg-stage">
+      <button
+        type="button"
+        class="pg-nav pg-nav--prev js-pg-prev"
+        aria-label="Foto anterior"
+      >
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7" />
+        </svg>
+      </button>
+
+      <button type="button" class="pg-main js-pg-open" aria-label="Ampliar foto">
+        <img
+          class="js-pg-main-img"
+          src={firstPhoto.src}
+          alt={firstPhoto.alt ?? 'Foto de una edición anterior de CaribeConf'}
+          width="1600"
+          height="1067"
+          decoding="async"
+          loading="lazy"
+        />
+        <span class="pg-zoom" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M11 4a7 7 0 100 14 7 7 0 000-14zM20 20l-4-4M11 8v6M8 11h6" />
+          </svg>
+        </span>
+      </button>
+
+      <button
+        type="button"
+        class="pg-nav pg-nav--next js-pg-next"
+        aria-label="Foto siguiente"
+      >
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <span class="pg-counter js-pg-counter" aria-live="polite">1 / {photos.length}</span>
+    </div>
+
+    <ul class="pg-thumbs js-pg-thumbs" role="listbox" aria-label="Miniaturas de la galería">
+      {photos.map((photo, index) => (
+        <li role="presentation">
+          <button
+            type="button"
+            class:list={['pg-thumb js-pg-thumb', { 'is-active': index === 0 }]}
+            data-index={index}
+            role="option"
+            aria-selected={index === 0 ? 'true' : 'false'}
+            aria-label={`Ver foto ${index + 1} de ${photos.length}`}
+          >
+            <img
+              src={photo.thumb ?? photo.src}
+              data-full={photo.src}
+              data-alt={photo.alt ?? ''}
+              alt=""
+              loading={index < 6 ? 'eager' : 'lazy'}
+              decoding="async"
+              width="160"
+              height="107"
+            />
+          </button>
+        </li>
+      ))}
+    </ul>
+
+    {albumUrl && (
+      <a class="pg-album" href={albumUrl} target="_blank" rel="noopener noreferrer">
+        Ver álbum completo
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M8 7h9v9" />
+        </svg>
+      </a>
+    )}
+
+    <div
+      class="pg-lightbox js-pg-lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Galería de fotos"
+      hidden
+    >
+      <div class="pg-lightbox__backdrop js-pg-close"></div>
+      <button type="button" class="pg-lightbox__close js-pg-close" aria-label="Cerrar galería">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+      <button type="button" class="pg-lightbox__nav pg-lightbox__nav--prev js-pg-prev" aria-label="Foto anterior">
+        <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7" />
+        </svg>
+      </button>
+      <figure class="pg-lightbox__figure">
+        <img class="js-pg-lightbox-img" src={firstPhoto.src} alt={firstPhoto.alt ?? ''} />
+        <figcaption class="js-pg-lightbox-caption"></figcaption>
+      </figure>
+      <button type="button" class="pg-lightbox__nav pg-lightbox__nav--next js-pg-next" aria-label="Foto siguiente">
+        <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+)}
+
+<style>
+  .photo-gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .pg-stage {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    aspect-ratio: 3 / 2;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #1f183c;
+    box-shadow: 0 0 30px 0 rgba(190, 53, 127, 0.35);
+  }
+
+  .pg-main {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+  }
+
+  .pg-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .pg-main:hover img,
+  .pg-main:focus-visible img {
+    transform: scale(1.03);
+  }
+
+  .pg-main:focus-visible {
+    outline: 3px solid #41def4;
+    outline-offset: -3px;
+  }
+
+  .pg-zoom {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .pg-main:hover .pg-zoom,
+  .pg-main:focus-visible .pg-zoom {
+    opacity: 1;
+  }
+
+  .pg-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .pg-nav:hover {
+    background: rgba(255, 255, 255, 0.32);
+    transform: translateY(-50%) scale(1.08);
+  }
+
+  .pg-nav:focus-visible {
+    outline: 3px solid #41def4;
+    outline-offset: 2px;
+  }
+
+  .pg-nav--prev { left: 12px; }
+  .pg-nav--next { right: 12px; }
+
+  .pg-counter {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+  }
+
+  .pg-thumbs {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    max-width: 900px;
+    padding: 4px;
+    margin: 0;
+    list-style: none;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+  }
+
+  .pg-thumb {
+    flex: 0 0 auto;
+    width: 96px;
+    height: 64px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #1f183c;
+    cursor: pointer;
+    opacity: 0.55;
+    scroll-snap-align: center;
+    transition: opacity 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .pg-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .pg-thumb:hover {
+    opacity: 0.85;
+  }
+
+  .pg-thumb.is-active {
+    opacity: 1;
+    border-color: #be357f;
+    transform: translateY(-2px);
+  }
+
+  .pg-thumb:focus-visible {
+    outline: 3px solid #41def4;
+    outline-offset: 2px;
+  }
+
+  .pg-album {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: background-color 0.2s ease;
+  }
+
+  .pg-album:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .pg-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pg-lightbox[hidden] {
+    display: none;
+  }
+
+  .pg-lightbox__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 4, 16, 0.92);
+    backdrop-filter: blur(6px);
+  }
+
+  .pg-lightbox__figure {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    max-width: min(92vw, 1400px);
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pg-lightbox__figure img {
+    max-width: 100%;
+    max-height: 82vh;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  .pg-lightbox__figure figcaption {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.85rem;
+    text-align: center;
+    min-height: 1em;
+  }
+
+  .pg-lightbox__close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+  }
+
+  .pg-lightbox__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 999px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .pg-lightbox__nav:hover,
+  .pg-lightbox__close:hover {
+    background: rgba(255, 255, 255, 0.26);
+  }
+
+  .pg-lightbox__nav--prev { left: 3vw; }
+  .pg-lightbox__nav--next { right: 3vw; }
+
+  .pg-lightbox__close:focus-visible,
+  .pg-lightbox__nav:focus-visible {
+    outline: 3px solid #41def4;
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 640px) {
+    .pg-thumb { width: 76px; height: 52px; }
+    .pg-lightbox__nav { width: 42px; height: 42px; }
+    .pg-lightbox__nav--prev { left: 6px; }
+    .pg-lightbox__nav--next { right: 6px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pg-main img,
+    .pg-nav,
+    .pg-thumb {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const SWIPE_THRESHOLD = 40
+
+  function initGallery(root: HTMLElement) {
+    const mainImg = root.querySelector<HTMLImageElement>('.js-pg-main-img')
+    const counter = root.querySelector<HTMLElement>('.js-pg-counter')
+    const thumbs = Array.from(root.querySelectorAll<HTMLButtonElement>('.js-pg-thumb'))
+    const openBtn = root.querySelector<HTMLButtonElement>('.js-pg-open')
+    const lightbox = root.querySelector<HTMLElement>('.js-pg-lightbox')
+    const lightboxImg = root.querySelector<HTMLImageElement>('.js-pg-lightbox-img')
+    const lightboxCaption = root.querySelector<HTMLElement>('.js-pg-lightbox-caption')
+    const closeEls = Array.from(root.querySelectorAll<HTMLElement>('.js-pg-close'))
+    const prevEls = Array.from(root.querySelectorAll<HTMLElement>('.js-pg-prev'))
+    const nextEls = Array.from(root.querySelectorAll<HTMLElement>('.js-pg-next'))
+
+    if (!mainImg || thumbs.length === 0) return
+
+    const slides = thumbs.map((thumb) => {
+      const img = thumb.querySelector('img')
+      return {
+        src: (img?.dataset.full || img?.getAttribute('src') || '').trim(),
+        alt: img?.dataset.alt || '',
+      }
+    })
+
+    let current = 0
+    let lastFocused: HTMLElement | null = null
+
+    function render() {
+      const slide = slides[current]
+      const large = slide.src
+
+      mainImg.src = large
+      mainImg.alt = slide.alt || 'Foto de una edición anterior de CaribeConf'
+
+      if (counter) counter.textContent = `${current + 1} / ${slides.length}`
+
+      thumbs.forEach((thumb, i) => {
+        const active = i === current
+        thumb.classList.toggle('is-active', active)
+        thumb.setAttribute('aria-selected', active ? 'true' : 'false')
+      })
+
+      thumbs[current]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
+
+      if (lightbox && !lightbox.hasAttribute('hidden') && lightboxImg) {
+        lightboxImg.src = large
+        lightboxImg.alt = slide.alt || ''
+        if (lightboxCaption) lightboxCaption.textContent = slide.alt || ''
+      }
+    }
+
+    function go(delta: number) {
+      current = (current + delta + slides.length) % slides.length
+      render()
+    }
+
+    function goTo(index: number) {
+      current = ((index % slides.length) + slides.length) % slides.length
+      render()
+    }
+
+    function openLightbox() {
+      if (!lightbox) return
+      lastFocused = document.activeElement as HTMLElement
+      lightbox.removeAttribute('hidden')
+      document.body.style.overflow = 'hidden'
+      render()
+      closeEls[0]?.focus()
+    }
+
+    function closeLightbox() {
+      if (!lightbox) return
+      lightbox.setAttribute('hidden', '')
+      document.body.style.overflow = ''
+      lastFocused?.focus()
+    }
+
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener('click', () => goTo(Number(thumb.dataset.index) || 0))
+    })
+
+    prevEls.forEach((el) => el.addEventListener('click', () => go(-1)))
+    nextEls.forEach((el) => el.addEventListener('click', () => go(1)))
+    openBtn?.addEventListener('click', openLightbox)
+    closeEls.forEach((el) => el.addEventListener('click', closeLightbox))
+
+    document.addEventListener('keydown', (event) => {
+      if (!lightbox || lightbox.hasAttribute('hidden')) return
+      if (event.key === 'Escape') closeLightbox()
+      if (event.key === 'ArrowLeft') go(-1)
+      if (event.key === 'ArrowRight') go(1)
+    })
+
+    // Touch swipe on both the inline stage and the lightbox figure.
+    const swipeTargets = [
+      root.querySelector<HTMLElement>('.pg-stage'),
+      root.querySelector<HTMLElement>('.pg-lightbox__figure'),
+    ].filter(Boolean) as HTMLElement[]
+
+    swipeTargets.forEach((target) => {
+      let startX = 0
+      target.addEventListener('touchstart', (e) => {
+        startX = e.changedTouches[0].clientX
+      }, { passive: true })
+      target.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - startX
+        if (Math.abs(dx) > SWIPE_THRESHOLD) go(dx < 0 ? 1 : -1)
+      }, { passive: true })
+    })
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll<HTMLElement>('.js-photo-gallery').forEach(initGallery)
+  })
+</script>
