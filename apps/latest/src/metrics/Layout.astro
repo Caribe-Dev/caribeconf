@@ -1,0 +1,43 @@
+---
+import './styles/metrics.css'
+
+interface Props {
+  titulo: string
+  descripcion: string
+  /** Mantiene la página fuera de los buscadores. No la protege: solo pide a los
+   *  crawlers que la ignoren. Para contenido que no puede circular hace falta
+   *  autenticación real. */
+  noindex?: boolean
+}
+const { titulo, descripcion, noindex = false } = Astro.props
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#120B2F" />
+    <meta name="description" content={descripcion} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <title>{titulo}</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      rel="preload"
+      href="/fonts/Raleway-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Raleway-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

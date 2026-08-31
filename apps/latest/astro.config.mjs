@@ -3,10 +3,12 @@
 import { fileURLToPath, URL } from 'node:url';
 import { defineConfig, envField, passthroughImageService } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [],
+  // React solo lo usan las gráficas del dashboard en /metrics (Recharts).
+  integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
     resolve: {

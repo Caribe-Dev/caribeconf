@@ -1,0 +1,61 @@
+---
+import type { Conteo } from '../data/types'
+
+/** Tabla del embudo. Dos lecturas distintas de la misma caída:
+ *  qué proporción del inicio sobrevive, y qué proporción del paso anterior. */
+interface Props {
+  pasos: Conteo
+}
+const { pasos } = Astro.props
+
+const entradas = Object.entries(pasos).filter(([, v]) => v != null) as [
+  string,
+  number,
+][]
+const base = entradas.length ? entradas[0][1] : 0
+---
+
+<details class="mt-5 text-sm">
+  <summary class="cursor-pointer text-white/80 hover:text-white">
+    Ver datos en tabla
+  </summary>
+  <div class="overflow-x-auto">
+    <table class="mt-3 w-full min-w-[420px] text-left">
+      <caption class="sr-only">
+        Personas que quedan en cada paso del embudo, como proporción del inicio y
+        del paso anterior.
+      </caption>
+      <thead>
+        <tr class="border-b border-white/15 text-white/80">
+          <th scope="col" class="py-1 font-medium">Filtro acumulado</th>
+          <th scope="col" class="py-1 text-right font-medium">n</th>
+          <th scope="col" class="py-1 text-right font-medium">Del inicio</th>
+          <th scope="col" class="py-1 text-right font-medium">Del paso anterior</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          entradas.map(([nombre, valor], i) => {
+            const previo = i === 0 ? null : entradas[i - 1][1]
+            return (
+              <tr class="border-b border-white/5">
+                <td class="py-1">{nombre}</td>
+                <td class="py-1 text-right font-bold tabular-nums">{valor}</td>
+                <td class="py-1 text-right tabular-nums text-white/85">
+                  {Math.round((1000 * valor) / base) / 10}%
+                </td>
+                <td class="py-1 text-right tabular-nums text-white/70">
+                  {
+                    previo == null
+                      ? '—'
+                      : `${Math.round((1000 * valor) / previo) / 10}%`
+                  }
+                </td>
+              </tr>
+            )
+          })
+        }
+      </tbody>
+    </table>
+  </div>
+</details>
