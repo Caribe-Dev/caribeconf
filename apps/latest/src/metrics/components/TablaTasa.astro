@@ -1,0 +1,105 @@
+---
+import type { Tasa } from '../data/types'
+
+/** Tabla de una gráfica de tasas por segmento.
+ *
+ *  Aquí la prevalencia es *dentro* de cada segmento, no sobre el total: de las
+ *  53 personas senior, qué proporción cumple la condición. Por eso cada fila
+ *  lleva su n, y se marcan el segmento donde más prevalece y donde menos.
+ */
+interface Props {
+  tasa: Tasa
+  encabezado?: string
+  /** Nombre de lo que se mide dentro del segmento ("asistió", "quiere ofertas"). */
+  medida?: string
+  respetarOrden?: boolean
+}
+const {
+  tasa,
+  encabezado = 'Segmento',
+  medida = 'Asistió',
+  respetarOrden = false,
+} = Astro.props
+
+const filas = [...tasa.orden]
+  .sort((a, b) => (respetarOrden ? 0 : tasa.pct[b] - tasa.pct[a]))
+  .map((nombre) => ({
+    nombre,
+    pct: tasa.pct[nombre],
+    n: tasa.n[nombre],
+    si: tasa.asistieron[nombre],
+  }))
+
+const maximo = Math.max(...filas.map((f) => f.pct))
+const minimo = Math.min(...filas.map((f) => f.pct))
+const totalN = filas.reduce((s, f) => s + f.n, 0)
+const totalSi = filas.reduce((s, f) => s + f.si, 0)
+---
+
+<details class="mt-5 text-sm">
+  <summary class="cursor-pointer text-white/80 hover:text-white">
+    Ver datos en tabla
+  </summary>
+  <div class="overflow-x-auto">
+    <table class="mt-3 w-full min-w-[420px] text-left">
+      <caption class="sr-only">
+        {medida} por {encabezado.toLowerCase()}, con la prevalencia dentro de cada
+        segmento y el número de personas sobre el que se calcula.
+      </caption>
+      <thead>
+        <tr class="border-b border-white/15 text-white/80">
+          <th scope="col" class="py-1 font-medium">{encabezado}</th>
+          <th scope="col" class="py-1 text-right font-medium">{medida}</th>
+          <th scope="col" class="py-1 text-right font-medium">n</th>
+          <th scope="col" class="py-1 text-right font-medium">Prevalencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          filas.map((f) => (
+            <tr class="border-b border-white/5">
+              <td class="py-1">
+                {f.nombre}
+                {f.pct === maximo && (
+                  <span class="ml-2 rounded bg-aqua/20 px-1.5 py-0.5 text-xs font-bold text-aqua">
+                    más alta
+                  </span>
+                )}
+                {f.pct === minimo && f.pct !== maximo && (
+                  <span class="ml-2 rounded bg-warm/20 px-1.5 py-0.5 text-xs font-bold text-warm">
+                    más baja
+                  </span>
+                )}
+              </td>
+              <td class="py-1 text-right tabular-nums text-white/85">{f.si}</td>
+              <td class="py-1 text-right tabular-nums text-white/70">{f.n}</td>
+              <td
+                class:list={[
+                  'py-1 text-right tabular-nums',
+                  f.pct === maximo ? 'font-bold text-white' : 'text-white/85',
+                ]}
+              >
+                {f.pct}%
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+      <tfoot>
+        <tr class="border-t border-white/15 text-white/70">
+          <td class="py-1 font-medium">Conjunto</td>
+          <td class="py-1 text-right tabular-nums">{totalSi}</td>
+          <td class="py-1 text-right tabular-nums">{totalN}</td>
+          <td class="py-1 text-right tabular-nums">
+            {Math.round((1000 * totalSi) / totalN) / 10}%
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <p class="mt-2 text-white/70">
+    La prevalencia es dentro de cada segmento, no sobre el total: por eso la
+    columna no suma 100%. El n dice sobre cuántas personas se calculó cada
+    porcentaje.
+  </p>
+</details>

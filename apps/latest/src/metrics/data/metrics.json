@@ -1,0 +1,507 @@
+{
+ "generado": "2026-08-20",
+ "kpis": {
+  "2025": {
+   "registros": 306,
+   "asistieron": 152,
+   "tasa_asistencia": 49.7
+  },
+  "2026": {
+   "registros": 386,
+   "asistieron": 237,
+   "tasa_asistencia": 61.4
+  }
+ },
+ "comparativo": {
+  "nivel_ingles": {
+   "orden": [
+    "Sin inglés",
+    "Básico (A1–A2)",
+    "Intermedio (B1–B2)",
+    "Avanzado (C1+)"
+   ],
+   "2025": {
+    "Sin inglés": 21,
+    "Básico (A1–A2)": 97,
+    "Intermedio (B1–B2)": 142,
+    "Avanzado (C1+)": 46
+   },
+   "2026": {
+    "Sin inglés": 16,
+    "Básico (A1–A2)": 126,
+    "Intermedio (B1–B2)": 184,
+    "Avanzado (C1+)": 60
+   }
+  },
+  "nivel_experiencia": {
+   "orden": [
+    "Sin experiencia formal",
+    "Junior",
+    "Mid",
+    "Senior"
+   ],
+   "2025": {
+    "Sin experiencia formal": null,
+    "Junior": 158,
+    "Mid": 84,
+    "Senior": 64
+   },
+   "2026": {
+    "Sin experiencia formal": 112,
+    "Junior": 157,
+    "Mid": 64,
+    "Senior": 53
+   }
+  }
+ },
+ "2026": {
+  "ticket_usado": {
+   "Sí": 237,
+   "No": 149
+  },
+  "area": {
+   "Desarrollo de software": 213,
+   "Full Stack": 55,
+   "Ciberseguridad": 38,
+   "Ciencia de datos / IA": 35,
+   "Marketing / Producto / Growth": 35,
+   "UX/UI": 10
+  },
+  "situacion_actual": {
+   "Estudiante": 237,
+   "Empleado": 76,
+   "Freelance / Independiente": 29,
+   "Emprendedor / Founder": 25,
+   "En búsqueda de estudios y empleo": 10,
+   "Otro": 9
+  },
+  "nivel_experiencia": {
+   "No tengo experiencia formal aún": 112,
+   "Junior (0–2 años)": 157,
+   "Mid (2–5 años)": 64,
+   "Senior (5+ años)": 53
+  },
+  "nivel_ingles": {
+   "No manejo inglés": 16,
+   "Básico (A1–A2)": 126,
+   "Intermedio (B1–B2)": 184,
+   "Avanzado (C1–C2)": 60
+  },
+  "objetivo_evento": {
+   "conteo": {
+    "Aprender nuevas tecnologías": 282,
+    "Networking / comunidad": 217,
+    "Conocer empresas / oportunidades": 175,
+    "Empleo / carrera": 152,
+    "Speaker o mentor": 46
+   },
+   "personas": 386,
+   "selecciones": 872
+  },
+  "speakers": {
+   "conteo": {
+    "MiduDev": 24,
+    "Erasmo Hernández": 18,
+    "Marian Villa": 18,
+    "Oscar Barajas": 12,
+    "Mateo Robayo": 9,
+    "Harold Combita": 6,
+    "Gentleman Programming": 5,
+    "Kelly Villa": 5,
+    "Gisell Ulloa": 5,
+    "Luis Araujo": 5,
+    "Eduardo Álvarez": 5,
+    "Rina Plata": 4,
+    "Santiago Carrillo": 4,
+    "Fernando Herrera": 3,
+    "Otros (189 respuestas)": 189
+   },
+   "con_nombre": 309,
+   "sin_preferencia": 77,
+   "fuera_del_roster": 189
+  },
+  "interes_ofertas": {
+   "Sí": 320,
+   "No": 66
+  },
+  "cupones": {
+   "usaron": 347,
+   "sin_cupon": 39,
+   "distintos": 37
+  },
+  "cobertura_pago": {
+   "pagaron": 71,
+   "cortesia": 315,
+   "total": 386,
+   "pct_pagaron": 18.4
+  },
+  "disponibilidad": {
+   "conteo": {
+    "Freelance": 142,
+    "Pasantías / prácticas": 134,
+    "Empleo full-time": 130,
+    "No estoy buscando trabajo": 105
+   },
+   "busca_algo": 294,
+   "total": 386,
+   "contradictorias": 13
+  },
+  "interes_por_seniority": {
+   "orden": [
+    "No tengo experiencia formal aún",
+    "Junior (0–2 años)",
+    "Mid (2–5 años)",
+    "Senior (5+ años)"
+   ],
+   "pct": {
+    "No tengo experiencia formal aún": 81.2,
+    "Junior (0–2 años)": 91.1,
+    "Mid (2–5 años)": 87.5,
+    "Senior (5+ años)": 56.6
+   },
+   "n": {
+    "No tengo experiencia formal aún": 112,
+    "Junior (0–2 años)": 157,
+    "Mid (2–5 años)": 64,
+    "Senior (5+ años)": 53
+   },
+   "si": {
+    "No tengo experiencia formal aún": 91,
+    "Junior (0–2 años)": 143,
+    "Mid (2–5 años)": 56,
+    "Senior (5+ años)": 30
+   }
+  },
+  "embudo_contratable": {
+   "Con 2+ años de experiencia": 117,
+   "…y quiere ofertas laborales": 86,
+   "…y tiene inglés B1 o superior": 67,
+   "…y asistió al evento": 29
+  }
+ },
+ "organizadores": {
+  "asistencia_global": 61.4,
+  "por_experiencia": {
+   "orden": [
+    "No tengo experiencia formal aún",
+    "Junior (0–2 años)",
+    "Mid (2–5 años)",
+    "Senior (5+ años)"
+   ],
+   "pct": {
+    "No tengo experiencia formal aún": 60.7,
+    "Junior (0–2 años)": 70.1,
+    "Mid (2–5 años)": 59.4,
+    "Senior (5+ años)": 39.6
+   },
+   "n": {
+    "No tengo experiencia formal aún": 112,
+    "Junior (0–2 años)": 157,
+    "Mid (2–5 años)": 64,
+    "Senior (5+ años)": 53
+   },
+   "asistieron": {
+    "No tengo experiencia formal aún": 68,
+    "Junior (0–2 años)": 110,
+    "Mid (2–5 años)": 38,
+    "Senior (5+ años)": 21
+   }
+  },
+  "por_situacion": {
+   "orden": [
+    "Estudiante",
+    "Freelance / Independiente",
+    "En búsqueda de estudios y empleo",
+    "Emprendedor / Founder",
+    "Empleado",
+    "Otro"
+   ],
+   "pct": {
+    "Estudiante": 67.9,
+    "Freelance / Independiente": 62.1,
+    "En búsqueda de estudios y empleo": 60.0,
+    "Emprendedor / Founder": 48.0,
+    "Empleado": 47.4,
+    "Otro": 44.4
+   },
+   "n": {
+    "Estudiante": 237,
+    "Freelance / Independiente": 29,
+    "En búsqueda de estudios y empleo": 10,
+    "Emprendedor / Founder": 25,
+    "Empleado": 76,
+    "Otro": 9
+   },
+   "asistieron": {
+    "Estudiante": 161,
+    "Freelance / Independiente": 18,
+    "En búsqueda de estudios y empleo": 6,
+    "Emprendedor / Founder": 12,
+    "Empleado": 36,
+    "Otro": 4
+   }
+  },
+  "por_area": {
+   "orden": [
+    "Full Stack",
+    "Ciencia de datos / IA",
+    "Ciberseguridad",
+    "Desarrollo de software",
+    "UX/UI",
+    "Marketing / Producto / Growth"
+   ],
+   "pct": {
+    "Full Stack": 70.9,
+    "Ciencia de datos / IA": 65.7,
+    "Ciberseguridad": 63.2,
+    "Desarrollo de software": 62.0,
+    "UX/UI": 50.0,
+    "Marketing / Producto / Growth": 40.0
+   },
+   "n": {
+    "Full Stack": 55,
+    "Ciencia de datos / IA": 35,
+    "Ciberseguridad": 38,
+    "Desarrollo de software": 213,
+    "UX/UI": 10,
+    "Marketing / Producto / Growth": 35
+   },
+   "asistieron": {
+    "Full Stack": 39,
+    "Ciencia de datos / IA": 23,
+    "Ciberseguridad": 24,
+    "Desarrollo de software": 132,
+    "UX/UI": 5,
+    "Marketing / Producto / Growth": 14
+   }
+  },
+  "por_pago": {
+   "orden": [
+    "Pagó su ticket",
+    "Cortesía o cupón"
+   ],
+   "pct": {
+    "Pagó su ticket": 69.0,
+    "Cortesía o cupón": 59.7
+   },
+   "n": {
+    "Pagó su ticket": 71,
+    "Cortesía o cupón": 315
+   },
+   "asistieron": {
+    "Pagó su ticket": 49,
+    "Cortesía o cupón": 188
+   }
+  },
+  "por_momento_registro": {
+   "orden": [
+    "1º (más temprano)",
+    "2º",
+    "3º",
+    "4º (más tarde)"
+   ],
+   "pct": {
+    "1º (más temprano)": 48.5,
+    "2º": 62.5,
+    "3º": 61.5,
+    "4º (más tarde)": 73.2
+   },
+   "n": {
+    "1º (más temprano)": 97,
+    "2º": 96,
+    "3º": 96,
+    "4º (más tarde)": 97
+   },
+   "asistieron": {
+    "1º (más temprano)": 47,
+    "2º": 60,
+    "3º": 59,
+    "4º (más tarde)": 71
+   }
+  },
+  "por_cupon": {
+   "orden": [
+    "RIWIFULL26",
+    "CUL100",
+    "CUCBPDS100",
+    "SENAFULL26",
+    "UNORT3FULL26",
+    "CFPCRBCONF26",
+    "SPEAKERSYCIA"
+   ],
+   "pct": {
+    "RIWIFULL26": 95.2,
+    "CUL100": 90.9,
+    "CUCBPDS100": 63.2,
+    "SENAFULL26": 63.1,
+    "UNORT3FULL26": 50.0,
+    "CFPCRBCONF26": 37.5,
+    "SPEAKERSYCIA": 28.6
+   },
+   "n": {
+    "RIWIFULL26": 21,
+    "CUL100": 22,
+    "CUCBPDS100": 106,
+    "SENAFULL26": 65,
+    "UNORT3FULL26": 16,
+    "CFPCRBCONF26": 8,
+    "SPEAKERSYCIA": 28
+   },
+   "asistieron": {
+    "RIWIFULL26": 20,
+    "CUL100": 20,
+    "CUCBPDS100": 67,
+    "SENAFULL26": 41,
+    "UNORT3FULL26": 8,
+    "CFPCRBCONF26": 3,
+    "SPEAKERSYCIA": 8
+   }
+  },
+  "cupones_descartados": 30,
+  "cupones_top": {
+   "CUCBPDS100": 106,
+   "SENAFULL26": 65,
+   "SPEAKERSYCIA": 28,
+   "CUL100": 22,
+   "RIWIFULL26": 21,
+   "UNORT3FULL26": 16,
+   "CFPCRBCONF26": 8,
+   "UN1COSTA26": 7,
+   "GDGCTG100": 6,
+   "H4CK100": 5,
+   "Otros (27 cupones)": 63
+  },
+  "minimo_segmento": 8
+ },
+ "asociaciones": {
+  "situacion_x_experiencia": {
+   "cramers_v": 0.465,
+   "chi2": 250.9,
+   "p": 8.090544085643796e-45,
+   "dof": 15,
+   "n": 386,
+   "celdas_esperadas_bajas": 12,
+   "celdas_total": 24,
+   "filas": [
+    "Estudiante",
+    "Empleado",
+    "Freelance / Independiente",
+    "Emprendedor / Founder",
+    "En búsqueda de estudios y empleo",
+    "Otro"
+   ],
+   "columnas": [
+    "No tengo experiencia formal aún",
+    "Junior (0–2 años)",
+    "Mid (2–5 años)",
+    "Senior (5+ años)"
+   ],
+   "tabla": {
+    "Estudiante": {
+     "No tengo experiencia formal aún": 103,
+     "Junior (0–2 años)": 119,
+     "Mid (2–5 años)": 14,
+     "Senior (5+ años)": 1
+    },
+    "Empleado": {
+     "No tengo experiencia formal aún": 2,
+     "Junior (0–2 años)": 17,
+     "Mid (2–5 años)": 33,
+     "Senior (5+ años)": 24
+    },
+    "Freelance / Independiente": {
+     "No tengo experiencia formal aún": 0,
+     "Junior (0–2 años)": 11,
+     "Mid (2–5 años)": 13,
+     "Senior (5+ años)": 5
+    },
+    "Emprendedor / Founder": {
+     "No tengo experiencia formal aún": 1,
+     "Junior (0–2 años)": 3,
+     "Mid (2–5 años)": 3,
+     "Senior (5+ años)": 18
+    },
+    "En búsqueda de estudios y empleo": {
+     "No tengo experiencia formal aún": 1,
+     "Junior (0–2 años)": 5,
+     "Mid (2–5 años)": 0,
+     "Senior (5+ años)": 4
+    },
+    "Otro": {
+     "No tengo experiencia formal aún": 5,
+     "Junior (0–2 años)": 2,
+     "Mid (2–5 años)": 1,
+     "Senior (5+ años)": 1
+    }
+   }
+  },
+  "situacion_x_ingles": {
+   "cramers_v": 0.228,
+   "chi2": 60.1,
+   "p": 2.3837668327456375e-07,
+   "dof": 15,
+   "n": 386,
+   "celdas_esperadas_bajas": 13,
+   "celdas_total": 24,
+   "filas": [
+    "Estudiante",
+    "Empleado",
+    "Freelance / Independiente",
+    "Emprendedor / Founder",
+    "En búsqueda de estudios y empleo",
+    "Otro"
+   ],
+   "columnas": [
+    "No manejo inglés",
+    "Básico (A1–A2)",
+    "Intermedio (B1–B2)",
+    "Avanzado (C1–C2)"
+   ],
+   "tabla": {
+    "Estudiante": {
+     "No manejo inglés": 13,
+     "Básico (A1–A2)": 98,
+     "Intermedio (B1–B2)": 105,
+     "Avanzado (C1–C2)": 21
+    },
+    "Empleado": {
+     "No manejo inglés": 1,
+     "Básico (A1–A2)": 10,
+     "Intermedio (B1–B2)": 43,
+     "Avanzado (C1–C2)": 22
+    },
+    "Freelance / Independiente": {
+     "No manejo inglés": 0,
+     "Básico (A1–A2)": 9,
+     "Intermedio (B1–B2)": 17,
+     "Avanzado (C1–C2)": 3
+    },
+    "Emprendedor / Founder": {
+     "No manejo inglés": 0,
+     "Básico (A1–A2)": 3,
+     "Intermedio (B1–B2)": 12,
+     "Avanzado (C1–C2)": 10
+    },
+    "En búsqueda de estudios y empleo": {
+     "No manejo inglés": 0,
+     "Básico (A1–A2)": 3,
+     "Intermedio (B1–B2)": 4,
+     "Avanzado (C1–C2)": 3
+    },
+    "Otro": {
+     "No manejo inglés": 2,
+     "Básico (A1–A2)": 3,
+     "Intermedio (B1–B2)": 3,
+     "Avanzado (C1–C2)": 1
+    }
+   }
+  }
+ },
+ "notas": {
+  "comparabilidad": "Los formularios de 2025 y 2026 no preguntaron lo mismo, así que no todo se puede comparar entre años. Sí se puede: cuánta gente se registró, cuánta asistió y su nivel de inglés. No se puede: el área en que trabajan y su situación laboral, porque en 2025 las opciones de respuesta eran otras. Comparar esas sería medir dos cosas distintas.",
+  "multirespuesta": "En la pregunta sobre qué buscan en el evento, cada persona pudo marcar varias opciones a la vez: 386 personas hicieron 872 marcas en total. Por eso los porcentajes suman más de 100%: cada uno dice qué parte de los asistentes marcó esa opción, no cómo se reparte un total.",
+  "asociaciones": "Los dos cruces de la sección «Perfil cruzado» miden qué tan relacionados están dos datos, en una escala de 0 (no tienen nada que ver) a 1 (sabiendo uno, adivinas el otro). Son una descripción de este grupo de asistentes, no una predicción sobre futuras ediciones: varios de los grupos son pequeños y con pocas personas los porcentajes se mueven mucho.",
+  "asistencia": "La asistencia efectiva mide quién usó su ticket el día del evento. Los porcentajes por grupo se calculan solo sobre grupos de al menos 8 personas: con menos casos una o dos ausencias cambian tanto el número que deja de significar algo.",
+  "speakers": "La pregunta de qué speaker quieren ver era de texto libre, así que la gente escribió nombres de muchas formas distintas. Se cuentan solo los nombres de figuras públicas reconocibles; todo lo demás se agrupa en «Otros» sin publicar respuesta por respuesta, porque algunas podrían contener nombres de asistentes."
+ }
+}

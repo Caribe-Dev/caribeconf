@@ -1,0 +1,22 @@
+---
+interface Props {
+  valor: string
+  etiqueta: string
+  /** Cambio respecto a 2025. Se colorea por signo, pero siempre lleva el signo escrito. */
+  delta?: string
+  deltaPositivo?: boolean
+  nota?: string
+}
+const { valor, etiqueta, delta, deltaPositivo = true, nota } = Astro.props
+---
+
+<div class="defumed-card p-5">
+  <p class="text-4xl font-bold text-aqua md:text-5xl">{valor}</p>
+  <p class="mt-2 font-medium">{etiqueta}</p>
+  {delta && (
+    <p class={`mt-1 text-sm font-bold ${deltaPositivo ? 'text-aqua' : 'text-warm'}`}>
+      {delta} vs 2025
+    </p>
+  )}
+  {nota && <p class="mt-2 text-xs text-white/75">{nota}</p>}
+</div>

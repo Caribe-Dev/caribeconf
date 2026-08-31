@@ -1,0 +1,400 @@
+---
+import Layout from '../../metrics/Layout.astro'
+import Hero from '../../metrics/components/Hero.astro'
+import Card from '../../metrics/components/Card.astro'
+import KpiTile from '../../metrics/components/KpiTile.astro'
+import SectionHeading from '../../metrics/components/SectionHeading.astro'
+import TablaDatos from '../../metrics/components/TablaDatos.astro'
+import TablaComparativa from '../../metrics/components/TablaComparativa.astro'
+import TablaTasa from '../../metrics/components/TablaTasa.astro'
+import TablaEmbudo from '../../metrics/components/TablaEmbudo.astro'
+import BarraCategorica from '../../metrics/components/charts/BarraCategorica.tsx'
+import BarraComparativa from '../../metrics/components/charts/BarraComparativa.tsx'
+import TablaCalor from '../../metrics/components/charts/TablaCalor.tsx'
+import BarraTasa from '../../metrics/components/charts/BarraTasa.tsx'
+import Embudo from '../../metrics/components/charts/Embudo.tsx'
+import metricsJson from '../../metrics/data/metrics.json'
+import { aPuntos, type Metrics } from '../../metrics/data/types'
+
+const m = metricsJson as unknown as Metrics
+const d26 = m['2026']
+const k25 = m.kpis['2025']
+const k26 = m.kpis['2026']
+
+const ORDEN_EXP = [
+  'No tengo experiencia formal aún',
+  'Junior (0–2 años)',
+  'Mid (2–5 años)',
+  'Senior (5+ años)',
+]
+const area = aPuntos(d26.area, k26.registros)
+const situacion = aPuntos(d26.situacion_actual, k26.registros)
+const experiencia = aPuntos(d26.nivel_experiencia, k26.registros, ORDEN_EXP)
+const objetivos = aPuntos(d26.objetivo_evento.conteo, d26.objetivo_evento.personas)
+const speakers = aPuntos(d26.speakers.conteo, d26.speakers.con_nombre)
+const ofertas = aPuntos(d26.interes_ofertas, k26.registros)
+
+const deltaRegistros = Math.round(
+  (100 * (k26.registros - k25.registros)) / k25.registros,
+)
+const deltaAsistencia =
+  Math.round(10 * (k26.tasa_asistencia - k25.tasa_asistencia)) / 10
+const pctOfertasSi =
+  Math.round((1000 * (d26.interes_ofertas['Sí'] ?? 0)) / k26.registros) / 10
+const seniorMid =
+  (d26.nivel_experiencia['Mid (2–5 años)'] ?? 0) +
+  (d26.nivel_experiencia['Senior (5+ años)'] ?? 0)
+const pctB1Mas =
+  Math.round(
+    (1000 *
+      ((d26.nivel_ingles['Intermedio (B1–B2)'] ?? 0) +
+        (d26.nivel_ingles['Avanzado (C1–C2)'] ?? 0))) /
+      k26.registros,
+  ) / 10
+
+/** 82.9% -> 8, para redactar "8 de cada 10", que lee mejor que el decimal. */
+const razon = (pct: number) => Math.round(pct / 10)
+
+const disp = d26.disponibilidad
+const disponibilidad = aPuntos(disp.conteo, disp.total)
+const pctBusca = Math.round((1000 * disp.busca_algo) / disp.total) / 10
+const senioridad = d26.interes_por_seniority
+const embudo = d26.embudo_contratable
+
+
+const aFilas = (puntos: { nombre: string; valor: number }[]) =>
+  puntos.map((p) => [p.nombre, p.valor] as [string, number])
+---
+
+<Layout
+  titulo="CaribeConf en números"
+  descripcion="Métricas de audiencia de CaribeConf 2026: perfil, seniority, nivel de inglés e interés en oportunidades laborales."
+>
+  <Hero
+    eyebrow="Edición 2026 · Barranquilla"
+    titulo="CaribeConf en números"
+    parrafos={[
+      `CaribeConf 2026 reunió a <strong>cerca de ${Math.ceil(k26.registros / 50) * 50} personas</strong> de la escena tech del Caribe: estudiantes que apenas arrancan, gente con años de oficio y quienes están montando su propia empresa. Fueron <strong>${k26.registros - k25.registros} más que el año pasado</strong>, y esta vez ${razon(k26.tasa_asistencia)} de cada 10 sí llegaron el día del evento.`,
+      `Lo que más nos gusta contarle a quienes hacen posible todo esto: <strong>${razon(pctOfertasSi)} de cada 10 asistentes nos dijeron que quieren que las empresas patrocinadoras los contacten</strong> con oportunidades laborales. No es un público que solo pasa por ahí — es gente buscando dónde crecer.`,
+    ]}
+  />
+
+  <main class="mx-auto max-w-7xl px-4 pb-24">
+  <SectionHeading texto="Lo esencial" />
+
+  <div class="grid min-w-0 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <KpiTile
+      valor={String(k26.registros)}
+      etiqueta="Registros"
+      delta={`+${deltaRegistros}%`}
+      deltaPositivo={true}
+      nota={`${k25.registros} en 2025`}
+    />
+    <KpiTile
+      valor={`${k26.tasa_asistencia}%`}
+      etiqueta="Asistencia efectiva"
+      delta={`+${deltaAsistencia} pp`}
+      deltaPositivo={true}
+      nota={`${k26.asistieron} de ${k26.registros} usaron su ticket`}
+    />
+    <KpiTile
+      valor={`${pctOfertasSi}%`}
+      etiqueta="Acepta ofertas laborales de patrocinadores"
+      nota={`${d26.interes_ofertas['Sí']} personas dijeron sí`}
+    />
+    <KpiTile
+      valor={`${pctB1Mas}%`}
+      etiqueta="Inglés B1 o superior"
+      nota="Intermedio y avanzado sumados"
+    />
+  </div>
+
+  <SectionHeading texto="Quién asiste" />
+
+  <div class="grid min-w-0 gap-5 lg:grid-cols-2">
+    <Card
+      titulo="Área de enfoque"
+      subtitulo={`${k26.registros} registros, selección única`}
+    >
+      <BarraCategorica datos={area} base={k26.registros} client:visible />
+      <TablaDatos filas={aFilas(area)} base={k26.registros} encabezado="Área" />
+    </Card>
+
+    <Card
+      titulo="Situación actual"
+      subtitulo={`${k26.registros} registros`}
+      nota="«Otro» va al final por ser categoría residual, no por su frecuencia."
+    >
+      <BarraCategorica datos={situacion} base={k26.registros} client:visible />
+      <TablaDatos
+        filas={aFilas(situacion)}
+        base={k26.registros}
+        encabezado="Situación"
+      />
+    </Card>
+
+    <Card
+      titulo="Nivel de experiencia"
+      subtitulo={`${seniorMid} personas con 2+ años de experiencia`}
+      nota="Escala ordinal: se ordena por nivel, no por frecuencia."
+    >
+      <BarraCategorica
+        datos={experiencia}
+        base={k26.registros}
+        destacarResiduales={false}
+        client:visible
+      />
+      <TablaDatos
+        filas={aFilas(experiencia)}
+        base={k26.registros}
+        encabezado="Nivel"
+        acumulado={true}
+      />
+    </Card>
+
+    <Card
+      titulo="Interés en ofertas laborales"
+      subtitulo="¿Te interesaría recibir ofertas de empresas patrocinadoras?"
+    >
+      <BarraCategorica
+        datos={ofertas}
+        base={k26.registros}
+        destacarResiduales={false}
+        client:visible
+      />
+      <TablaDatos
+        filas={aFilas(ofertas)}
+        base={k26.registros}
+        encabezado="Respuesta"
+      />
+    </Card>
+  </div>
+
+  <SectionHeading texto="2025 vs 2026" />
+
+  <div class="grid min-w-0 gap-5 lg:grid-cols-2">
+    <Card
+      titulo="Nivel de inglés"
+      subtitulo="La única variable de perfil con equivalencia exacta entre años"
+      nota="Ambos formularios usaron la escala MCER, así que las categorías mapean 1:1."
+    >
+      <BarraComparativa
+        comparativo={m.comparativo.nivel_ingles}
+        base2025={k25.registros}
+        base2026={k26.registros}
+        client:visible
+      />
+      <TablaComparativa
+        comparativo={m.comparativo.nivel_ingles}
+        base2025={k25.registros}
+        base2026={k26.registros}
+        encabezado="Nivel de inglés"
+      />
+    </Card>
+
+    <Card
+      titulo="Nivel de experiencia"
+      subtitulo="Comparable solo en tres de los cuatro niveles"
+    >
+      <BarraComparativa
+        comparativo={m.comparativo.nivel_experiencia}
+        base2025={k25.registros}
+        base2026={k26.registros}
+        notaAusente="El formulario de 2025 no ofrecía esta opción, así que no hay dato con el que comparar"
+        client:visible
+      />
+      <TablaComparativa
+        comparativo={m.comparativo.nivel_experiencia}
+        base2025={k25.registros}
+        base2026={k26.registros}
+        encabezado="Nivel de experiencia"
+      />
+    </Card>
+  </div>
+
+  <SectionHeading texto="Talento disponible" />
+
+  <div class="grid min-w-0 gap-5 lg:grid-cols-2">
+    <Card
+      titulo="Para qué está disponible la audiencia"
+      subtitulo={`${pctBusca}% busca algún tipo de vínculo laboral`}
+      nota="Cada persona pudo marcar varias opciones, así que los porcentajes suman más de 100%."
+    >
+      <BarraCategorica
+        datos={disponibilidad}
+        base={disp.total}
+        unidad="personas"
+        destacarResiduales={false}
+        client:visible
+      />
+      <TablaDatos
+        filas={aFilas(disponibilidad)}
+        base={disp.total}
+        encabezado="Disponibilidad"
+        multiRespuesta={true}
+        unidad="personas"
+      />
+    </Card>
+
+    <Card
+      titulo="Interés en ofertas por nivel de experiencia"
+      subtitulo="El promedio general esconde diferencias grandes entre niveles"
+      nota="Los perfiles senior son los menos receptivos y también los menos numerosos. Si tu búsqueda apunta ahí, este es el número que importa, no el promedio."
+    >
+      <BarraTasa
+        tasa={{
+          orden: senioridad.orden,
+          pct: senioridad.pct,
+          n: senioridad.n,
+          asistieron: senioridad.n,
+        }}
+        respetarOrden={true}
+        client:visible
+      />
+      <TablaTasa
+        tasa={{
+          orden: senioridad.orden,
+          pct: senioridad.pct,
+          n: senioridad.n,
+          asistieron: senioridad.si,
+        }}
+        encabezado="Nivel de experiencia"
+        medida="Quiere ofertas"
+        respetarOrden={true}
+      />
+    </Card>
+  </div>
+
+  <div class="mt-5 grid min-w-0 gap-5">
+    <Card
+      titulo="Cuánta gente queda al apilar los filtros de una búsqueda"
+      subtitulo="De la audiencia completa a quienes cumplen todo y además estuvieron ahí"
+      nota="Preferimos mostrar el número que queda al final antes que el de arriba. Es el que describe a cuánta gente alcanzarías de verdad en el evento."
+    >
+      <Embudo pasos={embudo} client:visible />
+      <TablaEmbudo pasos={embudo} />
+    </Card>
+  </div>
+
+  <SectionHeading texto="Qué buscan" />
+
+  <Card
+    titulo="Qué busca la audiencia en el evento"
+    subtitulo={`${d26.objetivo_evento.personas} personas, ${d26.objetivo_evento.selecciones} selecciones`}
+    nota="Pregunta de selección múltiple: los porcentajes son sobre personas, no sobre selecciones, así que suman más de 100%."
+  >
+    <BarraCategorica
+      datos={objetivos}
+      base={d26.objetivo_evento.personas}
+      unidad="personas"
+      destacarResiduales={false}
+      client:visible
+    />
+    <TablaDatos
+      filas={aFilas(objetivos)}
+      base={d26.objetivo_evento.personas}
+      encabezado="Objetivo"
+    />
+  </Card>
+
+  <SectionHeading texto="Perfil cruzado" />
+
+  <div class="grid min-w-0 gap-5">
+    <Card
+      titulo="Situación actual × nivel de experiencia"
+      subtitulo="Porcentaje dentro de cada fila"
+    >
+      <TablaCalor
+        asociacion={m.asociaciones.situacion_x_experiencia}
+        tituloFilas="Situación actual"
+        tituloColumnas="nivel de experiencia"
+        titular="En esta sala, saber a qué se dedica alguien te dice casi de inmediato cuánta experiencia tiene."
+        interpretacion="Los dos extremos son nítidos: 9 de cada 10 estudiantes están en junior o todavía sin experiencia formal, y 7 de cada 10 emprendedores son senior. De los 237 estudiantes, solo 1 se declara senior. Los empleados son el grupo más repartido: hay de todo, con el peso en mid y senior."
+        paraMarca="Cada perfil se encuentra en un lugar distinto de la sala. Si buscas gente senior, están entre los emprendedores y los empleados — son 117 personas con 2+ años de experiencia. Si tu interés es marca de empleador y formar talento desde temprano, los estudiantes son el 61% de la audiencia y llegan sin experiencia previa: son quienes van a recordar qué empresa les habló primero."
+        client:visible
+      />
+    </Card>
+
+    <Card
+      titulo="Situación actual × nivel de inglés"
+      subtitulo="Porcentaje dentro de cada fila"
+      nota="El inglés está mucho menos ligado al perfil laboral de lo que lo está la experiencia técnica."
+    >
+      <TablaCalor
+        asociacion={m.asociaciones.situacion_x_ingles}
+        tituloFilas="Situación actual"
+        tituloColumnas="nivel de inglés"
+        titular="El inglés está repartido de forma parecida en toda la sala, sin importar el perfil."
+        interpretacion="A diferencia de la experiencia, aquí no hay grupos que destaquen: todos —estudiantes, empleados, freelance, emprendedores— tienen su mayoría en nivel intermedio. La única diferencia real aparece en el nivel avanzado, donde llegan 4 de cada 10 emprendedores y 3 de cada 10 empleados, contra 1 de cada 10 estudiantes."
+        paraMarca="Es una buena noticia operativa: puedes traer un speaker internacional, una demo o material en inglés y la mayoría de la sala lo va a seguir, sin tener que elegir a qué segmento le hablas. En total, 244 personas manejan inglés intermedio o superior. Para roles que exigen inglés fluido el grupo se reduce a 60 personas, y se concentra en emprendedores y empleados."
+        client:visible
+      />
+    </Card>
+  </div>
+
+  <SectionHeading texto="Speakers pedidos" />
+
+  <Card
+    titulo="A quién quiere ver la audiencia"
+    subtitulo={`${d26.speakers.con_nombre} respuestas con nombre; ${d26.speakers.sin_preferencia} sin preferencia, excluidas`}
+    nota={`Pregunta de texto libre. «Otros» agrupa ${d26.speakers.fuera_del_roster} respuestas con nombres mencionados una o dos veces: la demanda está muy dispersa, no concentrada.`}
+  >
+    <BarraCategorica
+      datos={speakers}
+      base={d26.speakers.con_nombre}
+      unidad="respuestas"
+      client:visible
+    />
+    <TablaDatos
+      filas={aFilas(speakers)}
+      base={d26.speakers.con_nombre}
+      encabezado="Speaker"
+      unidad="respuestas con nombre"
+    />
+  </Card>
+
+  <SectionHeading texto="Nota metodológica" />
+
+  <div class="defumed-card min-w-0 p-5 md:p-8">
+    <dl class="space-y-7 text-sm leading-relaxed text-white/85">
+      <div>
+        <dt class="mb-2 font-bold text-white">Qué se puede comparar entre años</dt>
+        <dd>{m.notas.comparabilidad}</dd>
+      </div>
+      <div>
+        <dt class="mb-2 font-bold text-white">Preguntas de varias respuestas</dt>
+        <dd>{m.notas.multirespuesta}</dd>
+      </div>
+      <div>
+        <dt class="mb-2 font-bold text-white">Los cruces de perfil</dt>
+        <dd>{m.notas.asociaciones}</dd>
+      </div>
+      <div>
+        <dt class="mb-2 font-bold text-white">Los speakers pedidos</dt>
+        <dd>{m.notas.speakers}</dd>
+      </div>
+      <div>
+        <dt class="mb-2 font-bold text-white">Cómo accedió la gente</dt>
+        <dd>
+          {d26.cobertura_pago.pct_pagaron}% de los registros pagó su ticket; el {
+            Math.round((100 - d26.cobertura_pago.pct_pagaron) * 10) / 10
+          }% restante entró con cupón o cortesía ({d26.cupones.usaron} de {
+            k26.registros
+          } usaron alguno de {d26.cupones.distintos} cupones distintos).
+        </dd>
+      </div>
+      <div>
+        <dt class="mb-2 font-bold text-white">Privacidad</dt>
+        <dd>
+          Esta página solo usa totales y porcentajes. Ningún dato personal de las
+          personas registradas sale del entorno de análisis.
+        </dd>
+      </div>
+    </dl>
+    <p class="mt-8 border-t border-white/10 pt-5 text-sm text-white/70">
+      Datos generados el {m.generado}.
+    </p>
+  </div>
+
+  </main>
+</Layout>

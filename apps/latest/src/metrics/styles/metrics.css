@@ -1,0 +1,149 @@
+@import 'tailwindcss';
+
+/* Esta hoja es autónoma: solo la carga src/metrics/Layout.astro, nunca el
+   resto del sitio. El @source garantiza que Tailwind rastree las clases de
+   los componentes del dashboard aunque vivan fuera de src/pages y src/components. */
+@source '../';
+
+/* Tokens de caribeconf.com. Valores tomados del @theme del sitio, verificados
+   contra su bundle en vivo. El sitio es dark-only: no hay paleta clara. */
+@theme {
+  --color-purple: #120b2f; /* fondo de página */
+  --color-pink: #be357f; /* acento primario */
+  --color-aqua: #41def4; /* acento secundario */
+  --color-cian: #1eb8f9; /* acento terciario */
+  --color-warm: #fdb473; /* acento cálido, nombres destacados */
+  --color-card: #1f183c; /* superficie de card */
+  --color-ink: #0a0620; /* tinta sobre acento claro */
+
+  --font-sans: 'Raleway', -apple-system, 'Helvetica Neue', sans-serif;
+
+  --breakpoint-xs: 480px;
+}
+
+/* Raleway auto-hospedada, igual que el sitio (no CDN). */
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts/Raleway-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts/Raleway-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts/Raleway-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+* {
+  font-family: var(--font-sans);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-purple);
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  /* El ocaso se apaga hacia la noche a lo largo de las dos primeras pantallas.
+     Se queda en tintes de baja opacidad a propósito: las paradas cálidas del
+     degradado del hero dejan el texto blanco en 2.3:1, así que el contenido de
+     datos vive sobre el fondo oscuro. */
+  background-image: linear-gradient(
+    180deg,
+    rgb(114 89 191 / 0.22) 0px,
+    rgb(190 53 127 / 0.12) 720px,
+    rgb(18 11 47 / 0) 1700px
+  );
+  background-repeat: no-repeat;
+}
+
+/* Velo de la entradilla del hero. Va en degradado para no leerse como una caja
+   opaca: 0.75 de opacidad donde empieza el texto, 0.55 al final. Incluso en el
+   punto más claro del ocaso (#FDB473) el blanco queda en 6.3:1. */
+.panel-entradilla {
+  background-image: linear-gradient(
+    100deg,
+    rgb(18 11 47 / 0.75) 0%,
+    rgb(18 11 47 / 0.62) 60%,
+    rgb(18 11 47 / 0.55) 100%
+  );
+  backdrop-filter: blur(6px);
+  box-shadow: inset 0 1px 1px 0 rgb(255 255 255 / 0.14);
+}
+
+/* Degradado de ocaso del hero: las mismas paradas que caribeconf.com. */
+.hero-ocaso {
+  background-image: linear-gradient(
+    180deg,
+    #394cc4 0%,
+    #7259bf 22%,
+    #a562a5 42%,
+    #f1655f 64%,
+    #f1974d 84%,
+    #fdb473 100%
+  );
+}
+
+/* El motivo visual del sitio: card oscura con borde gradiente pink->aqua
+   simulado por un ::after detrás, más un bloom magenta. */
+.defumed-card {
+  position: relative;
+  border-radius: 20px;
+  background-color: var(--color-card);
+  box-shadow: 0 0 20px 0 rgb(226 73 231 / 0.35);
+}
+.defumed-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: 21px;
+  background: linear-gradient(180deg, #be357f 40%, #41def4 100%);
+}
+
+/* Label de sección centrado con reglas de 1px a los lados. */
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.section-heading::before,
+.section-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: rgb(255 255 255 / 0.2);
+}
+
+/* Recharts pinta el texto de los ejes con fill="#666" en el propio elemento,
+   que sobre este fondo oscuro da 3.3:1 — ilegible. La clase del <text> es
+   `-tick-value`; `-tick` son las líneas, no el texto.
+   0.92 de blanco da 15.9:1. Lo recesivo debe ser el grid, no las etiquetas. */
+.recharts-cartesian-axis-tick-value {
+  fill: rgb(255 255 255 / 0.92);
+  font-size: 13px;
+  font-weight: 500;
+}
+.recharts-cartesian-grid line {
+  stroke: rgb(255 255 255 / 0.12);
+}
+/* Los valores sobre las barras son el dato principal: van a blanco pleno y en
+   negrita, no atenuados. */
+.recharts-label-list text {
+  fill: #ffffff;
+  font-weight: 600;
+  font-size: 12px;
+}
+.recharts-legend-item-text {
+  color: rgb(255 255 255 / 0.85) !important;
+}

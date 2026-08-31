@@ -1,0 +1,17 @@
+---
+interface Props {
+  titulo: string
+  subtitulo?: string
+  /** Nota metodológica: aparece al pie de la card, en tono cálido. */
+  nota?: string
+  id?: string
+}
+const { titulo, subtitulo, nota, id } = Astro.props
+---
+
+<section id={id} class="defumed-card min-w-0 p-5 md:p-8">
+  <h3 class="text-xl font-bold md:text-2xl">{titulo}</h3>
+  {subtitulo && <p class="mt-1 text-sm text-white/85 md:text-base">{subtitulo}</p>}
+  <div class="mt-6"><slot /></div>
+  {nota && <p class="mt-5 border-t border-white/10 pt-4 text-sm text-white/80">{nota}</p>}
+</section>
