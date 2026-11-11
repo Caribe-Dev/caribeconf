@@ -1,14 +1,11 @@
 // @ts-check
-// @ts-ignore
 import { fileURLToPath, URL } from 'node:url';
 import { defineConfig, envField, passthroughImageService } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  // React solo lo usan las gráficas del dashboard en /metrics (Recharts).
-  integrations: [react()],
+  integrations: [],
   vite: {
     plugins: [tailwindcss()],
     resolve: {
@@ -21,14 +18,12 @@ export default defineConfig({
   },
   env: {
     schema: {
-      BUY_TICKET_URL: envField.string({ context: "client", access: "public", optional: true }),
       DOMAIN: envField.string({ context: "client", access: "public", optional: true }),
       ENV: envField.string({ context: "client", access: "public", optional: true }),
       GA_ID: envField.string({ context: "client", access: "public", optional: true })
     }
   },
   image: {
-    service: passthroughImageService(),
-    domains: ['res.cloudinary.com']
+    service: passthroughImageService()
   }
 });

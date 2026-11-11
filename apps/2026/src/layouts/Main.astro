@@ -1,0 +1,63 @@
+---
+import { DOMAIN } from "astro:env/client"
+import BaseLayout from '@shared/layouts/BaseLayout.astro'
+
+import Header from '@/sections/Header.astro'
+import Footer from '@/sections/Footer.astro'
+
+import '@/styles/global.css'
+
+interface Props {
+  title?: string
+}
+
+const title = Astro.props.title
+const image = DOMAIN + '/images/og.png'
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "CaribeConf Barranquilla, Colombia 2026",
+  "startDate": "2026-08-14",
+  "endDate": "2026-08-15",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {
+    "@type": "Place",
+    "name": "CaribeConf Barranquilla, Colombia 2026",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle 58 # 54-59",
+      "addressLocality": "Barranquilla",
+      "postalCode": "080002",
+      "addressCountry": "CO"
+    }
+  },
+  "image": image,
+  "description": "Conferencia de Comunidades Tech en Barranquilla, Colombia",
+  "organizer": {
+    "@type": "Organization",
+    "name": "CaribeConf Barranquilla, Colombia 2026",
+    "url": "https://caribeconf.com"
+  }
+}
+---
+
+<BaseLayout
+  edition="2026"
+  title={
+    title
+      ? title + ' | Caribe Conf 2026'
+      : 'Caribe Conf - Conferencia de Comunidades Tech en Barranquilla, Colombia.'
+  }
+  description="Únete a CaribeConf Barranquilla, Colombia. La conferencia de comunidades tech más esperada del Caribe. Charlas inspiradoras, networking y oportunidades únicas para desarrolladores, diseñadores y entusiastas de la tecnología. ¡No te lo pierdas!"
+  socialTitle="CaribeConf Barranquilla, Colombia"
+  socialDescription="Conferencia de Comunidades Tech en Barranquilla, Colombia"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+  <Header />
+  <slot />
+  <Footer />
+</BaseLayout>

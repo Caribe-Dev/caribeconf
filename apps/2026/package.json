@@ -1,0 +1,39 @@
+{
+  "name": "caribeconf",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "CaribeConf website 2026",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "homepage": "https://github.com/caribe-dev/caribeconf/blob/main/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caribe-dev/caribeconf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/caribe-dev/caribeconf/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "22"
+  },
+  "dependencies": {
+    "@astrojs/react": "^5.0.7",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "recharts": "^3.10.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "0.5.19",
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "astro": "6.1.2",
+    "tailwind-merge": "3.5.0",
+    "tailwindcss": "4.2.2"
+  }
+}

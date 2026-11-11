@@ -1,9 +1,5 @@
 ---
-import { ClientRouter } from 'astro:transitions';
-import { DOMAIN, ENV, GA_ID } from "astro:env/client"
-
-import Header from '@/sections/Header.astro'
-import Footer from '@/sections/Footer.astro'
+import BaseLayout from '@shared/layouts/BaseLayout.astro'
 
 import '@/styles/global.css'
 
@@ -11,126 +7,19 @@ interface Props {
   title?: string
 }
 
-const title = Astro.props.title
-const image = DOMAIN + '/images/og.png'
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Event",
-  "name": "CaribeConf Barranquilla, Colombia 2026",
-  "startDate": "2026-08-14",
-  "endDate": "2026-08-15",
-  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "eventStatus": "https://schema.org/EventScheduled",
-  "location": {
-    "@type": "Place",
-    "name": "CaribeConf Barranquilla, Colombia 2026",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Calle 58 # 54-59",
-      "addressLocality": "Barranquilla",
-      "postalCode": "080002",
-      "addressCountry": "ES"
-    }
-  },
-  "image": image,
-  "description": "Conferencia de Comunidades Tech en Barranquilla, Colombia",
-  "organizer": {
-    "@type": "Organization",
-    "name": "CaribeConf Barranquilla, Colombia 2026",
-    "url": "https://caribeconf.com"
-  }
-}
+const { title } = Astro.props
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="CaribeConf Barranquilla, Colombia" />
-    {
-      ENV !== 'production' &&
-        <meta name="robots" content="NOINDEX, NOFOLLOW">
-    }
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <title>
-      {
-        title
-          ? title + ' | Caribe Conf 2026'
-          : 'Caribe Conf - Conferencia de Comunidades Tech en Barranquilla, Colombia.'
-      }
-    </title>
-    <meta
-      name="description"
-      content="Únete a CaribeConf Barranquilla, Colombia. La conferencia de comunidades tech más esperada del Caribe. Charlas inspiradoras, networking y oportunidades únicas para desarrolladores, diseñadores y entusiastas de la tecnología. ¡No te lo pierdas!"
-    />
-    <meta
-      name="keywords"
-      content="Caribe Dev, CaribeDev, Caribe Conf, CaribeConf. JavaScript, Colombia, Barranquilla, Conferencias, Programación, Comunidades Tech"
-    />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://caribeconf.com" />
-
-    <meta property="og:image" content={image} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:title" content="CaribeConf Barranquilla, Colombia" />
-    <meta
-      property="og:description"
-      content="Conferencia de Comunidades Tech en Barranquilla, Colombia"
-    />
-    <meta property="og:url" content="https://caribeconf.com" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@caribedev" />
-    <meta name="twitter:creator" content="@caribedev" />
-    <meta name="twitter:title" content="CaribeConf Barranquilla, Colombia" />
-    <meta
-      name="twitter:description"
-      content="Conferencia de Comunidades Tech en Barranquilla, Colombia"
-    />
-    <meta name="twitter:image" content={image} />
-
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    <ClientRouter />
-    {GA_ID && (
-      <>
-        <script is:inline define:vars={{ GA_ID }} async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
-        <script is:inline define:vars={{ GA_ID, ENV }}>
-          window.dataLayer = window.dataLayer || [];
-          window.gtag = function(){window.dataLayer.push(arguments);}
-          window.gtag('js', new Date());
-          window.gtag('config', GA_ID, { debug_mode: ENV !== 'production' });
-        </script>
-      </>
-    )}
-  </head>
-  <body>
-    <Header />
-    <slot />
-    <Footer />
-    {GA_ID && (
-      <script is:inline define:vars={{ GA_ID }}>
-        document.addEventListener('astro:page-load', () => {
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'page_view', {
-              page_path: window.location.pathname,
-              page_title: document.title,
-            });
-          }
-
-          document.querySelectorAll('[data-ga-event]').forEach((el) => {
-            el.addEventListener('click', () => {
-              if (typeof gtag !== 'undefined') {
-                gtag('event', el.dataset.gaEvent, {
-                  event_label: el.textContent?.trim(),
-                });
-              }
-            });
-          });
-        });
-      </script>
-    )}
-  </body>
-</html>
+<BaseLayout
+  edition="latest"
+  title={
+    title
+      ? title + ' | Caribe Conf'
+      : 'Caribe Conf - Conferencia de Comunidades Tech en Barranquilla, Colombia.'
+  }
+  description="Únete a CaribeConf Barranquilla, Colombia. La conferencia de comunidades tech más esperada del Caribe. Charlas inspiradoras, networking y oportunidades únicas para desarrolladores, diseñadores y entusiastas de la tecnología. ¡No te lo pierdas!"
+  socialTitle="CaribeConf Barranquilla, Colombia"
+  socialDescription="Conferencia de Comunidades Tech en Barranquilla, Colombia"
+>
+  <slot />
+</BaseLayout>

@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
 
 @source "../../../../packages/shared/**/*.{astro,html,js,jsx,ts,tsx}";
 
@@ -16,9 +15,6 @@
   --breakpoint-3xl: 1920px;
 
   --font-family-raleway: 'Raleway', -apple-system, 'Helvetica Neue', sans-serif;
-
-  --background-image-gradient-hero: linear-gradient(180deg, #394CC4 10.84%, #7259BF 26.62%, #A562A5 42.41%, #F1655F 58.2%, #F1974D 73.99%);
-;
 }
 
 @import "../../../../packages/shared/styles/settings/typography.css";

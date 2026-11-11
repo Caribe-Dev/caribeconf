@@ -1,6 +1,6 @@
 ---
-import { ClientRouter } from 'astro:transitions';
-import { DOMAIN, ENV } from "astro:env/client"
+import { DOMAIN } from "astro:env/client"
+import BaseLayout from '@shared/layouts/BaseLayout.astro'
 
 import Header from '@/sections/Header.astro'
 import Footer from '@/sections/Footer.astro'
@@ -31,7 +31,7 @@ const jsonLd = {
       "streetAddress": "Calle 58 # 54-59",
       "addressLocality": "Barranquilla",
       "postalCode": "080002",
-      "addressCountry": "ES"
+      "addressCountry": "CO"
     }
   },
   "image": image,
@@ -44,62 +44,21 @@ const jsonLd = {
 }
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="CaribeConf Barranquilla, Colombia 2025" />
-    {
-      ENV !== 'production' &&
-        <meta name="robots" content="NOINDEX, NOFOLLOW">
-    }
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <title>
-      {
-        title
-          ? title + ' | Caribe Conf 2025'
-          : 'Caribe Conf - Conferencia de Comunidades Tech en Barranquilla, Colombia (26 de Abril 2025)'
-      }
-    </title>
-    <meta
-      name="description"
-      content="Únete a CaribeConf Barranquilla, Colombia 2025, la conferencia más importante sobre JavaScript en Barranquilla, el 26 de Abril 2025. ¡Ven no te lo pierdas y reserva tu entrada ahora!"
-    />
-    <meta
-      name="keywords"
-      content="Caribe Dev, CaribeDev, Caribe Conf, CaribeConf. JavaScript, Colombia, Barranquilla, Conferencias, Programación, Comunidades Tech"
-    />
-    <meta name="robots" content="index, follow" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="canonical" href={DOMAIN} />
-
-    <meta property="og:image" content={image} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:title" content="CaribeConf Barranquilla, Colombia 2025" />
-    <meta
-      property="og:description"
-      content="Conferencia de Comunidades Tech en Barranquilla, Colombia (26 de Abril 2025)"
-    />
-    <meta property="og:url" content={DOMAIN} />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@caribedev" />
-    <meta name="twitter:creator" content="@caribedev" />
-    <meta name="twitter:title" content="CaribeConf Barranquilla, Colombia 2025" />
-    <meta
-      name="twitter:description"
-      content="Conferencia de Comunidades Tech en Barranquilla, Colombia (26 de Abril 2025)"
-    />
-    <meta name="twitter:image" content={image} />
-
+<BaseLayout
+  edition="2025"
+  title={
+    title
+      ? title + ' | Caribe Conf 2025'
+      : 'Caribe Conf - Conferencia de Comunidades Tech en Barranquilla, Colombia (26 de Abril 2025)'
+  }
+  description="Únete a CaribeConf Barranquilla, Colombia 2025, la conferencia más importante sobre JavaScript en Barranquilla, el 26 de Abril 2025. ¡Ven no te lo pierdas y reserva tu entrada ahora!"
+  socialTitle="CaribeConf Barranquilla, Colombia 2025"
+  socialDescription="Conferencia de Comunidades Tech en Barranquilla, Colombia (26 de Abril 2025)"
+>
+  <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    <ClientRouter />
-  </head>
-  <body>
-    <Header />
-    <slot />
-    <Footer />
-  </body>
-</html>
+  </Fragment>
+  <Header />
+  <slot />
+  <Footer />
+</BaseLayout>

@@ -43,7 +43,7 @@ const venue = {
         <span class="text-[14px] md:text-3xl font-bold uppercase">segundos</span>
       </div>
     </div> -->
-    {
+    {/* Botón de compra oculto: edición 2026 finalizada.
       BUY_TICKET_URL && (
          <a
           href={BUY_TICKET_URL}
@@ -54,7 +54,7 @@ const venue = {
           Comprar tu ticket
         </a>
       )
-    }
+    */}
   </Layout>
 </section>
 
@@ -106,31 +106,34 @@ const venue = {
 
   const pad = (n: number) => String(n).padStart(2, '0');
 
-  const els = {
-    days: document.getElementById('cd-days')!,
-    hours: document.getElementById('cd-hours')!,
-    minutes: document.getElementById('cd-minutes')!,
-    seconds: document.getElementById('cd-seconds')!,
-  };
+  const days = document.getElementById('cd-days');
+  const hours = document.getElementById('cd-hours');
+  const minutes = document.getElementById('cd-minutes');
+  const seconds = document.getElementById('cd-seconds');
 
-  function tick() {
-    const diff = targetDate - Date.now();
+  // Solo corre si el contador está en el HTML (hoy está oculto).
+  if (days && hours && minutes && seconds) {
+    const els = { days, hours, minutes, seconds };
 
-    if (diff <= 0) {
-      els.days.textContent = '00';
-      els.hours.textContent = '00';
-      els.minutes.textContent = '00';
-      els.seconds.textContent = '00';
-      return;
-    }
+    const tick = () => {
+      const diff = targetDate - Date.now();
 
-    const totalSeconds = Math.floor(diff / 1000);
-    els.days.textContent    = pad(Math.floor(totalSeconds / 86400));
-    els.hours.textContent   = pad(Math.floor((totalSeconds % 86400) / 3600));
-    els.minutes.textContent = pad(Math.floor((totalSeconds % 3600) / 60));
-    els.seconds.textContent = pad(totalSeconds % 60);
+      if (diff <= 0) {
+        els.days.textContent = '00';
+        els.hours.textContent = '00';
+        els.minutes.textContent = '00';
+        els.seconds.textContent = '00';
+        return;
+      }
+
+      const totalSeconds = Math.floor(diff / 1000);
+      els.days.textContent    = pad(Math.floor(totalSeconds / 86400));
+      els.hours.textContent   = pad(Math.floor((totalSeconds % 86400) / 3600));
+      els.minutes.textContent = pad(Math.floor((totalSeconds % 3600) / 60));
+      els.seconds.textContent = pad(totalSeconds % 60);
+    };
+
+    tick();
+    setInterval(tick, 1000);
   }
-
-  tick();
-  setInterval(tick, 1000);
 </script>
