@@ -1,0 +1,139 @@
+---
+/**
+ * Layout base compartido por todas las versiones del sitio (2025, 2026, latest).
+ *
+ * Se encarga del <html>, metadatos SEO/sociales y Google Analytics.
+ * Cada evento enviado a GA lleva el parámetro `edition` para saber qué
+ * versión del sitio visitó el usuario.
+ *
+ * NO incluye JSON-LD: esos datos son propios de cada edición y se inyectan
+ * desde la app con el slot `head`:
+ *
+ *   <BaseLayout edition="2026" ...>
+ *     <Fragment slot="head">
+ *       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+ *     </Fragment>
+ *     ...
+ *   </BaseLayout>
+ *
+ * Requiere que la app declare `DOMAIN`, `ENV` y `GA_ID` en `env.schema`
+ * (astro.config.mjs).
+ */
+import { ClientRouter } from 'astro:transitions'
+import { DOMAIN, ENV, GA_ID } from 'astro:env/client'
+
+export type Edition = '2025' | '2026' | 'latest'
+
+interface Props {
+  /** Versión del sitio. Se envía a Google Analytics como parámetro `edition`. */
+  edition: Edition
+  /** Contenido final de la etiqueta <title>. */
+  title: string
+  description: string
+  /** Título para Open Graph / Twitter. Por defecto `title`. */
+  socialTitle?: string
+  /** Descripción para Open Graph / Twitter. Por defecto `description`. */
+  socialDescription?: string
+  /** URL absoluta de la imagen social. Por defecto `${DOMAIN}/images/og.png`. */
+  image?: string
+}
+
+const {
+  edition,
+  title,
+  description,
+  socialTitle = title,
+  socialDescription = description,
+} = Astro.props
+
+const site = DOMAIN ?? Astro.url.origin
+const image = Astro.props.image ?? new URL('/images/og.png', site).href
+const canonical = new URL(Astro.url.pathname, site).href
+const isProduction = ENV === 'production'
+
+// GA4 activa el modo debug con solo recibir `debug_mode`, aunque valga false.
+// Por eso solo se envía fuera de producción.
+const gaConfig = {
+  send_page_view: false, // los page_view se envían en `astro:page-load`
+  edition,
+  ...(isProduction ? {} : { debug_mode: true }),
+}
+---
+
+<!doctype html>
+<html lang="es" data-edition={edition}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content={isProduction ? 'index, follow' : 'noindex, nofollow'} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="Caribe Dev, CaribeDev, Caribe Conf, CaribeConf. JavaScript, Colombia, Barranquilla, Conferencias, Programación, Comunidades Tech"
+    />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:title" content={socialTitle} />
+    <meta property="og:description" content={socialDescription} />
+    <meta property="og:url" content={canonical} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@caribedev" />
+    <meta name="twitter:creator" content="@caribedev" />
+    <meta name="twitter:title" content={socialTitle} />
+    <meta name="twitter:description" content={socialDescription} />
+    <meta name="twitter:image" content={image} />
+
+    <slot name="head" />
+
+    <ClientRouter />
+    {GA_ID && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+        <script is:inline define:vars={{ GA_ID, gaConfig }}>
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function(){window.dataLayer.push(arguments);}
+          window.gtag('js', new Date());
+          window.gtag('config', GA_ID, gaConfig);
+        </script>
+      </>
+    )}
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      // Script empaquetado: se ejecuta una sola vez aunque ClientRouter navegue
+      // entre páginas, así los listeners no se duplican.
+      type Gtag = (command: 'event', name: string, params: Record<string, unknown>) => void
+
+      function track(name: string, params: Record<string, unknown> = {}) {
+        const gtag = (window as Window & { gtag?: Gtag }).gtag
+        if (typeof gtag !== 'function') return
+        gtag('event', name, { edition: document.documentElement.dataset.edition, ...params })
+      }
+
+      document.addEventListener('astro:page-load', () => {
+        track('page_view', {
+          page_location: window.location.href,
+          page_path: window.location.pathname,
+          page_title: document.title,
+        })
+      })
+
+      // Delegación: cualquier elemento con data-ga-event="nombre" envía un evento al hacer click.
+      // data-ga-label="..." define la etiqueta; si falta, se usa el texto del elemento.
+      document.addEventListener('click', (event) => {
+        const el = (event.target as Element | null)?.closest<HTMLElement>('[data-ga-event]')
+        const name = el?.dataset.gaEvent
+        if (!el || !name) return
+        track(name, { event_label: el.dataset.gaLabel ?? el.textContent?.trim() })
+      })
+    </script>
+  </body>
+</html>
