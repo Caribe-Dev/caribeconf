@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@shared/layouts/BaseLayout.astro'
+
+import '@/styles/global.css'
+
+interface Props {
+  title?: string
+}
+
+const { title } = Astro.props
+---
+
+<BaseLayout
+  edition="latest"
+  title={
+    title
+      ? title + ' | Caribe Conf'
+      : 'Caribe Conf - Conferencia de Comunidades Tech en Barranquilla, Colombia.'
+  }
+  description="Únete a CaribeConf Barranquilla, Colombia. La conferencia de comunidades tech más esperada del Caribe. Charlas inspiradoras, networking y oportunidades únicas para desarrolladores, diseñadores y entusiastas de la tecnología. ¡No te lo pierdas!"
+  socialTitle="CaribeConf Barranquilla, Colombia"
+  socialDescription="Conferencia de Comunidades Tech en Barranquilla, Colombia"
+>
+  <slot />
+</BaseLayout>

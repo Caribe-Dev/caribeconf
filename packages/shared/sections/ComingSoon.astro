@@ -1,28 +1,111 @@
 ---
+/**
+ * Página "Coming Soon". Usa el layout `src/layouts/Main.astro` de la app
+ * que la importa, así hereda su edición (GA) y estilos.
+ *
+ * Muestra las ediciones publicadas (`@shared/utils/editions`) y un crédito
+ * a CaribeDev.
+ *
+ * La app debe tener `public/caribe-dev-white-logo.png`.
+ */
 import { Image } from 'astro:assets';
 
 import Main from '@/layouts/Main.astro';
 import Layout from '@shared/components/Layout.astro';
+import Glow from '@shared/components/Glow.astro';
+import { EDITIONS, CARIBEDEV_URL } from '@shared/utils/editions';
 
 import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
 
+interface Props {
+  /** Encabezado principal. */
+  heading?: string
+}
+
+const { heading = 'Coming Soon' } = Astro.props
+
+// La más reciente primero.
+const editions = [...EDITIONS].reverse()
 ---
 <Main>
-  <Layout>
-    <main class="h-dvh flex justify-center">
-      <div class="flex flex-col items-center gap-4 mt-[30%] md:mt-[10%]">
-        <Image class='max-w-45 md:max-w-70' src={CaribeDevPng} alt='Caribe dev logo' />
-        <h1 class="text-center">Coming Soon 2026</h1>
-        <p class="text-center">
+  <Layout class="relative z-10 min-h-dvh flex flex-col">
+    <main class="flex-1 flex flex-col items-center gap-12 md:gap-16 pt-16 md:pt-24 pb-12">
+      <div class="flex flex-col items-center gap-4">
+        <Image class='max-w-45 md:max-w-70' src={CaribeDevPng} alt='Caribe dev logo' loading='eager' />
+        <h1 class="text-center">{heading}</h1>
+        <p class="text-center max-w-[640px]">
           Estamos trabajando en la próxima edición de CaribeConf. ¡Mantente atento para más detalles!
         </p>
       </div>
+
+      <section aria-labelledby="editions-title" class="w-full max-w-[720px] flex flex-col items-center gap-6">
+        <h2 id="editions-title" class="uppercase text-aqua font-bold tracking-[2px] text-sm text-center">
+          Revive nuestras ediciones
+        </h2>
+        <ul class="w-full grid gap-4 sm:grid-cols-2">
+          {editions.map(({ year, url, label, date, city }) => (
+            <li>
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener"
+                class="edition-card group flex flex-col gap-3 h-full rounded-[20px] p-6"
+                data-ga-event="edition_click"
+                data-ga-label={year}
+              >
+                <div class="flex items-start justify-between gap-4">
+                  <span class="text-xs font-bold uppercase tracking-[2px] text-white/70">{label}</span>
+                  <svg
+                    class="w-5 h-5 shrink-0 text-white/70 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-aqua"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    aria-hidden="true"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9" />
+                  </svg>
+                </div>
+                <span class="edition-year text-5xl md:text-6xl font-bold leading-none">{year}</span>
+                <span class="text-base font-semibold">{date} · {city}</span>
+                <span class="mt-auto text-sm font-medium text-white/60 group-hover:text-white transition-colors">
+                  {url.replace('https://', '')}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
     </main>
-    <div class="glow"></div>
-    <div class="aura">
-      <div class="aura-spin"></div>
-    </div>
+
+    <footer class="flex flex-col items-center gap-2 pb-8 text-center">
+      <a
+        href={CARIBEDEV_URL}
+        target="_blank"
+        rel="noopener"
+        class="caribedev-badge group inline-flex items-center gap-2 rounded-full px-4 py-2 md:px-5"
+        data-ga-event="caribedev_click"
+        data-ga-label="coming_soon_footer"
+      >
+        <span class="text-sm md:text-base font-medium text-white/85">Una conferencia hecha por</span>
+        <span class="text-sm md:text-base font-bold">CaribeDev</span>
+        <svg
+          class="w-4 h-4 text-aqua transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2.5"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9" />
+        </svg>
+      </a>
+      <span class="text-sm text-white/60 max-w-[420px]">
+        La comunidad que reúne a más de 15 comunidades tech del Caribe colombiano.
+      </span>
+    </footer>
   </Layout>
+  <Glow />
 </Main>
 
 <style>
@@ -31,63 +114,82 @@ import CaribeDevPng from '@/public/caribe-dev-white-logo.png';
     min-height: 100dvh;
     background-color: #0E1217;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
-  .glow {
-    position: fixed;
-    bottom: -120px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 300px;
-    background: radial-gradient(ellipse at center, #9333ea 0%, #7c3aed55 40%, transparent 70%);
-    filter: blur(60px);
-    border-radius: 50%;
-    pointer-events: none;
+  /* Tarjeta glass + glow rosa y borde degradado pink → aqua de DefumedCard. */
+  .edition-card {
+    position: relative;
+    background: #FFFFFF0F;
+    border: 1px solid #FFFFFF26;
+    backdrop-filter: blur(6px);
+    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
   }
 
-  .aura {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 100;
-    -webkit-mask-image:
-      linear-gradient(to bottom, white 0px, transparent 8px),
-      linear-gradient(to top,    white 0px, transparent 8px),
-      linear-gradient(to right,  white 0px, transparent 8px),
-      linear-gradient(to left,   white 0px, transparent 8px);
-    -webkit-mask-composite: source-over, source-over, source-over;
-    mask-image:
-      linear-gradient(to bottom, white 0px, transparent 8px),
-      linear-gradient(to top,    white 0px, transparent 8px),
-      linear-gradient(to right,  white 0px, transparent 8px),
-      linear-gradient(to left,   white 0px, transparent 8px);
-    mask-composite: add, add, add;
-  }
-
-  .aura-spin {
+  .edition-card::before {
+    content: '';
     position: absolute;
-    inset: -100%;
-    background: conic-gradient(
-      from 0deg,
-      transparent       0deg,
-      #41DEF4          50deg,
-      #1EB8F9          90deg,
-      #9333ea         150deg,
-      #BE357F         200deg,
-      transparent     230deg,
-      transparent     320deg,
-      #41DEF4         360deg
-    );
-    filter: blur(18px);
-    opacity: 0.45;
-    animation: aura-spin-rotate 7s linear infinite;
+    inset: -1px;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(180deg, #BE357F 40%, #41DEF4 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 200ms ease;
+    pointer-events: none;
   }
 
-  @keyframes aura-spin-rotate {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
+  .edition-card:hover,
+  .edition-card:focus-visible {
+    transform: translateY(-4px);
+    border-color: transparent;
+    box-shadow: 0 0 24px 0 rgba(226, 73, 231, 0.8);
+  }
+
+  .edition-card:hover::before,
+  .edition-card:focus-visible::before {
+    opacity: 1;
+  }
+
+  .edition-card:focus-visible,
+  .caribedev-badge:focus-visible {
+    outline: 2px solid #41DEF4;
+    outline-offset: 4px;
+  }
+
+  .edition-year {
+    background: linear-gradient(90deg, #FFFFFF 0%, #41DEF4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Mismo estilo glass que el badge de sponsor de 2026. */
+  .caribedev-badge {
+    background: #FFFFFF1F;
+    border: 1px solid #FFFFFF3D;
+    box-shadow: inset 0 1px 1px 0 #FFFFFF33, 0 4px 16px -4px #00000033;
+    backdrop-filter: blur(6px);
+    transition: background 200ms ease, border-color 200ms ease;
+  }
+
+  .caribedev-badge:hover {
+    background: #FFFFFF2E;
+    border-color: #FFFFFF59;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .edition-card,
+    .edition-card svg,
+    .caribedev-badge svg {
+      transition: none;
+    }
+
+    .edition-card:hover,
+    .edition-card:focus-visible {
+      transform: none;
+    }
   }
 </style>
