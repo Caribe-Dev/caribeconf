@@ -5,10 +5,13 @@
   "description": "CaribeConf website",
   "scripts": {
     "dev:2025": "cd apps/2025 && npm run dev",
+    "dev:2026": "cd apps/2026 && npm run dev",
     "dev:latest": "cd apps/latest && npm run dev",
     "build:2025": "cd apps/2025 && npm run build",
+    "build:2026": "cd apps/2026 && npm run build",
     "build:latest": "cd apps/latest && npm run build",
     "install:2025": "cd apps/2025 && npm install",
+    "install:2026": "cd apps/2026 && npm install",
     "install:latest": "cd apps/latest && npm install"
   },
   "homepage": "https://github.com/caribe-dev/caribeconf/blob/main/README.md",

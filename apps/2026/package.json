@@ -2,7 +2,7 @@
   "name": "caribeconf",
   "type": "module",
   "version": "0.0.1",
-  "description": "CaribeConf website lastest",
+  "description": "CaribeConf website 2026",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
